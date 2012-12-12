@@ -306,6 +306,9 @@
   <data name="SubTitle_4" xml:space="preserve">
     <value>VIEW</value>
   </data>
+  <data name="SubTitle_5" xml:space="preserve">
+    <value>NEW PROJECT</value>
+  </data>
   <data name="Tasks" xml:space="preserve">
     <value>tasks</value>
   </data>

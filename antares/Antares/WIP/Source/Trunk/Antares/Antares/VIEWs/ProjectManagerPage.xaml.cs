@@ -27,7 +27,14 @@ namespace Antares.VIEWs
         {
             InitializeComponent();
 
+            Navigator.Instance.SetRootProjectFrame(ProjectFrame);
             Messenger.Instance.Register<EnableProject>(EnableProject);
+            Messenger.Instance.Register<UpdateProject>(UpdateProjectName);
+        }
+
+        private void UpdateProjectName(object obj)
+        {
+            EnableProject(null);
         }
 
         private async void EnableProject(object obj)
@@ -65,7 +72,16 @@ namespace Antares.VIEWs
             }
             else if (param.Contains("#2:"))
             {
-                ProjectFrame.Navigate(typeof(ProjectInformationSubPage), param.Split(new[] { "#2:" }, StringSplitOptions.RemoveEmptyEntries)[0]);
+                var id = param.Split(new[] {"#2:"}, StringSplitOptions.RemoveEmptyEntries)[0];
+                ProjectFrame.Navigate(typeof(ProjectInformationSubPage), id);
+                if (Convert.ToInt32(id) == -1)
+                {
+                    ProjectBtn.Visibility = Visibility.Visible;
+                    
+                    indi1.Visibility = Visibility.Visible;
+                    ProjectBtn.Content = LanguageProvider.Resource["SubTitle_5"];
+                }
+                
                 SetHighLight(ProjectBtn);
             }
             else if (navigationParameter.ToString().Contains("#3:"))
@@ -90,22 +106,23 @@ namespace Antares.VIEWs
 
         private void OverviewBtn_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            Navigator.Instance.NavigateTo(typeof(ProjectManagerPage));
+           // Navigator.Instance.NavigateTo(typeof(ProjectManagerPage));
+            ProjectFrame.Navigate(typeof(ProjectOverViewSubPage));
+            SetHighLight(OverviewBtn);
         }
 
         private void ProjectBtn_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            Navigator.Instance.NavigateTo(typeof(ProjectManagerPage), "#2:" + GlobalData.SelectedProjects);
+            ProjectFrame.Navigate(typeof (ProjectInformationSubPage), GlobalData.SelectedProjects);
+            SetHighLight(ProjectBtn);
+            // Navigator.Instance.NavigateTo(typeof(ProjectManagerPage), "#2:" + GlobalData.SelectedProjects);
         }
 
         private void Taskbtn_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            Navigator.Instance.NavigateTo(typeof(ProjectManagerPage), "#3:" + GlobalData.SelectedProjects);
-        }
-
-        private void ViewBtn_Tapped(object sender, TappedRoutedEventArgs e)
-        {
-            Navigator.Instance.NavigateTo(typeof(TimelineWeekPage));
+           // Navigator.Instance.NavigateTo(typeof(ProjectManagerPage), "#3:" + GlobalData.SelectedProjects);
+            ProjectFrame.Navigate(typeof(ProjectTaskSubPage), GlobalData.SelectedProjects);
+            SetHighLight(TaskBtn);
         }
 
         private void SetHighLight(HyperlinkButton highlighted)

@@ -9,6 +9,8 @@ namespace AntaresShell.NavigatorProvider
     public class Navigator
     {
         private Frame _rootFrame;
+        private Frame _rootProjectFrame;
+
 
         private Popup _mainPopup;
 
@@ -16,6 +18,12 @@ namespace AntaresShell.NavigatorProvider
         {
             _rootFrame = rootFrame;
         }
+
+        public void SetRootProjectFrame(Frame rootProjectFrame)
+        {
+            _rootProjectFrame = rootProjectFrame;
+        }
+
 
         public bool NavigateTo(Type pageType)
         {
@@ -32,6 +40,17 @@ namespace AntaresShell.NavigatorProvider
             TopAppBar.IsOpen = false;
             return _rootFrame.Navigate(pageType, parameter);
         }
+
+        public bool NavigateToSubPage(Type pageType)
+        {
+            return _rootProjectFrame.Navigate(pageType);
+        }
+
+        public bool NavigateToSubPage(Type pageType, object parameter)
+        {
+            return _rootProjectFrame.Navigate(pageType, parameter);
+        }
+
 
         /// <summary>
         /// Gets value of _instance.

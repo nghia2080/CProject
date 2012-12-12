@@ -307,6 +307,9 @@
   <data name="SubTitle_4" xml:space="preserve">
     <value>表示</value>
   </data>
+  <data name="SubTitle_5" xml:space="preserve">
+    <value>新しいプロジェット</value>
+  </data>
   <data name="Tasks" xml:space="preserve">
     <value>タスク</value>
   </data>

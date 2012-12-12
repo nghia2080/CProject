@@ -21,7 +21,7 @@ namespace Antares.VIEWs
         private void Grid_Tapped_1(object sender, TappedRoutedEventArgs e)
         {
             var info = DataContext as ProjectInformationModel;
-            Navigator.Instance.NavigateTo(typeof(ProjectManagerPage), "#2:" + info.ID);
+            Navigator.Instance.NavigateToSubPage(typeof(ProjectInformationSubPage), info.ID);
             GlobalData.SelectedProjects = info.ID;
             Messenger.Instance.Notify(EnableProject.Enabled);
         }

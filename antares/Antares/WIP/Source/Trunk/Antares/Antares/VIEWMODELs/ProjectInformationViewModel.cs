@@ -88,7 +88,7 @@ namespace Antares.VIEWMODELs
             Navigator.Instance.ExecuteStatus(ConnectionStatus.Done);
             GlobalData.SelectedProjects = -1;
             Navigator.Instance.MainProgressBar.Visibility = Visibility.Collapsed;
-            Navigator.Instance.NavigateTo(typeof (ProjectManagerPage));
+            Navigator.Instance.NavigateTo(typeof(ProjectManagerPage));
         }
 
         private async void ExecuteAddMemberCommand(object obj)
@@ -168,6 +168,9 @@ namespace Antares.VIEWMODELs
                                                       response1,
                                                   };
 
+                        GlobalData.SelectedProjects = response.ID;
+                        Messenger.Instance.Notify(UpdateProject.NewlyAdded);
+                     
                         //hide save btn
                         Messenger.Instance.Notify(HideSaveBtn.Hide);
                     }
@@ -215,7 +218,7 @@ namespace Antares.VIEWMODELs
             Messenger.Instance.Register<RefreshMember>(o => GetMemberList(Information.ID));
 
             Status = new ObservableCollection<string> { LanguageProvider.Resource["Prj_Status_Inactive"], LanguageProvider.Resource["Prj_Status_Active"] };
-                
+
             BindData(pid);
 
             ReadOnly = !ProjectMemberRepository.Instance.IsManager(Information.ID);

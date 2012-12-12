@@ -38,6 +38,12 @@ namespace Antares.VIEWs
                                                                   var type = (HighlightTextBox)o;
                                                                   Candidate.Foreground = type == HighlightTextBox.Fail ? new SolidColorBrush(Colors.Red) : new SolidColorBrush(Colors.Green);
                                                               });
+
+            Messenger.Instance.Register<UpdateProject>(o =>
+                                                               {
+                                                                   HidememberArea.Visibility = Visibility.Collapsed;
+                                                                   Delete.Visibility = Visibility.Visible;
+                                                               });
         }
 
         /// <summary>
@@ -48,6 +54,9 @@ namespace Antares.VIEWs
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             DataContext = e.Parameter == null ? new ProjectInformationViewModel(-1) : new ProjectInformationViewModel(Convert.ToInt32(e.Parameter));
+
+            HidememberArea.Visibility = (e.Parameter == null || Convert.ToInt32(e.Parameter) == -1) ? Visibility.Visible : Visibility.Collapsed;
+            Delete.Visibility = (e.Parameter == null || Convert.ToInt32(e.Parameter) == -1) ? Visibility.Collapsed : Visibility.Visible;
 
             Save.Visibility = Visibility.Collapsed;
         }
@@ -69,7 +78,7 @@ namespace Antares.VIEWs
 
         private void Candidate_TextChanged_1(object sender, Windows.UI.Xaml.Controls.TextChangedEventArgs e)
         {
-            Candidate.Foreground = new SolidColorBrush(Color.FromArgb(100,34,34,34));
+            Candidate.Foreground = new SolidColorBrush(Color.FromArgb(100, 34, 34, 34));
 
         }
         private string defaultText;
@@ -90,6 +99,6 @@ namespace Antares.VIEWs
             Navigator.Instance.ShowTimelinePopup(typeof(UserInfoQuickView), model);
         }
 
-       
+
     }
 }

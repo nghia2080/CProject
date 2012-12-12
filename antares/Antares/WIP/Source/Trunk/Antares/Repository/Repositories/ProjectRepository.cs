@@ -31,6 +31,8 @@ namespace Repository.Repositories
 
                 foreach (var projectMemberContrainModel in proiectlist)
                 {
+                    if (projectMemberContrainModel.ProjectID == -1) { continue; }
+
                     await GetProject(projectMemberContrainModel.ProjectID);
                 }
                 // _projects = await ProjectInformationController.Instance.GetProjectAsync(GlobalData.MyUserID);
@@ -38,7 +40,7 @@ namespace Repository.Repositories
                 if (_projects.Count == 0)
                 {
                     var dumb = await _projectLocal.RestoreAsync<ObservableCollection<ProjectInformationModel>>();
-                    if(dumb!=null)
+                    if (dumb != null)
                     {
                         _projects = dumb;
                     }
@@ -69,11 +71,11 @@ namespace Repository.Repositories
 
                 var project = await ProjectInformationController.Instance.GetAsync(id);
 
-                if(project!=null)
+                if (project != null)
                 {
                     _projects.Add(project);
                 }
-               
+
                 return project;
             }
             catch (Exception ex)

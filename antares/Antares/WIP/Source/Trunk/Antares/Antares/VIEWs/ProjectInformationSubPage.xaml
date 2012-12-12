@@ -83,10 +83,9 @@
             <Button Command="{Binding DeleteCommand}" Style="{StaticResource DiscardButtonStyle}" IsEnabled="{Binding ReadOnly, Converter={StaticResource BooleanNegationConverter}}" Margin="-10,11,-25,0" x:Name="Delete" VerticalAlignment="Top" AutomationProperties.Name="{Binding Resource[Prj_Delete]}" />
         </StackPanel>
 
-        <Rectangle Grid.Column="7" Grid.ColumnSpan="3" Grid.RowSpan="11" x:Name="MemberBackground" Fill="#f1f6fa" Margin="0,0.6,0.6,1" />
+        <Rectangle Grid.Column="7" Grid.ColumnSpan="3" Grid.RowSpan="11" x:Name="MemberBackground"  Fill="#f1f6fa" Margin="0,0.6,0.6,1" />
+       
         <TextBlock Grid.Column="8" Grid.Row="1" Style="{StaticResource CommonTextStyle}" FontWeight="SemiBold" Text="{Binding Resource[Prj_Member]}"/>
-
-        
         <ListView SelectionMode="None" ItemsSource="{Binding Information.Members}" Grid.Column="8" Grid.Row="2" Grid.RowSpan="8" Background="White" BorderBrush="#FF3C81BA" BorderThickness="1"  >
             <ListView.ItemTemplate>
                 <DataTemplate>
@@ -108,7 +107,7 @@
             <Button IsEnabled="{Binding ReadOnly, Converter={StaticResource BooleanNegationConverter}}" ToolTipService.ToolTip="{Binding Resource[ToolTip_AddMember]}" Command="{Binding AddMemberCommand}" CommandParameter="{Binding Text, ElementName=Candidate}" HorizontalAlignment="Right" Grid.Column="1" Style="{StaticResource AddFriendButtonStyle}" Margin="0,-8,5,-12" x:Name="AddMember" VerticalAlignment="Top" Background="{x:Null}" Width="70" Height="70"/>
         <ProgressRing x:Name="pgrRing" Height="50" Width="50" Opacity="0.7" IsActive="True" Visibility="Collapsed" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Column="1"  />
         </Grid>
-        
+        <Rectangle Grid.Column="7" Grid.ColumnSpan="3" Grid.RowSpan="11" x:Name="HidememberArea"  Fill="#f1f6fa" Margin="0,0.6,0.6,1" />
     </Grid>
     
 </Page>

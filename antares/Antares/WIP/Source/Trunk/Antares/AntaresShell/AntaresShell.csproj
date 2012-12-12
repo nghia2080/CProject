@@ -114,6 +114,7 @@
     <Compile Include="Common\MessageTemplates\RebindCbo.cs" />
     <Compile Include="Common\MessageTemplates\RefreshAll.cs" />
     <Compile Include="Common\MessageTemplates\RefreshMember.cs" />
+    <Compile Include="Common\MessageTemplates\UpdateProject.cs" />
     <Compile Include="Common\MessageTemplates\UpdateTaskList.cs" />
     <Compile Include="Common\Messenger.cs" />
     <Compile Include="Common\ObservableDictionary.cs" />
