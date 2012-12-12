@@ -1,4 +1,5 @@
-﻿using SearchEngine.Interfaces;
+﻿using System.Globalization;
+using SearchEngine.Interfaces;
 
 namespace SearchEngine
 {
@@ -45,6 +46,15 @@ namespace SearchEngine
                 _chars[index++] = ch;
         }
 
+        public SimpleAlphabet(string[] unicode)
+        {
+            _chars = new char[unicode.Length];
+            for (int i = 0; i < unicode.Length; i++)
+            {
+                _chars[i] = char.ConvertFromUtf32(int.Parse(unicode[i], NumberStyles.HexNumber))[0];
+            }
+        }
+
         #endregion
 
         #region PUBLIC METHODS
@@ -57,8 +67,13 @@ namespace SearchEngine
         /// -or- negative 1 if the character does not exist in the alphabet.</returns>
         public int MapChar(char ch)
         {
-            if (ch < _min || ch > _max) return -1;
-            return ch - _min;
+            //if (ch < _min || ch > _max) return -1;
+            //return ch - _min;
+            for (var i = 0; i < _chars.Length; ++i)
+            {
+                if (_chars[i] == ch) return i;
+            }
+            return -1;
         }
 
         /// <summary>

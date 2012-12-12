@@ -1,12 +1,14 @@
-﻿using SearchEngine.Interfaces;
+﻿using System.Collections.Generic;
+using AntaresShell.BaseClasses;
+using SearchEngine.Interfaces;
 
 namespace SearchEngine
 {
-    public class SearchProvider
+    public static class SearchProvider
     {
-        public static WordIndexBase CreateIndex(string[] dictionary)
+        public static void CreateIndex(string[] dictionary)
         {
-            return new NGramIndexerM1(new UnionAlphabet(new EnglishAlphabet(), 
+            Index = new NGramIndexerM1(new UnionAlphabet(new EnglishAlphabet(), 
                                                         new DigitAlphabet(),
                                                         new Latin1Alphabet(),
                                                         new LatinExtendedAAlphabet(),
@@ -15,14 +17,22 @@ namespace SearchEngine
                                                         new HiraganaAlphabet(),
                                                         new KatakanaAlphabet(), 
                                                         new RomajiAlphabet(),
-                                                        new CommonKanjiAlphabet(),
-                                                        new RareKanjiAlphabet())).CreateIndex(dictionary);
+                                                        new CommonKanjiAlphabet())).CreateIndex(dictionary);
         }
 
-        public static ISearcher CreateSearcher(WordIndexBase index)
+        public static void CreateSearcher(WordIndexBase index)
         {
-            return new NGramSearcherM1((NGramIndexM1)index, new DamerauLevenshteinMetric(), 2, false);
+            Searcher = new NGramSearcherM1((NGramIndexM1)index, new DamerauLevenshteinMetric(), 2, false);
+        }
+        static SearchProvider()
+        {
+            IsDirty = true;
         }
 
+        public static WordIndexBase Index { get; private set; }
+        public static ISearcher Searcher { get; private set; }
+        public static SearchableBaseModel[] ItemList { get; set; }
+        public static List<int>[] MapStringItem { get; set; }
+        public static bool IsDirty { get; set; }
     }
 }

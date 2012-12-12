@@ -107,6 +107,7 @@ namespace SearchEngine
 
                 for (var j = Math.Max(0, i - _maxDistance); j <= Math.Min(stringLength - _n, i + _maxDistance); ++j)
                 {
+                    if (_ngramMap[ngram] == null) continue;
                     var dictIndexes = _ngramMap[ngram][j];
 
                     if (dictIndexes == null) continue;
