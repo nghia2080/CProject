@@ -126,7 +126,7 @@ namespace Antares.LiveTile
         /// </summary>
         private LiveTileManager()
         {
-            Messenger.Instance.Register<UpdateTaskList>(MessageRetrieve);  
+            Messenger.Instance.Register<UpdateTaskList>(MessageRetrieve);
             TileUpdateManager.CreateTileUpdaterForApplication().EnableNotificationQueue(true);
             ClearTileAndBadge();
         }
@@ -139,7 +139,7 @@ namespace Antares.LiveTile
 
         public void Start()
         {
-               // invoke
+            // invoke
         }
 
         /// <summary>
@@ -181,7 +181,7 @@ namespace Antares.LiveTile
                 tasks = await TaskRepository.Instance.GetTaskListFor(DateTime.Now.AddDays(2));
             }
 
-            
+
             _wideImagePath = WIDE_NORMAL_IMAGE;
             _squareImagePath = SQUARE_NORMAL_IMAGE;
 
@@ -193,10 +193,13 @@ namespace Antares.LiveTile
                 {
                     if (_dictionary.Count < MAX_MESSAGE)
                     {
-                        _dictionary.Add(intToTimeConverter.Convert(item.StartTime, null, null, null) + " " +
-                                        Convert.ToDateTime(item.StartDate).ToString(
-                                            CultureInfo.CurrentCulture.DateTimeFormat.ShortDatePattern), item.Name + "\r\n" + item.Description
-                                        );
+                        var key = intToTimeConverter.Convert(item.StartTime, null, null, null) + " " +
+                                  Convert.ToDateTime(item.StartDate).ToString(CultureInfo.CurrentCulture.DateTimeFormat.ShortDatePattern);
+                        if (!_dictionary.ContainsKey(key))
+                        {
+                            _dictionary.Add(key, item.Name + "\r\n" + item.Description
+                                                            );
+                        }
                     }
                     else
                     {
@@ -207,7 +210,7 @@ namespace Antares.LiveTile
                 //if (_dictionary.Count > 0)
                 //{
                 //    _dictionary.Reverse();
-                    CreateTileQueue(_dictionary);
+                CreateTileQueue(_dictionary);
                 //}
 
                 //DisplayFirstTile(taskCount, _wideImagePath, _squareImagePath);
