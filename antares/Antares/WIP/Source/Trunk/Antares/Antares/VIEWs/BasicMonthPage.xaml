@@ -16,7 +16,7 @@
     <Common:LayoutAwarePage.Resources>
         <Style x:Key="HeaderStyle" TargetType="TextBlock">
             <Setter Property="FontFamily" Value="Segoe UI"/>
-            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="FontWeight" Value="Normal"/>
             <Setter Property="Foreground" Value="#FF363636"/>
             <Setter Property="FontSize" Value="28"/>
             <Setter Property="Transitions">
@@ -68,7 +68,7 @@
             <TextBlock x:Name="currentYear" HorizontalAlignment="Right" Text="{Binding CurrentYear}" Style="{StaticResource PageHeaderTextStyle}" FontSize="78" Foreground="Gray" Opacity="0.6" Grid.Column="1" IsHitTestVisible="false"/>
         </Grid>
 
-        <Grid Grid.Row="1" x:Name="DynamicArea" Background="#f1f6fa">
+        <Grid Grid.Row="1" x:Name="DynamicArea" Background="White">
             <Grid.RowDefinitions>
                 <RowDefinition Height="50"/>
                 <RowDefinition Height="*"/>
@@ -102,6 +102,7 @@
     			Grid.ColumnSpan="7" 
     			SelectionMode="None"
     			ItemsSource="{Binding SingleMonth}"
+                     ItemContainerStyle="{StaticResource GridViewMonthItem}"
     			ItemTemplate="{StaticResource DayItemTemplate}">
                 <GridView.ItemsPanel>
                     <ItemsPanelTemplate>

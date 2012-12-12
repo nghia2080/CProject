@@ -46,6 +46,7 @@
     <Image Grid.RowSpan="4" Grid.ColumnSpan="3" Stretch="Fill" Source="/Assets/Folder.png" Opacity="0"/>
     
     <Rectangle Grid.RowSpan="4" Grid.ColumnSpan="2" Opacity="1" Fill="#282828"/>
+    
     <Rectangle Grid.RowSpan="4" Grid.Column="2" Fill="{Binding Converter={StaticResource TimeToColorConverter}}"/>
     <!--<Rectangle Grid.Row="2" Grid.RowSpan="2" Grid.ColumnSpan="3" Fill="White" Opacity="0.5"/>-->
     <StackPanel Grid.Column="1" Grid.Row="1" VerticalAlignment="Top" HorizontalAlignment="Left">

@@ -14,7 +14,7 @@
     d:DesignWidth="400">
 
     <Grid.ColumnDefinitions>
-        <ColumnDefinition Width="5"/>
+        <ColumnDefinition Width="8"/>
         <ColumnDefinition Width="*"/>
         <ColumnDefinition Width="20"/>
     </Grid.ColumnDefinitions>
@@ -23,7 +23,7 @@
         <RowDefinition Height="5"/>
         <RowDefinition Height="*"/>
         <RowDefinition Height="*"/>
-        <RowDefinition Height="5"/>
+        <RowDefinition Height="10"/>
     </Grid.RowDefinitions>
 
     <Grid.Resources>
@@ -34,19 +34,19 @@
             <Converters:DateToBorderBrushConverter x:Key="DateToBorderBrushConverter"/>
             <Style x:Key="TxtDateStyle" TargetType="TextBlock">
                 <Setter Property="FontFamily" Value="Segoe UI"/>
-                <Setter Property="FontWeight" Value="Light"/>
+                <Setter Property="FontWeight" Value="SemiLight"/>
                 <Setter Property="Foreground" Value="RoyalBlue"/>
-                <Setter Property="FontSize" Value="36"/>
+                <Setter Property="FontSize" Value="24"/>
             </Style>
             <Style x:Key="TxtNumStyle" TargetType="TextBlock">
                 <Setter Property="FontFamily" Value="Segoe UI"/>
                 <Setter Property="FontWeight" Value="SemiLight"/>
                 <Setter Property="Foreground" Value="#494949"/>
-                <Setter Property="FontSize" Value="20"/>
+                <Setter Property="FontSize" Value="18"/>
             </Style>
             <Style x:Key="TxtLunarDateStyle" TargetType="TextBlock">
                 <Setter Property="FontFamily" Value="Segoe UI"/>
-                <Setter Property="FontWeight" Value="Light"/>
+                <Setter Property="FontWeight" Value="SemiLight"/>
                 <Setter Property="Foreground" Value="Green"/>
                 <Setter Property="FontSize" Value="18"/>
             </Style>
