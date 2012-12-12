@@ -1,0 +1,88 @@
+﻿<Grid
+    Tapped="DayGrid_Tapped_1"
+    HorizontalAlignment="Stretch"
+    x:Class="Antares.VIEWs.DayItem"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:baseclasses="using:AntaresShell.BaseClasses"
+    xmlns:local="using:Antares.VIEWs"  
+    x:Name="DayGrid"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:Converters="using:Antares.Converters"
+    mc:Ignorable="d">
+    <Grid.Resources>
+        <Converters:DateToShortStringConverter x:Key="DateToShortStringConverter"/>
+        <Converters:WeatherTypeToPathConverter x:Key="WeatherTypeToPathConverter"/>
+        <Converters:TemperatureToStringConverter x:Key="CelsiusToStringConverter"/>
+        <Converters:IntToShortTimeConverter x:Key="IntToShortTimeConverter"/>
+        <Converters:NullToVisibleConverter x:Key="NullToVisibleConverter"/>
+        <Converters:OneThirdConverter x:Key="OneThirdConverter"/>
+        
+        <Style x:Key="dayGridStyle" TargetType="Grid">
+            <Setter Property="Transitions">
+                <Setter.Value>
+                    <TransitionCollection>
+
+                    </TransitionCollection>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Grid.Resources>
+
+    <Image Source="../Assets/LinesTime_03.png" Stretch="UniformToFill" Opacity="0"/>
+
+    <Grid x:Name="dayGrid"
+       Style="{StaticResource dayGridStyle}" Background="#AF3C81BA"  >
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="24"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="20"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10"/>
+            <ColumnDefinition Width="*" x:Name="Test"/>
+            <ColumnDefinition Width="10"/>
+        </Grid.ColumnDefinitions>
+        
+        <TextBlock  Grid.Row="3" Grid.Column="1" Text="{Binding Today, Converter={StaticResource DateToShortStringConverter}}" FontSize="42" HorizontalAlignment="Center" FontWeight="Light" VerticalAlignment="Bottom" Foreground="White"/>
+        <Image Grid.Row="2" Grid.Column="1" Source="{Binding WeatherModel.WeatherType, Converter={StaticResource WeatherTypeToPathConverter}}"/>
+
+        <Image Grid.Row="2" Grid.Column="1" Source="../Assets/LinesTime_03.png" Width="{Binding ActualWidth, ElementName=Test}" Height="{Binding ActualWidth, ElementName=Test}" Opacity="0"/>
+
+        <ProgressRing Visibility="{Binding WeatherModel.WeatherType, Converter={StaticResource NullToVisibleConverter}}" Grid.Row="2" Grid.Column="1" Opacity=".2" Width="{Binding ActualWidth, ElementName=Test, Converter={StaticResource OneThirdConverter}}" Height="{Binding ActualWidth, ElementName=Test, Converter={StaticResource OneThirdConverter}}" IsActive="True"/>
+        <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
+            <Image Source="../Assets/TempIcon.png" VerticalAlignment="Center"/>
+            <TextBlock  HorizontalAlignment="Left" TextWrapping="Wrap" Margin="5,0,5,0" Text="{Binding WeatherModel, Converter={StaticResource CelsiusToStringConverter}}" VerticalAlignment="Center" FontSize="20" FontWeight="SemiLight" FontFamily="Segoe UI Light" Foreground="White"/>
+        </StackPanel>
+        <Grid Margin="0,10,0,0" Grid.Row="4" Grid.Column="1" VerticalAlignment="Bottom" >
+            <ListBox VerticalAlignment="Bottom" MaxHeight="210"  x:Name="TaskListInfo"  ItemsSource="{Binding TaskList}" Background="{x:Null}" FontSize="20" BorderBrush="{x:Null}" FontWeight="SemiLight" FontFamily="Segoe UI Light" Style="{StaticResource ListBoxStyle1}" ItemContainerStyle="{StaticResource ListBoxItemStyle1}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                            <TextBlock Text="{Binding StartTime, Converter={StaticResource IntToShortTimeConverter}}" FontSize="20" FontWeight="SemiLight" Foreground="White"/>
+                            <TextBlock Text=":" Margin="0,0,2,0" Foreground="White" FontSize="20" FontWeight="SemiLight"/>
+                            <TextBlock Text="{Binding Name}" FontSize="20" Foreground="White" FontWeight="SemiLight"/>
+                        </StackPanel>
+                    </DataTemplate>
+                    
+                </ListBox.ItemTemplate>
+                <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <VirtualizingStackPanel>
+                            <VirtualizingStackPanel.ChildrenTransitions>
+                                <TransitionCollection>
+                                    <EntranceThemeTransition />
+                                </TransitionCollection>
+                            </VirtualizingStackPanel.ChildrenTransitions>
+                        </VirtualizingStackPanel>
+                    </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
+            </ListBox>
+        </Grid>
+    </Grid>
+
+</Grid>

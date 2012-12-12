@@ -1,0 +1,481 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Appbar_AddProject" xml:space="preserve">
+    <value>プロジェット追加</value>
+  </data>
+  <data name="Appbar_AddTask" xml:space="preserve">
+    <value>タスクを追加</value>
+  </data>
+  <data name="Appbar_BasicMonth" xml:space="preserve">
+    <value>カレンダー</value>
+  </data>
+  <data name="Appbar_DeleteProjects" xml:space="preserve">
+    <value>プロジェット削除</value>
+  </data>
+  <data name="Appbar_DeleteTasks" xml:space="preserve">
+    <value>タスクを削除</value>
+  </data>
+  <data name="Appbar_Home" xml:space="preserve">
+    <value>ホーム</value>
+  </data>
+  <data name="Appbar_Info" xml:space="preserve">
+    <value>Information</value>
+  </data>
+  <data name="Appbar_Project" xml:space="preserve">
+    <value>プロジェット表示</value>
+  </data>
+  <data name="Appbar_Refresh" xml:space="preserve">
+    <value>同期</value>
+  </data>
+  <data name="Appbar_RemoveMember" xml:space="preserve">
+    <value>メンバーを削除</value>
+  </data>
+  <data name="DateEmptyContent" xml:space="preserve">
+    <value>日付選択</value>
+  </data>
+  <data name="DateSelectorHeader" xml:space="preserve">
+    <value>日付選択</value>
+  </data>
+  <data name="Filter" xml:space="preserve">
+    <value>検索</value>
+  </data>
+  <data name="Filter_ByMembers" xml:space="preserve">
+    <value>メンバーによる</value>
+  </data>
+  <data name="Filter_ByPhase" xml:space="preserve">
+    <value>期間による</value>
+  </data>
+  <data name="Goto" xml:space="preserve">
+    <value>行く</value>
+  </data>
+  <data name="LeapYear" xml:space="preserve">
+    <value>うるう年</value>
+  </data>
+  <data name="MainTitle_1" xml:space="preserve">
+    <value>[abc]のタイムライン</value>
+  </data>
+  <data name="MainTitle_10" xml:space="preserve">
+    <value>個人情報保護方針</value>
+  </data>
+  <data name="MainTitle_2" xml:space="preserve">
+    <value>タイムライン</value>
+  </data>
+  <data name="MainTitle_3" xml:space="preserve">
+    <value>[abc]のプロジェット</value>
+  </data>
+  <data name="MainTitle_4" xml:space="preserve">
+    <value>プロジェット</value>
+  </data>
+  <data name="MainTitle_5" xml:space="preserve">
+    <value>ユーザー情報</value>
+  </data>
+  <data name="MainTitle_6" xml:space="preserve">
+    <value>タスク編集</value>
+  </data>
+  <data name="MainTitle_7" xml:space="preserve">
+    <value>設定</value>
+  </data>
+  <data name="MainTitle_8" xml:space="preserve">
+    <value>ウエイテリングリスト</value>
+  </data>
+  <data name="MainTitle_9" xml:space="preserve">
+    <value>会社紹介</value>
+  </data>
+  <data name="Msg_ApplySetting" xml:space="preserve">
+    <value>設定した物は次の時に適用します。</value>
+  </data>
+  <data name="Msg_ConfirmProject" xml:space="preserve">
+    <value>承認したいですか？</value>
+  </data>
+  <data name="Msg_ConfirmTask" xml:space="preserve">
+    <value>リジェクトしたいですか？</value>
+  </data>
+  <data name="Msg_DeleteProject" xml:space="preserve">
+    <value>このプロジェクトを削除しますか？</value>
+  </data>
+  <data name="Msg_DeleteProjectMember" xml:space="preserve">
+    <value>このメンバを削除しますか？</value>
+  </data>
+  <data name="Msg_DeleteTask" xml:space="preserve">
+    <value>このタスクを削除しますか？</value>
+  </data>
+  <data name="Msg_LoginFailed" xml:space="preserve">
+    <value>ウィンドウズライブアイディアカウントで
+サインインすることはできません</value>
+  </data>
+  <data name="Msg_NetworkFailed" xml:space="preserve">
+    <value>ESECはライブデータを取得できません。</value>
+  </data>
+  <data name="Msg_No" xml:space="preserve">
+    <value>いいえ</value>
+  </data>
+  <data name="Msg_ResignIn" xml:space="preserve">
+    <value>ログインするにはここをクリック</value>
+  </data>
+  <data name="Msg_Yes" xml:space="preserve">
+    <value>はい</value>
+  </data>
+  <data name="NotAvailable" xml:space="preserve">
+    <value>Not available</value>
+  </data>
+  <data name="Present" xml:space="preserve">
+    <value>現在</value>
+  </data>
+  <data name="Prj_Active" xml:space="preserve">
+    <value>アクティブ</value>
+  </data>
+  <data name="Prj_Delete" xml:space="preserve">
+    <value>削除</value>
+  </data>
+  <data name="Prj_Description" xml:space="preserve">
+    <value>記述</value>
+  </data>
+  <data name="Prj_EndDate" xml:space="preserve">
+    <value>終了日</value>
+  </data>
+  <data name="Prj_EnterUsername" xml:space="preserve">
+    <value>ユーザー登録</value>
+  </data>
+  <data name="Prj_Inactive" xml:space="preserve">
+    <value>インアクティブ</value>
+  </data>
+  <data name="Prj_Mber" xml:space="preserve">
+    <value>メンバー</value>
+  </data>
+  <data name="Prj_Member" xml:space="preserve">
+    <value>メンバー</value>
+  </data>
+  <data name="Prj_Name" xml:space="preserve">
+    <value>プロジェット名前*</value>
+  </data>
+  <data name="Prj_PM" xml:space="preserve">
+    <value>プロジェット管理</value>
+  </data>
+  <data name="Prj_Remove" xml:space="preserve">
+    <value>削除</value>
+  </data>
+  <data name="Prj_Save" xml:space="preserve">
+    <value>セーブ</value>
+  </data>
+  <data name="Prj_StartDate" xml:space="preserve">
+    <value>開始日*</value>
+  </data>
+  <data name="Prj_Status" xml:space="preserve">
+    <value>ステータス* </value>
+  </data>
+  <data name="Prj_Status_Active" xml:space="preserve">
+    <value>アクティブ</value>
+  </data>
+  <data name="Prj_Status_Inactive" xml:space="preserve">
+    <value>インアクティブ</value>
+  </data>
+  <data name="Search_NoResult" xml:space="preserve">
+    <value>"[abc]"の結果がありません</value>
+  </data>
+  <data name="Search_Result" xml:space="preserve">
+    <value>"[abc]"の結果</value>
+  </data>
+  <data name="Sttig_Location" xml:space="preserve">
+    <value>ロケーション </value>
+  </data>
+  <data name="SubTitle_1" xml:space="preserve">
+    <value>プロジェット</value>
+  </data>
+  <data name="SubTitle_2" xml:space="preserve">
+    <value>デテール</value>
+  </data>
+  <data name="SubTitle_3" xml:space="preserve">
+    <value>タスク</value>
+  </data>
+  <data name="SubTitle_4" xml:space="preserve">
+    <value>表示</value>
+  </data>
+  <data name="Tasks" xml:space="preserve">
+    <value>タスク</value>
+  </data>
+  <data name="TimeEmptyContent" xml:space="preserve">
+    <value>タイム選択</value>
+  </data>
+  <data name="TimeSelectorHeader" xml:space="preserve">
+    <value>タイム選択</value>
+  </data>
+  <data name="Today" xml:space="preserve">
+    <value>今日</value>
+  </data>
+  <data name="ToolTip_AddMember" xml:space="preserve">
+    <value>プロジェクトに追加する</value>
+  </data>
+  <data name="ToolTip_BasicView" xml:space="preserve">
+    <value>カレンダー</value>
+  </data>
+  <data name="ToolTip_ManageProject" xml:space="preserve">
+    <value>プロジェット表示</value>
+  </data>
+  <data name="Tsk_Assignee" xml:space="preserve">
+    <value>担当者*</value>
+  </data>
+  <data name="Tsk_Breakable" xml:space="preserve">
+    <value>壊れる*</value>
+  </data>
+  <data name="Tsk_Cancel" xml:space="preserve">
+    <value>取り消す</value>
+  </data>
+  <data name="Tsk_Categories" xml:space="preserve">
+    <value>カテゴリー*</value>
+  </data>
+  <data name="Tsk_Categories_Bussiness" xml:space="preserve">
+    <value>ビジネス</value>
+  </data>
+  <data name="Tsk_Categories_Entertainment" xml:space="preserve">
+    <value>エンターテインメント</value>
+  </data>
+  <data name="Tsk_Categories_Meeting" xml:space="preserve">
+    <value>会議</value>
+  </data>
+  <data name="Tsk_Categories_Study" xml:space="preserve">
+    <value>勉強</value>
+  </data>
+  <data name="Tsk_Delete" xml:space="preserve">
+    <value>削除</value>
+  </data>
+  <data name="Tsk_Description" xml:space="preserve">
+    <value>記述</value>
+  </data>
+  <data name="Tsk_EndDate" xml:space="preserve">
+    <value>終了日*</value>
+  </data>
+  <data name="Tsk_EndTime" xml:space="preserve">
+    <value>終了時間*</value>
+  </data>
+  <data name="Tsk_Name" xml:space="preserve">
+    <value>名称*</value>
+  </data>
+  <data name="Tsk_Period" xml:space="preserve">
+    <value>機関*</value>
+  </data>
+  <data name="Tsk_Priority" xml:space="preserve">
+    <value>優先*</value>
+  </data>
+  <data name="Tsk_Priority_High" xml:space="preserve">
+    <value>高レベル</value>
+  </data>
+  <data name="Tsk_Priority_Low" xml:space="preserve">
+    <value>低レベル</value>
+  </data>
+  <data name="Tsk_Priority_Medium" xml:space="preserve">
+    <value>中レベル</value>
+  </data>
+  <data name="Tsk_Project" xml:space="preserve">
+    <value>プロジェット*</value>
+  </data>
+  <data name="Tsk_Project_None" xml:space="preserve">
+    <value>プロジェット以外</value>
+  </data>
+  <data name="Tsk_RepeatType" xml:space="preserve">
+    <value>リピート型*</value>
+  </data>
+  <data name="Tsk_RepeatType_Daily" xml:space="preserve">
+    <value>毎日</value>
+  </data>
+  <data name="Tsk_RepeatType_Monthly" xml:space="preserve">
+    <value>毎月</value>
+  </data>
+  <data name="Tsk_RepeatType_Once" xml:space="preserve">
+    <value>一度</value>
+  </data>
+  <data name="Tsk_RepeatType_Weekly" xml:space="preserve">
+    <value>毎週</value>
+  </data>
+  <data name="Tsk_RepeatType_Yearly" xml:space="preserve">
+    <value>毎年</value>
+  </data>
+  <data name="Tsk_Save" xml:space="preserve">
+    <value>セーブ</value>
+  </data>
+  <data name="Tsk_StartDate" xml:space="preserve">
+    <value>開始日</value>
+  </data>
+  <data name="Tsk_StartTime" xml:space="preserve">
+    <value>開始時間</value>
+  </data>
+  <data name="Tsk_Status" xml:space="preserve">
+    <value>ステータス*</value>
+  </data>
+  <data name="Tsk_Status_Done" xml:space="preserve">
+    <value>完了</value>
+  </data>
+  <data name="Tsk_Status_NotDone" xml:space="preserve">
+    <value>未完了</value>
+  </data>
+  <data name="Tsk_SubCategories" xml:space="preserve">
+    <value>位相</value>
+  </data>
+  <data name="Tsk_SubCategories_Design" xml:space="preserve">
+    <value>デザイン</value>
+  </data>
+  <data name="Tsk_SubCategories_Implementation" xml:space="preserve">
+    <value>走行</value>
+  </data>
+  <data name="Tsk_SubCategories_Maintenance" xml:space="preserve">
+    <value>メンテナンス</value>
+  </data>
+  <data name="Tsk_SubCategories_Requirements" xml:space="preserve">
+    <value>要件</value>
+  </data>
+  <data name="Tsk_SubCategories_Verification" xml:space="preserve">
+    <value>試験</value>
+  </data>
+  <data name="UInfo_BasicInfo" xml:space="preserve">
+    <value>基本情報</value>
+  </data>
+  <data name="UInfo_Birthday" xml:space="preserve">
+    <value>誕生日</value>
+  </data>
+  <data name="UInfo_ContactInfo" xml:space="preserve">
+    <value>連絡情報</value>
+  </data>
+  <data name="UInfo_Email" xml:space="preserve">
+    <value>Eメール</value>
+  </data>
+  <data name="UInfo_FullName" xml:space="preserve">
+    <value>氏名</value>
+  </data>
+  <data name="UInfo_Locale" xml:space="preserve">
+    <value>区域</value>
+  </data>
+  <data name="UInfo_PhoneNumber" xml:space="preserve">
+    <value>電話番号</value>
+  </data>
+  <data name="UInfo_Username" xml:space="preserve">
+    <value>ユーザー名</value>
+  </data>
+  <data name="Wtig_Accepted" xml:space="preserve">
+    <value>同意</value>
+  </data>
+  <data name="Wtig_Project" xml:space="preserve">
+    <value>プロジェットグリスト</value>
+  </data>
+  <data name="Wtig_Rejected" xml:space="preserve">
+    <value>リジェクト</value>
+  </data>
+  <data name="Wtig_Task" xml:space="preserve">
+    <value>タスクグリスト</value>
+  </data>
+</root>

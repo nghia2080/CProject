@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{2555D551-EB6C-4257-9F84-82E26184E82D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SearchEngine</RootNamespace>
+    <AssemblyName>SearchEngine</AssemblyName>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{BC8A1FFA-BEE3-4634-8014-F334798102B3};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="CommonKanjiAlphabet.cs" />
+    <Compile Include="DamerauLevensteinMetric.cs" />
+    <Compile Include="DigitAlphabet.cs" />
+    <Compile Include="EnglishAlphabet.cs" />
+    <Compile Include="HiraganaAlphabet.cs" />
+    <Compile Include="Interfaces\IAlphabet.cs" />
+    <Compile Include="Interfaces\IIndexer.cs" />
+    <Compile Include="Interfaces\ISearcher.cs" />
+    <Compile Include="KatakanaAlphabet.cs" />
+    <Compile Include="Latin1Alphabet.cs" />
+    <Compile Include="LatinExtendedAAlphabet.cs" />
+    <Compile Include="LatinExtendedAdditionalAlphabet.cs" />
+    <Compile Include="LatinExtendedBAlphabet.cs" />
+    <Compile Include="Metric.cs" />
+    <Compile Include="NGramIndexerM1.cs" />
+    <Compile Include="NGramIndexM1.cs" />
+    <Compile Include="NGramSearcherM1.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RareKanjiAlphabet.cs" />
+    <Compile Include="RomajiAlphabet.cs" />
+    <Compile Include="SearchProvider.cs" />
+    <Compile Include="SimpleAlphabet.cs" />
+    <Compile Include="UnionAlphabet.cs" />
+    <Compile Include="WordIndexBase.cs" />
+    <Compile Include="WordSearcher.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.4.5.11\lib\winrt45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AntaresShell\AntaresShell.csproj">
+      <Project>{a49b2d32-b356-4fd9-9b7d-6144503bb56b}</Project>
+      <Name>AntaresShell</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' ">
+    <VisualStudioVersion>11.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<VAIOCareLogger>
+  <Settings>
+    <FileName value="Log\VCMLogger.vcm"/>
+    <ResetWhenLaunch value="false"/>
+    <MaximumFileSize value="10"/>
+    <!--<LogLevel value="ERROR, INFO"/>-->
+    <!--<LogLevel value=""/>-->
+    <LogLevel value="INFO"/>
+  </Settings>
+</VAIOCareLogger>

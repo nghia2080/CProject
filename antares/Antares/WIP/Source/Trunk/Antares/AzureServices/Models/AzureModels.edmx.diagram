@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="989381b77423424f85586f77554991ce" Name="Diagram1">
+        <EntityTypeShape EntityType="AntaresDBModel.Category" Width="1.5" PointX="3.75" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="AntaresDBModel.Project" Width="1.5" PointX="0.75" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="AntaresDBModel.ProjectMember" Width="1.5" PointX="3" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AntaresDBModel.RepeatType" Width="1.5" PointX="3.75" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="AntaresDBModel.Task" Width="1.5" PointX="6" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AntaresDBModel.User" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="AntaresDBModel.FK_Tasks_2" ManuallyRouted="false" />
+        <AssociationConnector Association="AntaresDBModel.FK_ProjectMembers_1" ManuallyRouted="false" />
+        <AssociationConnector Association="AntaresDBModel.FK_Tasks_1" ManuallyRouted="false" />
+        <AssociationConnector Association="AntaresDBModel.FK_ProjectMembers_0" ManuallyRouted="false" />
+        <AssociationConnector Association="AntaresDBModel.FK_Tasks_3" ManuallyRouted="false" />
+        <AssociationConnector Association="AntaresDBModel.FK_Tasks_0" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="AntaresDBModel.Priority" Width="1.5" PointX="8.125" PointY="6.875" />
+        <AssociationConnector Association="AntaresDBModel.FK_Task_0" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

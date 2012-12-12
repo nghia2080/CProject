@@ -1,0 +1,60 @@
+﻿<Grid
+    Tapped="Grid_Tapped_1"
+    x:Class="Antares.VIEWs.ProjectInformationItem"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Antares.VIEWs"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:Converters="using:Antares.Converters"
+    xmlns:BaseClasses="using:AntaresShell.BaseClasses" xmlns:System="using:System" mc:Ignorable="d">
+    <Grid.Resources>
+        <Style x:Key="TxtProjectStyle" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Setter Property="FontWeight" Value="SemiLight"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="35"/>
+        </Style>
+
+        <Style x:Key="DateTimeStyle" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Setter Property="FontWeight" Value="SemiLight"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="16"/>
+        </Style>
+
+        <Converters:DateToStringConverter x:Key="DateToStringConverter"/>
+        <Converters:StatusToColorConverter x:Key="StatusToColorConverter"/>
+        <Converters:StatusToFontSizeConverter x:Key="StatusToFontSizeConverter"/>
+        <Converters:StatusToDateSizeConverter x:Key="StatusToDateSizeConverter"/>
+    </Grid.Resources>
+    <Grid.RowDefinitions>
+        <RowDefinition Height="10"/>
+        <RowDefinition Height="5*"/>
+        <RowDefinition Height="*"/>
+        <RowDefinition Height="10"/>
+    </Grid.RowDefinitions>
+    <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="10"/>
+        <ColumnDefinition Width="*"/>
+        <ColumnDefinition Width="10"/>
+    </Grid.ColumnDefinitions>
+
+    <Image Grid.RowSpan="4" Grid.ColumnSpan="3" Stretch="Fill" Source="/Assets/Folder.png" Opacity="0"/>
+    <Rectangle Grid.RowSpan="4" Grid.ColumnSpan="3" Fill="{Binding Status, Converter={StaticResource StatusToColorConverter}}"/>
+     <StackPanel Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" Grid.RowSpan="3" >
+        <TextBlock Style="{StaticResource TxtProjectStyle}" FontSize="{Binding Status, Converter={StaticResource StatusToFontSizeConverter}}" Text="{Binding Name}"/>
+
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Style="{StaticResource DateTimeStyle}" x:Name="txtFrom" Text="{Binding StartDate, Converter={StaticResource DateToStringConverter}}" FontSize="{Binding Status, Converter={StaticResource StatusToDateSizeConverter}}"/>
+            <TextBlock Margin="10, 0, 10, 0" Style="{StaticResource DateTimeStyle}" Text="-"  FontSize="{Binding Status, Converter={StaticResource StatusToDateSizeConverter}}" />
+            <TextBlock Style="{StaticResource DateTimeStyle}" x:Name="txtTo" Text="{Binding EndDate, Converter={StaticResource DateToStringConverter}}" FontSize="{Binding Status, Converter={StaticResource StatusToDateSizeConverter}}"/>
+        </StackPanel>
+    </StackPanel>
+
+    <StackPanel Margin="0,0,0,-10" Orientation="Horizontal" Grid.Row="2" Grid.Column="1"  VerticalAlignment="Center" HorizontalAlignment="Right" >
+        <TextBlock Style="{StaticResource TxtProjectStyle}" FontSize="{Binding Status, Converter={StaticResource StatusToFontSizeConverter}}" Text="{Binding NumberOfTask}"/>
+        <TextBlock x:Name="Task" Margin="6,0,0,0" Style="{StaticResource TxtProjectStyle}" FontSize="{Binding Status, Converter={StaticResource StatusToFontSizeConverter}}" Text=""/>
+    </StackPanel>
+    
+
+</Grid>

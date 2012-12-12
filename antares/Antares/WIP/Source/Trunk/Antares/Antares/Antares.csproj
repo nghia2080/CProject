@@ -1,0 +1,405 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{BD3A0C47-B0CD-4393-9A49-8055023CAFCF}</ProjectGuid>
+    <OutputType>AppContainerExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Antares</RootNamespace>
+    <AssemblyName>Antares</AssemblyName>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{BC8A1FFA-BEE3-4634-8014-F334798102B3};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <PackageCertificateKeyFile>Antares_TemporaryKey.pfx</PackageCertificateKeyFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\ARM\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>ARM</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|ARM'">
+    <OutputPath>bin\ARM\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>ARM</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Common\BindableBase.cs" />
+    <Compile Include="Common\BooleanNegationConverter.cs" />
+    <Compile Include="Common\BooleanToVisibilityConverter.cs" />
+    <Compile Include="Common\RichTextColumns.cs" />
+    <Compile Include="Common\SuspensionManager.cs" />
+    <Compile Include="Converters\BoolToForegroundConverter.cs" />
+    <Compile Include="Converters\BoolToOpacityConverter.cs" />
+    <Compile Include="Converters\CategoryToImageConverter.cs" />
+    <Compile Include="Converters\CategoryToSubCategoryConverter.cs" />
+    <Compile Include="Converters\DataContextToDateRangeConverter.cs" />
+    <Compile Include="Converters\IDToVisibleConverter.cs" />
+    <Compile Include="Converters\IntToShortTimeConverter.cs" />
+    <Compile Include="Converters\IntToTimeConverter.cs" />
+    <Compile Include="Converters\OneThirdConverter.cs" />
+    <Compile Include="Converters\ProjectIDToSelectedIndexConverter.cs" />
+    <Compile Include="Converters\StatusToColorConverter.cs" />
+    <Compile Include="Converters\StatusToDateSizeConverter.cs" />
+    <Compile Include="Converters\StatusToFontSizeConverter.cs" />
+    <Compile Include="Converters\StringToRoleConverter.cs" />
+    <Compile Include="Converters\TaskToColorConverter.cs" />
+    <Compile Include="Converters\TaskToShortInfoConverter.cs" />
+    <Compile Include="Converters\TemperatureToStringConverter.cs" />
+    <Compile Include="Converters\DateTimeToDayConverter.cs" />
+    <Compile Include="Converters\DateToBorderBrushConverter.cs" />
+    <Compile Include="Converters\DateToColorConverter.cs" />
+    <Compile Include="Converters\DateToOpacityConverter.cs" />
+    <Compile Include="Converters\DateToShortStringConverter.cs" />
+    <Compile Include="Converters\DateToStringConverter.cs" />
+    <Compile Include="Converters\StatusToTextConverter.cs" />
+    <Compile Include="Converters\StringToDateTimeConverter.cs" />
+    <Compile Include="Converters\TimeToColorConverter.cs" />
+    <Compile Include="Converters\WeatherTypeToPathConverter.cs" />
+    <Compile Include="LiveTile\LiveTileManager.cs" />
+    <Compile Include="MainPage.xaml.cs">
+      <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="VIEWMODELs\AddTaskViewModel.cs" />
+    <Compile Include="VIEWMODELs\ApproveViewModel.cs" />
+    <Compile Include="VIEWMODELs\BasicMonthViewModel.cs" />
+    <Compile Include="VIEWMODELs\MainPageViewModel.cs" />
+    <Compile Include="VIEWMODELs\ProjectInformationViewModel.cs" />
+    <Compile Include="VIEWMODELs\ProjectManagerViewModel.cs" />
+    <Compile Include="VIEWMODELs\ProjectOverviewViewModel.cs" />
+    <Compile Include="VIEWMODELs\ProjectSubtaskViewModel.cs" />
+    <Compile Include="VIEWMODELs\TimelineWeekViewModel.cs" />
+    <Compile Include="VIEWMODELs\TaskItemViewModel.cs" />
+    <Compile Include="VIEWMODELs\UserInformationViewModel.cs" />
+    <Compile Include="VIEWs\AddTask.xaml.cs">
+      <DependentUpon>AddTask.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="VIEWs\ApprovePage.xaml.cs">
+      <DependentUpon>ApprovePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="VIEWs\BasicMonthPage.xaml.cs">
+      <DependentUpon>BasicMonthPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="VIEWs\DayItem.xaml.cs">
+      <DependentUpon>DayItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="VIEWs\DayItem2.xaml.cs">
+      <DependentUpon>DayItem2.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Converters\NullToVisibleConverter.cs" />
+    <Compile Include="Converters\EnabledToOpacityConverter.cs" />
+    <Compile Include="VIEWs\ProjectInformationItem.xaml.cs">
+      <DependentUpon>ProjectInformationItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="VIEWs\ProjectInformationSubPage.xaml.cs">
+      <DependentUpon>ProjectInformationSubPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="VIEWs\ProjectManagerPage.xaml.cs">
+      <DependentUpon>ProjectManagerPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="VIEWs\ProjectOverViewSubPage.xaml.cs">
+      <DependentUpon>ProjectOverViewSubPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="VIEWs\ProjectTaskItem.xaml.cs">
+      <DependentUpon>ProjectTaskItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="VIEWs\ProjectTaskSubPage.xaml.cs">
+      <DependentUpon>ProjectTaskSubPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="VIEWs\SearchContractPage.xaml.cs">
+      <DependentUpon>SearchContractPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="VIEWs\TaskItemView.xaml.cs">
+      <DependentUpon>TaskItemView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="VIEWs\TimelineDayPage.xaml.cs">
+      <DependentUpon>TimelineDayPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="VIEWs\TimelineWeekPage.xaml.cs">
+      <DependentUpon>TimelineWeekPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Converters\BooleanToVisibilityConverter.cs" />
+    <Compile Include="Converters\BooleanNegationConverter.cs" />
+    <Compile Include="VIEWs\UserInfoPage.xaml.cs">
+      <DependentUpon>UserInfoPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="VIEWs\UserInfoQuickView.xaml.cs">
+      <DependentUpon>UserInfoQuickView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="VIEWs\VariableSizedWrapGridView.cs" />
+    <Compile Include="VIEWs\WeekItem.xaml.cs">
+      <DependentUpon>WeekItem.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <AppxManifest Include="Package.appxmanifest">
+      <SubType>Designer</SubType>
+    </AppxManifest>
+    <None Include="Antares_TemporaryKey.pfx" />
+    <None Include="packages.config" />
+    <PRIResource Include="Resources\en\Resources.resw" />
+    <PRIResource Include="Resources\vi-VN\Resources.resw" />
+    <PRIResource Include="Resources\ja-JP\Resources.resw" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\Background.jpg" />
+    <Content Include="Assets\GreenNotification.png" />
+    <Content Include="Assets\TaskIcon\Other.png" />
+    <Content Include="Assets\TempIcon.png" />
+    <Content Include="Assets\TimeIcon.png" />
+    <Content Include="Assets\WhiteNotification.png" />
+    <Content Include="Assets\WideLogoBlank.png" />
+    <Content Include="Assets\DayTile.png" />
+    <Content Include="Assets\Dulcet.jpg" />
+    <Content Include="Assets\dum1.png" />
+    <Content Include="Assets\dum2.png" />
+    <Content Include="Assets\Folder.png" />
+    <Content Include="Assets\linestime_03.png" />
+    <Content Include="Assets\Logo.png" />
+    <Content Include="Assets\SmallLogo.png" />
+    <Content Include="Assets\SplashScreen.png" />
+    <Content Include="Assets\StoreLogo.png" />
+    <Content Include="Assets\LightGray.png" />
+    <Content Include="Assets\MediumGray.png" />
+    <Content Include="Assets\DarkGray.png" />
+    <Content Include="Assets\TaskIcon\Business.png" />
+    <Content Include="Assets\TaskIcon\Design.png" />
+    <Content Include="Assets\TaskIcon\Entertainment.png" />
+    <Content Include="Assets\TaskIcon\Implementation.png" />
+    <Content Include="Assets\TaskIcon\Maintenance.png" />
+    <Content Include="Assets\TaskIcon\Meeting.png" />
+    <Content Include="Assets\TaskIcon\Requirement.png" />
+    <Content Include="Assets\TaskIcon\Study.png" />
+    <Content Include="Assets\TaskIcon\Verification.png" />
+    <Content Include="Assets\Timeline-Recovered.png" />
+    <Content Include="Assets\defaultUser.png" />
+    <Content Include="Assets\WeatherBackground\cloud.jpg" />
+    <Content Include="Assets\WeatherBackground\hail.jpg" />
+    <Content Include="Assets\WeatherBackground\rain.jpg" />
+    <Content Include="Assets\WeatherBackground\snow.jpg" />
+    <Content Include="Assets\WeatherBackground\storm.jpg" />
+    <Content Include="Assets\WeatherBackground\sunny.jpg" />
+    <Content Include="Assets\WeatherBackground\unavailable.jpg" />
+    <Content Include="Assets\WeatherBackground\windy.jpg" />
+    <Content Include="Assets\WeatherIcon\barelycloudy.png" />
+    <Content Include="Assets\Done.png" />
+    <Content Include="Assets\Error.png" />
+    <Content Include="Assets\WeatherIcon\notavailable.png" />
+    <Content Include="Assets\WeatherIcon\hail.png" />
+    <Content Include="Assets\WeatherIcon\heavyrain.png" />
+    <Content Include="Assets\WeatherIcon\heavysnow.png" />
+    <Content Include="Assets\WeatherIcon\lightrain.png" />
+    <Content Include="Assets\WeatherIcon\lightsnow.png" />
+    <Content Include="Assets\WeatherIcon\morecloudy.png" />
+    <Content Include="Assets\WeatherIcon\morecloudyday.png" />
+    <Content Include="Assets\WeatherIcon\mostcloudy.png" />
+    <Content Include="Assets\WeatherIcon\storm.png" />
+    <Content Include="Assets\WeatherIcon\sunny.png" />
+    <Content Include="Assets\WeatherIcon\windy.png" />
+    <Content Include="Assets\WideLogo.png" />
+    <Content Include="Common\ReadMe.txt" />
+    <Content Include="LogSettings.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Page Include="MainPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="VIEWs\AddTask.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="VIEWs\ApprovePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="VIEWs\BasicMonthPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Common\StandardStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="VIEWs\DayItem.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="VIEWs\DayItem2.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="VIEWs\ProjectInformationItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="VIEWs\ProjectInformationSubPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="VIEWs\ProjectManagerPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="VIEWs\ProjectOverViewSubPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="VIEWs\ProjectTaskItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="VIEWs\ProjectTaskSubPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="VIEWs\SearchContractPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="VIEWs\TaskItemView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="VIEWs\TimelineDayPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="VIEWs\TimelineWeekPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="VIEWs\UserInfoPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="VIEWs\UserInfoQuickView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="VIEWs\WeekItem.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AntaresShell\AntaresShell.csproj">
+      <Project>{a49b2d32-b356-4fd9-9b7d-6144503bb56b}</Project>
+      <Name>AntaresShell</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Repository\Repository.csproj">
+      <Project>{7d1908ac-4155-4417-b5f8-0f3fab0167a0}</Project>
+      <Name>Repository</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SearchEngine\SearchEngine.csproj">
+      <Project>{2555d551-eb6c-4257-9f84-82e26184e82d}</Project>
+      <Name>SearchEngine</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.4.5.11\lib\winrt45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <SDKReference Include="RadControls for Windows 8, Version=2012.3.1016">
+      <Name>RadControls for Windows 8</Name>
+    </SDKReference>
+  </ItemGroup>
+  <ItemGroup />
+  <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '11.0' ">
+    <VisualStudioVersion>11.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,88 @@
+﻿<Grid
+    Tapped="DayGrid_Tapped_1"
+    Opacity="0.9"
+    x:Class="Antares.VIEWs.DayItem2"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Antares.VIEWs"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:Converters="using:Antares.Converters"
+    mc:Ignorable="d"
+    Width="150"
+    Height="120"
+    d:DesignHeight="300"
+    d:DesignWidth="400">
+
+    <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="5"/>
+        <ColumnDefinition Width="*"/>
+        <ColumnDefinition Width="20"/>
+    </Grid.ColumnDefinitions>
+
+    <Grid.RowDefinitions>
+        <RowDefinition Height="5"/>
+        <RowDefinition Height="*"/>
+        <RowDefinition Height="*"/>
+        <RowDefinition Height="5"/>
+    </Grid.RowDefinitions>
+
+    <Grid.Resources>
+        <ResourceDictionary>
+            <Converters:DateTimeToDayConverter x:Key="DateTimeToDayConverter"/>
+            <Converters:DateToColorConverter x:Key="DateToColorConverter"/>
+            <Converters:DateToOpacityConverter x:Key="DateToOpacityConverter"/>
+            <Converters:DateToBorderBrushConverter x:Key="DateToBorderBrushConverter"/>
+            <Style x:Key="TxtDateStyle" TargetType="TextBlock">
+                <Setter Property="FontFamily" Value="Segoe UI"/>
+                <Setter Property="FontWeight" Value="Light"/>
+                <Setter Property="Foreground" Value="RoyalBlue"/>
+                <Setter Property="FontSize" Value="36"/>
+            </Style>
+            <Style x:Key="TxtNumStyle" TargetType="TextBlock">
+                <Setter Property="FontFamily" Value="Segoe UI"/>
+                <Setter Property="FontWeight" Value="SemiLight"/>
+                <Setter Property="Foreground" Value="#494949"/>
+                <Setter Property="FontSize" Value="20"/>
+            </Style>
+            <Style x:Key="TxtLunarDateStyle" TargetType="TextBlock">
+                <Setter Property="FontFamily" Value="Segoe UI"/>
+                <Setter Property="FontWeight" Value="Light"/>
+                <Setter Property="Foreground" Value="Green"/>
+                <Setter Property="FontSize" Value="18"/>
+            </Style>
+
+          
+        </ResourceDictionary>
+    </Grid.Resources>
+
+    
+    <Rectangle Fill="{Binding Today, Converter={StaticResource DateToBorderBrushConverter}}" Margin="-2.35,-2.35,-2.12,-2.12" Grid.ColumnSpan="3" Grid.RowSpan="4" Opacity="{Binding Today,Converter={StaticResource DateToOpacityConverter}}"/>
+    <Rectangle Grid.Column="2" Grid.RowSpan="4" Opacity="{Binding Today,Converter={StaticResource DateToOpacityConverter}}" Fill="{Binding Today, Converter={StaticResource DateToColorConverter}}"/>
+
+    <StackPanel Grid.Column="1" Grid.Row="1" Grid.RowSpan="2" Orientation="Horizontal" 
+                VerticalAlignment="Bottom" HorizontalAlignment="Left" >
+        <TextBlock x:Name="Date" 
+               VerticalAlignment="Bottom"
+               Style="{StaticResource TxtDateStyle}"
+               Opacity="{Binding Today,Converter={StaticResource DateToOpacityConverter}}"
+               Text="{Binding Today, Converter={StaticResource DateTimeToDayConverter}}"/>
+        <TextBlock x:Name="LunarDate" 
+                   VerticalAlignment="Bottom"
+                   Opacity="{Binding Today,Converter={StaticResource DateToOpacityConverter}}"
+               Style="{StaticResource TxtLunarDateStyle}"
+                    Text="{Binding LunarDay}"/>
+    </StackPanel>
+    <StackPanel Grid.Column="1" Grid.Row="1" 
+                VerticalAlignment="Top" HorizontalAlignment="Right" 
+                Orientation="Horizontal">
+        <TextBlock HorizontalAlignment="Right" VerticalAlignment="Bottom"  
+                   x:Name="NumberTask" 
+                   Text="{Binding TaskList.Count}" 
+                   Style="{StaticResource TxtNumStyle}"
+                   Opacity="{Binding Today,Converter={StaticResource DateToOpacityConverter}}"/>
+        <TextBlock HorizontalAlignment="Left" x:Name="tasktxt" VerticalAlignment="Bottom" 
+                   Style="{StaticResource TxtNumStyle}"
+                   Margin="6,0,0,0"
+                   Opacity="{Binding Today,Converter={StaticResource DateToOpacityConverter}}"/>
+    </StackPanel>
+</Grid>

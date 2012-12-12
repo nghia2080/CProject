@@ -1,0 +1,169 @@
+﻿<Page
+    x:Class="Antares.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Antares"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:VIEWMODELs="using:Antares.VIEWMODELs"
+    mc:Ignorable="d">
+        <Page.DataContext>
+        <VIEWMODELs:MainPageViewModel/>
+    </Page.DataContext>
+    <Page.TopAppBar>
+        <AppBar x:Name="TopAppBar" Background="#D83C81BA"
+                IsSticky="False"
+            TabNavigation="Cycle" BorderBrush="{x:Null}" >
+            <Grid x:Name="GridTop">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition
+						Width="40*" />
+                    <ColumnDefinition
+						Width="60*" />
+
+                </Grid.ColumnDefinitions>
+                <StackPanel Orientation="Horizontal" Grid.Column="0" HorizontalAlignment="Left">
+                    <Button x:Name="HomeBtn"
+                    Style="{StaticResource HomeAppBarButtonStyle2}"
+                    Command="{Binding GoHomeCommand}"
+                    Foreground="White"
+					Margin="0,0,10,0" 
+                    AutomationProperties.Name="{Binding Resource[Appbar_Home]}"/>
+                <Button x:Name="ProjectBtn"
+                    Style="{StaticResource WorldAppBarButtonStyle2}"
+                    Command="{Binding ProjectCommand}"
+                    Foreground="White"
+					Margin="0,0,10,0" 
+                    AutomationProperties.Name="{Binding Resource[Appbar_Project]}"/>
+            <Button x:Name="BasicMonthBtn"
+                    Style="{StaticResource CalendarAppBarButtonStyle2}"
+                    Command="{Binding BasicMonthCommand}"
+                    Foreground="White"
+					Margin="0,0,10,0" 
+                    AutomationProperties.Name="{Binding Resource[Appbar_BasicMonth]}"/>
+            
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Right">
+                    <Button x:Name="InfoBtn"
+                    Style="{StaticResource InfoAppBarButtonStyle2}"
+                    Command="{Binding InfoCommand}"
+                    Foreground="White"
+					Margin="0,0,10,0" 
+                    AutomationProperties.Name="{Binding Resource[Appbar_Info]}"/>
+                    </StackPanel>
+            </Grid>
+        </AppBar>
+            
+    </Page.TopAppBar>
+    <Page.BottomAppBar>
+        <AppBar
+			x:Name="BottomAppBar"
+            Background="#3c81ba"
+            TabNavigation="Cycle" Margin="0,22,0,0" BorderBrush="{x:Null}">
+            <Grid x:Name="GridAppbar">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition
+						Width="40*" />
+                    <ColumnDefinition
+						Width="60*" />
+                    
+                </Grid.ColumnDefinitions>
+                <StackPanel x:Name="LeftPanel" Orientation="Horizontal" Grid.Column="0" HorizontalAlignment="Left">
+                    <Button
+					x:Name="AddNewTaskBtn"
+                    Style="{StaticResource AddTaskAppBarButtonStyle}"
+                    Foreground="White"
+                    Command="{Binding AddNewTaskCommand}"
+                    AutomationProperties.Name="{Binding Resource[Appbar_AddTask]}"/>
+                    <Button
+					x:Name="AddNewProjectBtn"
+                   
+                    Style="{StaticResource AddProjectAppBarButtonStyle}"
+                    Foreground="White"
+                    Command="{Binding AddNewProjectCommand}"
+                    AutomationProperties.Name="{Binding Resource[Appbar_AddProject]}"/>
+                   
+                </StackPanel>
+                <StackPanel x:Name="RightPanel" Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Right">
+                    
+                    <Button
+                    
+					x:Name="RefreshBtn"
+                    Style="{StaticResource RefreshAppBarButtonStyle}"
+                    Command="{Binding RefreshCommand}"
+                    Foreground="White"
+					Margin="0,0,10,0" 
+                    AutomationProperties.Name="{Binding Resource[Appbar_Refresh]}"/>
+                </StackPanel>
+                <!--<Button
+                    Grid.Column="1"
+                    Visibility="Collapsed"
+					x:Name="ViewTaskDetail"
+                    Style="{StaticResource ViewTaskAppBarButtonStyle}"
+                    Foreground="White"
+                Command="{Binding ViewDetailTaskCommand}"/>-->
+                <!--<Button
+					x:Name="DeleteTask"
+                    Grid.Column="2"
+                     Foreground="White"
+                    Style="{StaticResource DeleteTaskAppBarButtonStyle}"
+                    Command="{Binding DeleteTaskCommand}"
+                    AutomationProperties.Name="{Binding Resource[Appbar_DeleteTasks]}"/>-->
+                
+                
+                <!--<Button
+					x:Name="ViewProjectDetail"
+                    Grid.Column="4"
+       
+                    Style="{StaticResource ViewProjectAppBarButtonStyle}"
+                    Foreground="White"
+                    Command="{Binding ViewDetailProjectCommand}"/>-->
+                <!--<Button
+					x:Name="DeleteProject"
+                    Grid.Column="5"
+                    
+                    Style="{StaticResource DeleteProjectAppBarButtonStyle}"
+                    Foreground="White"
+                    Command="{Binding DeleteProjectCommand}"
+                    AutomationProperties.Name="{Binding Resource[Appbar_DeleteProjects]}"/>-->
+                
+
+            </Grid>
+        </AppBar>
+    </Page.BottomAppBar>
+    <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
+        <Frame x:Name="_rootFrame"/>
+        <ProgressBar IsIndeterminate="True" Visibility="Visible" Width="800" Height="50" VerticalAlignment="Top" HorizontalAlignment="Center" x:Name="PrgBar"/>
+       
+        <Popup
+            x:Name="PopupMenu"
+            Grid.ColumnSpan="3"
+            Grid.RowSpan="7">
+            <Grid
+                x:Name="RootGridOfPopup"
+                Background="Transparent"
+                Height="{Binding ActualHeight, ElementName=PopupMenu}"
+                Width="{Binding ActualWidth, ElementName=PopupMenu}">
+                <Frame
+                    x:Name="RootFrameOfPopup"
+                    IsTabStop="False"
+                    HorizontalAlignment="Right">
+                </Frame>
+            </Grid>
+        </Popup>
+        <Image Margin="0,10,10,0" x:Name="networkStatus" Width="45" Height="50" VerticalAlignment="Top" HorizontalAlignment="Right">
+            <Image.Transitions>
+                <TransitionCollection>
+                    <ContentThemeTransition HorizontalOffset="300"/>
+                </TransitionCollection>
+            </Image.Transitions>
+        </Image>
+
+        <Image Visibility="Collapsed" Opacity="0.6" PointerEntered="notification_PointerEntered_1" PointerExited="notification_PointerExited_1" Tapped="notification_Tapped_1" Source="/Assets/GreenNotification.png" Margin="10,10,0,0" x:Name="notification" Width="45" Height="50" VerticalAlignment="Top" HorizontalAlignment="Left">
+            <Image.Transitions>
+                <TransitionCollection>
+                    <EdgeUIThemeTransition Edge="Left"/>
+                </TransitionCollection>
+            </Image.Transitions>
+        </Image>
+    </Grid>
+</Page>

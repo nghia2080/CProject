@@ -1,0 +1,481 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Appbar_AddProject" xml:space="preserve">
+    <value>Thêm dự án</value>
+  </data>
+  <data name="Appbar_AddTask" xml:space="preserve">
+    <value>Thêm công việc</value>
+  </data>
+  <data name="Appbar_BasicMonth" xml:space="preserve">
+    <value>Lịch</value>
+  </data>
+  <data name="Appbar_DeleteProjects" xml:space="preserve">
+    <value>Xóa dự án</value>
+  </data>
+  <data name="Appbar_DeleteTasks" xml:space="preserve">
+    <value>Xóa công việc</value>
+  </data>
+  <data name="Appbar_Home" xml:space="preserve">
+    <value>Trang chủ</value>
+  </data>
+  <data name="Appbar_Info" xml:space="preserve">
+    <value>Thông tin</value>
+  </data>
+  <data name="Appbar_Project" xml:space="preserve">
+    <value>Dự án</value>
+  </data>
+  <data name="Appbar_Refresh" xml:space="preserve">
+    <value>Đồng bộ</value>
+  </data>
+  <data name="Appbar_RemoveMember" xml:space="preserve">
+    <value>Loại khỏi dự án</value>
+  </data>
+  <data name="DateEmptyContent" xml:space="preserve">
+    <value>Chọn ngày</value>
+  </data>
+  <data name="DateSelectorHeader" xml:space="preserve">
+    <value>Chọn ngày</value>
+  </data>
+  <data name="Filter" xml:space="preserve">
+    <value>Lọc</value>
+  </data>
+  <data name="Filter_ByMembers" xml:space="preserve">
+    <value>Bởi thành viên</value>
+  </data>
+  <data name="Filter_ByPhase" xml:space="preserve">
+    <value>Bởi giai đoạn</value>
+  </data>
+  <data name="Goto" xml:space="preserve">
+    <value>Đi tới ngày</value>
+  </data>
+  <data name="LeapYear" xml:space="preserve">
+    <value>Năm nhuận</value>
+  </data>
+  <data name="MainTitle_1" xml:space="preserve">
+    <value>Dòng thời gian của [abc]</value>
+  </data>
+  <data name="MainTitle_10" xml:space="preserve">
+    <value>Chính sách bảo mật</value>
+  </data>
+  <data name="MainTitle_2" xml:space="preserve">
+    <value>Dòng thời gian</value>
+  </data>
+  <data name="MainTitle_3" xml:space="preserve">
+    <value>Dự án của [abc]</value>
+  </data>
+  <data name="MainTitle_4" xml:space="preserve">
+    <value>Dự án</value>
+  </data>
+  <data name="MainTitle_5" xml:space="preserve">
+    <value>Thông tin cá nhân</value>
+  </data>
+  <data name="MainTitle_6" xml:space="preserve">
+    <value>Sửa công việc</value>
+  </data>
+  <data name="MainTitle_7" xml:space="preserve">
+    <value>Tùy chỉnh</value>
+  </data>
+  <data name="MainTitle_8" xml:space="preserve">
+    <value>Việc cần xác nhận</value>
+  </data>
+  <data name="MainTitle_9" xml:space="preserve">
+    <value>Về chúng tôi</value>
+  </data>
+  <data name="Msg_ApplySetting" xml:space="preserve">
+    <value>Các tùy chỉnh của bạn sẽ được áp dụng lần kế tiếp.</value>
+  </data>
+  <data name="Msg_ConfirmProject" xml:space="preserve">
+    <value>Bạn có đồng ý ?</value>
+  </data>
+  <data name="Msg_ConfirmTask" xml:space="preserve">
+    <value>Bạn muốn từ chối ? </value>
+  </data>
+  <data name="Msg_DeleteProject" xml:space="preserve">
+    <value>Bạn muốn xóa dự án này ?</value>
+  </data>
+  <data name="Msg_DeleteProjectMember" xml:space="preserve">
+    <value>Bạn muốn loại thành viên này khỏi dự án ?</value>
+  </data>
+  <data name="Msg_DeleteTask" xml:space="preserve">
+    <value>Bạn muốn xóa công việc này ?</value>
+  </data>
+  <data name="Msg_LoginFailed" xml:space="preserve">
+    <value>Không thể tạo kết nối với tài khoản Windows Live ID
+ của bạn.</value>
+  </data>
+  <data name="Msg_NetworkFailed" xml:space="preserve">
+    <value>eSec không thể thu thập dữ liệu hiện tại.</value>
+  </data>
+  <data name="Msg_No" xml:space="preserve">
+    <value>Không</value>
+  </data>
+  <data name="Msg_ResignIn" xml:space="preserve">
+    <value>Bấm vào đây để đăng nhập.</value>
+  </data>
+  <data name="Msg_Yes" xml:space="preserve">
+    <value>Có</value>
+  </data>
+  <data name="NotAvailable" xml:space="preserve">
+    <value>Không sẵn sàng</value>
+  </data>
+  <data name="Present" xml:space="preserve">
+    <value>Hiện tại</value>
+  </data>
+  <data name="Prj_Active" xml:space="preserve">
+    <value>Hoạt động</value>
+  </data>
+  <data name="Prj_Delete" xml:space="preserve">
+    <value>Xóa</value>
+  </data>
+  <data name="Prj_Description" xml:space="preserve">
+    <value>Mô tả</value>
+  </data>
+  <data name="Prj_EndDate" xml:space="preserve">
+    <value>Ngày kết thúc</value>
+  </data>
+  <data name="Prj_EnterUsername" xml:space="preserve">
+    <value>Nhập tên người dùng</value>
+  </data>
+  <data name="Prj_Inactive" xml:space="preserve">
+    <value>Không hoạt động</value>
+  </data>
+  <data name="Prj_Mber" xml:space="preserve">
+    <value>Thành viên</value>
+  </data>
+  <data name="Prj_Member" xml:space="preserve">
+    <value>Thành viên</value>
+  </data>
+  <data name="Prj_Name" xml:space="preserve">
+    <value>Tên dự án*</value>
+  </data>
+  <data name="Prj_PM" xml:space="preserve">
+    <value>Quản lý dự án</value>
+  </data>
+  <data name="Prj_Remove" xml:space="preserve">
+    <value>Xóa</value>
+  </data>
+  <data name="Prj_Save" xml:space="preserve">
+    <value>Lưu</value>
+  </data>
+  <data name="Prj_StartDate" xml:space="preserve">
+    <value>Ngày bắt đầu*</value>
+  </data>
+  <data name="Prj_Status" xml:space="preserve">
+    <value>Tình trạng*</value>
+  </data>
+  <data name="Prj_Status_Active" xml:space="preserve">
+    <value>Hoạt động</value>
+  </data>
+  <data name="Prj_Status_Inactive" xml:space="preserve">
+    <value>Không hoạt động</value>
+  </data>
+  <data name="Search_NoResult" xml:space="preserve">
+    <value>Không có kết quả cho "[abc]"</value>
+  </data>
+  <data name="Search_Result" xml:space="preserve">
+    <value>Kết quả cho "[abc]"</value>
+  </data>
+  <data name="Sttig_Location" xml:space="preserve">
+    <value>Vị trí</value>
+  </data>
+  <data name="SubTitle_1" xml:space="preserve">
+    <value>DỰ ÁN</value>
+  </data>
+  <data name="SubTitle_2" xml:space="preserve">
+    <value>CHI TIẾT</value>
+  </data>
+  <data name="SubTitle_3" xml:space="preserve">
+    <value>CÔNG VIỆC</value>
+  </data>
+  <data name="SubTitle_4" xml:space="preserve">
+    <value>XEM</value>
+  </data>
+  <data name="Tasks" xml:space="preserve">
+    <value>công việc</value>
+  </data>
+  <data name="TimeEmptyContent" xml:space="preserve">
+    <value>Chọn giờ</value>
+  </data>
+  <data name="TimeSelectorHeader" xml:space="preserve">
+    <value>Chọn giờ</value>
+  </data>
+  <data name="Today" xml:space="preserve">
+    <value>Hôm nay</value>
+  </data>
+  <data name="ToolTip_AddMember" xml:space="preserve">
+    <value>Thêm vào dự án</value>
+  </data>
+  <data name="ToolTip_BasicView" xml:space="preserve">
+    <value>Lịch</value>
+  </data>
+  <data name="ToolTip_ManageProject" xml:space="preserve">
+    <value>Dự án</value>
+  </data>
+  <data name="Tsk_Assignee" xml:space="preserve">
+    <value>Người phụ trách*</value>
+  </data>
+  <data name="Tsk_Breakable" xml:space="preserve">
+    <value>Có thể chia nhỏ*</value>
+  </data>
+  <data name="Tsk_Cancel" xml:space="preserve">
+    <value>Hủy</value>
+  </data>
+  <data name="Tsk_Categories" xml:space="preserve">
+    <value>Phân loại*</value>
+  </data>
+  <data name="Tsk_Categories_Bussiness" xml:space="preserve">
+    <value>Công việc</value>
+  </data>
+  <data name="Tsk_Categories_Entertainment" xml:space="preserve">
+    <value>Giải trí</value>
+  </data>
+  <data name="Tsk_Categories_Meeting" xml:space="preserve">
+    <value>Hội thảo</value>
+  </data>
+  <data name="Tsk_Categories_Study" xml:space="preserve">
+    <value>Học tập</value>
+  </data>
+  <data name="Tsk_Delete" xml:space="preserve">
+    <value>Xóa</value>
+  </data>
+  <data name="Tsk_Description" xml:space="preserve">
+    <value>Mô tả</value>
+  </data>
+  <data name="Tsk_EndDate" xml:space="preserve">
+    <value>Ngày kết thúc*</value>
+  </data>
+  <data name="Tsk_EndTime" xml:space="preserve">
+    <value>Giờ kết thúc*</value>
+  </data>
+  <data name="Tsk_Name" xml:space="preserve">
+    <value>Tên công việc*</value>
+  </data>
+  <data name="Tsk_Period" xml:space="preserve">
+    <value>Quãng thời gian*</value>
+  </data>
+  <data name="Tsk_Priority" xml:space="preserve">
+    <value>Độ ưu tiên*</value>
+  </data>
+  <data name="Tsk_Priority_High" xml:space="preserve">
+    <value>Cao</value>
+  </data>
+  <data name="Tsk_Priority_Low" xml:space="preserve">
+    <value>Thấp</value>
+  </data>
+  <data name="Tsk_Priority_Medium" xml:space="preserve">
+    <value>Vừa</value>
+  </data>
+  <data name="Tsk_Project" xml:space="preserve">
+    <value>Dự án*</value>
+  </data>
+  <data name="Tsk_Project_None" xml:space="preserve">
+    <value>Không thuộc dự án</value>
+  </data>
+  <data name="Tsk_RepeatType" xml:space="preserve">
+    <value>Kiểu lặp lại*</value>
+  </data>
+  <data name="Tsk_RepeatType_Daily" xml:space="preserve">
+    <value>Hằng ngày</value>
+  </data>
+  <data name="Tsk_RepeatType_Monthly" xml:space="preserve">
+    <value>Hằng tháng</value>
+  </data>
+  <data name="Tsk_RepeatType_Once" xml:space="preserve">
+    <value>Một lần</value>
+  </data>
+  <data name="Tsk_RepeatType_Weekly" xml:space="preserve">
+    <value>Hằng tuần</value>
+  </data>
+  <data name="Tsk_RepeatType_Yearly" xml:space="preserve">
+    <value>Hằng năm</value>
+  </data>
+  <data name="Tsk_Save" xml:space="preserve">
+    <value>Lưu</value>
+  </data>
+  <data name="Tsk_StartDate" xml:space="preserve">
+    <value>Ngày bắt đầu</value>
+  </data>
+  <data name="Tsk_StartTime" xml:space="preserve">
+    <value>Giờ bắt đầu</value>
+  </data>
+  <data name="Tsk_Status" xml:space="preserve">
+    <value>Tình trạng*</value>
+  </data>
+  <data name="Tsk_Status_Done" xml:space="preserve">
+    <value>Hoàn thành</value>
+  </data>
+  <data name="Tsk_Status_NotDone" xml:space="preserve">
+    <value>Chưa hoàn thành</value>
+  </data>
+  <data name="Tsk_SubCategories" xml:space="preserve">
+    <value>Giai đoạn</value>
+  </data>
+  <data name="Tsk_SubCategories_Design" xml:space="preserve">
+    <value>Thiết kế</value>
+  </data>
+  <data name="Tsk_SubCategories_Implementation" xml:space="preserve">
+    <value>Thực hiện</value>
+  </data>
+  <data name="Tsk_SubCategories_Maintenance" xml:space="preserve">
+    <value>Bảo trì</value>
+  </data>
+  <data name="Tsk_SubCategories_Requirements" xml:space="preserve">
+    <value>Yêu cầu</value>
+  </data>
+  <data name="Tsk_SubCategories_Verification" xml:space="preserve">
+    <value>Kiểm thử</value>
+  </data>
+  <data name="UInfo_BasicInfo" xml:space="preserve">
+    <value>Thông tin cơ bản</value>
+  </data>
+  <data name="UInfo_Birthday" xml:space="preserve">
+    <value>Ngày sinh</value>
+  </data>
+  <data name="UInfo_ContactInfo" xml:space="preserve">
+    <value>Thông tin liên lạc</value>
+  </data>
+  <data name="UInfo_Email" xml:space="preserve">
+    <value>Hòm thư điện tử</value>
+  </data>
+  <data name="UInfo_FullName" xml:space="preserve">
+    <value>Họ và tên</value>
+  </data>
+  <data name="UInfo_Locale" xml:space="preserve">
+    <value>Khu vực</value>
+  </data>
+  <data name="UInfo_PhoneNumber" xml:space="preserve">
+    <value>Số điện thoại</value>
+  </data>
+  <data name="UInfo_Username" xml:space="preserve">
+    <value>Tên người dùng</value>
+  </data>
+  <data name="Wtig_Accepted" xml:space="preserve">
+    <value>Đồng ý</value>
+  </data>
+  <data name="Wtig_Project" xml:space="preserve">
+    <value>Danh sách dự án</value>
+  </data>
+  <data name="Wtig_Rejected" xml:space="preserve">
+    <value>Không đồng ý</value>
+  </data>
+  <data name="Wtig_Task" xml:space="preserve">
+    <value>Danh sách công việc</value>
+  </data>
+</root>

@@ -1,0 +1,99 @@
+﻿<Common:LayoutAwarePage
+    x:Name="pageRoot"
+    x:Class="Antares.VIEWs.TimelineWeekPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Antares.VIEWs"
+    xmlns:viewmodel="using:Antares.VIEWMODELs" 
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:Common="using:AntaresShell.Common"
+    mc:Ignorable="d">
+
+    <Common:LayoutAwarePage.Transitions>
+        <TransitionCollection>
+           
+        </TransitionCollection>
+    </Common:LayoutAwarePage.Transitions>
+
+
+    <Grid Background="{StaticResource Background}" >
+        
+        <Grid.DataContext>
+            <viewmodel:TimelineWeekViewModel/>
+        </Grid.DataContext>
+
+        <Grid.Resources>
+            <DataTemplate
+                x:Key="WeekItemTemplate">
+                <local:WeekItem/>
+            </DataTemplate>
+        </Grid.Resources>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="4*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="50"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="50"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid x:Name="HeaderGrid" Grid.ColumnSpan="3">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="140"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="65"/>
+                <ColumnDefinition Width="55"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            
+            <TextBlock x:Name="pageTitle" Text="" Style="{StaticResource PageHeaderTextStyle}"  Grid.Column="1" Grid.ColumnSpan="2" IsHitTestVisible="false" Foreground="White"/>
+            <TextBlock x:Name="yearIndicator" Visibility="Collapsed" HorizontalAlignment="Right" Text="{Binding CurrentYear}" Style="{StaticResource PageHeaderTextStyle}" FontSize="78" Foreground="White" Opacity="0.8" Grid.Column="2" IsHitTestVisible="false"/>
+        </Grid>
+
+        <!--<Image Grid.ColumnSpan="3" Grid.RowSpan="3" Source="/Assets/Background.jpg" Stretch="Fill"/>-->
+        <Grid Grid.Column="1"
+              Grid.Row="1"
+              Visibility="Collapsed"
+              x:Name="DynamicContentGrid">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="65"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            
+            <StackPanel x:Name="MenuButton" Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button x:Name="CalendarButton" Style="{StaticResource CalendarAppBarButtonStyle}" Tapped="BasicMonth_OnTapped" Foreground="White" ToolTipService.ToolTip="{Binding Resource[ToolTip_BasicView]}"/>
+                <Button x:Name="ProjectButton" Style="{StaticResource WorldAppBarButtonStyle}" Tapped="ProjectButton_Tapped" Foreground="White" ToolTipService.ToolTip="{Binding Resource[ToolTip_ManageProject]}"/>
+            </StackPanel>
+            
+            <FlipView Grid.Row="1" x:Name="WeekFlip"
+                       ScrollViewer.IsHorizontalScrollChainingEnabled="True"
+                    SelectedItem="{Binding SelectedWeek, Mode=TwoWay}"
+                    ItemTemplate="{StaticResource WeekItemTemplate}"
+                    ItemsSource="{Binding SampleContent}">
+                <FlipView.Transitions>
+                    <TransitionCollection>
+                        <EntranceThemeTransition />
+                    </TransitionCollection>
+                </FlipView.Transitions>
+                
+            </FlipView>
+        </Grid>
+        <Grid Grid.Column="1"
+              Grid.Row="1"
+              Visibility="Visible"
+              x:Name="MessageContent">
+            <ProgressBar IsIndeterminate="True" Visibility="Visible" Width="800" Height="50" VerticalAlignment="Center" HorizontalAlignment="Center" x:Name="prgessBar"/>
+
+            <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <TextBlock x:Name="messageTxt" VerticalAlignment="Center" HorizontalAlignment="Center" Text="" Visibility="Collapsed" Style="{StaticResource PageHeaderTextStyle}"/>
+                <HyperlinkButton x:Name="signInbtn" Visibility="Collapsed" Tapped="SignInbtn_Tapped" FontSize="24" FontFamily="Segoe UI" FontWeight="ExtraLight" Content="{Binding Resource[Msg_ResignIn]}" Foreground="Black" BorderThickness="0" Margin="0,15,15,0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Common:LayoutAwarePage>

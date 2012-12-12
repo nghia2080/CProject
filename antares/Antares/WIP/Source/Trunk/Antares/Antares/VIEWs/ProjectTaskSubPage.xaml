@@ -1,0 +1,70 @@
+﻿<Page
+    x:Class="Antares.VIEWs.ProjectTaskSubPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Antares.VIEWs"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:VIEWMODELs="using:Antares.VIEWMODELs"
+    mc:Ignorable="d">
+
+
+    <Page.Resources>
+        <DataTemplate x:Key="TaskTemplate">
+            <local:ProjectTaskItem/>
+        </DataTemplate>
+
+        <CollectionViewSource x:Name="GroupItemSource" Source="{Binding AllGroups}" IsSourceGrouped="True" ItemsPath="GroupTasks"/>
+    </Page.Resources>
+
+    <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Rectangle Grid.RowSpan="2"  Stroke="#888888" StrokeThickness="1" StrokeDashArray="0.6,0,0.6" Fill="White"></Rectangle>
+
+        <GridView Grid.Row="1" 
+            x:Name="TaskGridView"
+            CanReorderItems="True" CanDragItems="True" AllowDrop="True"
+            ItemsSource="{Binding Source={StaticResource GroupItemSource}}"
+            ItemTemplate="{StaticResource TaskTemplate}"
+            SelectionMode="None"
+            IsSwipeEnabled="false">
+
+            <GridView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <VirtualizingStackPanel Orientation="Horizontal" ScrollViewer.VerticalScrollBarVisibility="Auto" />
+                </ItemsPanelTemplate>
+            </GridView.ItemsPanel>
+            <GridView.GroupStyle>
+                <GroupStyle>
+                    <GroupStyle.HeaderTemplate>
+                        <DataTemplate>
+                            <Grid Margin="1,0,0,6">
+                                <StackPanel Orientation="Horizontal">
+                                    <StackPanel.Transitions>
+                                        <TransitionCollection>
+                                            <EdgeUIThemeTransition Edge="Right"/>
+                                        </TransitionCollection>
+                                    </StackPanel.Transitions>
+                                    <TextBlock Text="{Binding GroupName}" Margin="3,-7,10,10" Style="{StaticResource GroupHeaderTextStyle}" />
+                                    <TextBlock Text="{StaticResource ChevronGlyph}" FontFamily="Segoe UI Symbol" Margin="0,-7,0,10" Style="{StaticResource GroupHeaderTextStyle}"/>
+                                </StackPanel>
+                            </Grid>
+                        </DataTemplate>
+                    </GroupStyle.HeaderTemplate>
+                    <GroupStyle.Panel>
+                        <ItemsPanelTemplate>
+                            <VariableSizedWrapGrid Orientation="Vertical" Margin="0,0,80,0" MinWidth="200"/>
+                        </ItemsPanelTemplate>
+                    </GroupStyle.Panel>
+                </GroupStyle>
+            </GridView.GroupStyle>
+        </GridView>
+        <StackPanel Margin="0,0,20,0" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center" Height="50">
+            <RadioButton Command="{Binding FilterCommand}" CommandParameter="2" GroupName="Filter" ToolTipService.ToolTip="{Binding Resource[Filter_ByMembers]}"/>
+            <RadioButton Command="{Binding FilterCommand}" CommandParameter="1" Margin="10,0,0,0" GroupName="Filter" IsChecked="True" ToolTipService.ToolTip="{Binding Resource[Filter_ByPhase]}"/>
+        </StackPanel>
+    </Grid>
+</Page>

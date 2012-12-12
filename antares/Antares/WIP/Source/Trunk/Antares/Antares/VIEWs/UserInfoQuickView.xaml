@@ -1,0 +1,96 @@
+﻿<Page
+    x:Class="Antares.VIEWs.UserInfoQuickView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Antares.VIEWs"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    <Page.Transitions>
+        <TransitionCollection>
+            <EntranceThemeTransition/>
+        </TransitionCollection>
+    </Page.Transitions>
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="120"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="120"/>
+        </Grid.RowDefinitions>
+        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1.2*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="1.2*"/>
+        </Grid.ColumnDefinitions>
+        
+        <Rectangle Grid.Row="1" Grid.ColumnSpan="3" Fill="Black" Opacity="0.3"/>
+        <Grid Grid.Column="1" Background="{StaticResource ApplicationPageBackgroundThemeBrush}" Margin="0,20,0,20" Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+            <Grid.Resources>
+                <Style x:Key="CommonTextStyle" TargetType="TextBlock">
+                    <Setter Property="FontFamily" Value="Segoe UI"/>
+                    <Setter Property="FontSize" Value="25"/>
+                    <Setter Property="FontWeight" Value="ExtraLight"/>
+                </Style>
+            </Grid.Resources>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="20"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="20"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding Resource[UInfo_ContactInfo]}" Style="{StaticResource CommonTextStyle}" FontSize="28" FontWeight="Bold"/>
+
+            <TextBlock Grid.Column="1" Grid.Row="2" Text="{Binding Resource[UInfo_Username]}" Style="{StaticResource CommonTextStyle}"/>
+            <TextBlock x:Name="Username" Grid.Column="1" Grid.Row="3" Text="..." Style="{StaticResource CommonTextStyle}" FontWeight="Medium"/>
+
+            <TextBlock Grid.Column="1" Grid.Row="5" Text="{Binding Resource[UInfo_Birthday]}" Style="{StaticResource CommonTextStyle}"/>
+            <TextBlock x:Name="Birthday" Grid.Column="1" Grid.Row="6" Text="..." Style="{StaticResource CommonTextStyle}" FontWeight="Medium"/>
+
+            <TextBlock Grid.Column="1" Grid.Row="8" Text="{Binding Resource[UInfo_PhoneNumber]}" Style="{StaticResource CommonTextStyle}"/>
+            <TextBlock x:Name="Telephone" Grid.Column="1" Grid.Row="9" Text="..." Style="{StaticResource CommonTextStyle}" FontWeight="Medium"/>
+
+            <TextBlock Grid.Column="1" Grid.Row="11" Text="{Binding Resource[UInfo_Email]}" Style="{StaticResource CommonTextStyle}"/>
+            <TextBlock x:Name="Email" Grid.Column="1" Grid.Row="12" Text="..." Style="{StaticResource CommonTextStyle}" FontWeight="Medium"/>
+
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Center" Grid.Column="1" Grid.Row="14">
+                <Button  x:Name="unfavorButton" Style="{StaticResource UnfavoriteAppBarButtonStyle2}"
+                        Visibility="Collapsed"
+                        Tapped="unfavorButton_Tapped_1"
+                        AutomationProperties.Name="{Binding Resource[Prj_Inactive]}"/>
+                <Button  x:Name="favorButton" Style="{StaticResource FavoriteAppBarButtonStyle2}"
+                        Visibility="Collapsed"
+                         Tapped="favorButton_Tapped_1"
+                        AutomationProperties.Name="{Binding Resource[Prj_Active]}"/>
+                <Button  x:Name="removeButton" Style="{StaticResource RemoveAppBarButtonStyle2}"
+                        Visibility="Collapsed"
+                         Tapped="removeButton_Tapped_1"
+                        AutomationProperties.Name="{Binding Resource[Prj_Remove]}"/>
+                <Button  x:Name="cancelButton" Style="{StaticResource CancelTaskAppBarButtonStyle}"
+                        Visibility="Visible"  
+                         Tapped="cancelButton_Tapped_1"
+                        AutomationProperties.Name="{Binding Resource[Tsk_Cancel]}"/>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Page>
