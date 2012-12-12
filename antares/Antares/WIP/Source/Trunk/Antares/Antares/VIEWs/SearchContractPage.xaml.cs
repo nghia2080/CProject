@@ -1,5 +1,6 @@
 ﻿using AntaresShell.BaseClasses;
 using Repository.MODELs;
+using Repository.Repositories;
 using SearchEngine;
 using System;
 using System.Collections;
@@ -8,6 +9,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Navigation;
 
 // The Search Contract item template is documented at http://go.microsoft.com/fwlink/?LinkId=234240
 
@@ -18,16 +20,23 @@ namespace Antares.VIEWs
     /// </summary>
     public sealed partial class SearchContractPage
     {
-        private char[] _specialChars = new[]
-            {
-                '.', ',', '|', '-', ' ', '!', '`', '~', '@', '#', '$', '%', '^', '&', '*', '(', ')', '_', '=', '+', '[',
-                ']', '{', '}', '\\', ';', ':', '\'', '"', '<', '>', '/', '?' , 
-                '。', '、', '・', '【', '】', '〔', '〕', '〈', '〉', '《', '》', '「', '」', '『', '』'
-            };
-
         public SearchContractPage()
         {
+            //NavigationCacheMode = NavigationCacheMode.Enabled;
             InitializeComponent();
+            try
+            {
+                TaskRepository.Instance.Tasks.CollectionChanged += Tasks_CollectionChanged;
+            }
+            catch
+            {
+
+            }
+        }
+
+        void Tasks_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            SearchProvider.IsDirty = true;
         }
 
         /// <summary>
@@ -39,52 +48,36 @@ namespace Antares.VIEWs
         /// </param>
         /// <param name="pageState">A dictionary of state preserved by this page during an earlier
         /// session.  This will be null the first time a page is visited.</param>
-        async protected override void LoadState(Object navigationParameter, Dictionary<String, Object> pageState)
+        protected override void LoadState(Object navigationParameter, Dictionary<String, Object> pageState)
         {
             var query = navigationParameter as String;
 
-            var itemList = await Repository.Repository.Instance.GetSeachableBaseModelAsync();
-            var normalizedStrings = GetNormalizedStrings(itemList);
-            var dictionary = ToStringList(itemList);
-            var mapStringItems = MapStringToItems(dictionary, normalizedStrings);
-            var index = SearchProvider.CreateIndex(dictionary);
-            var searcher = SearchProvider.CreateSearcher(index);
-            var resultList = searcher.Search(query);
+            if (SearchProvider.IsDirty)
+            {
+                RenewIndex();
+                SearchProvider.IsDirty = false;
+            }
+
+            var resultList = SearchProvider.Searcher.Search(query);
 
             var filterList = new List<Filter> { new Filter("All", 0, true) };
 
             // Communicate results through the view model
             DefaultViewModel["QueryText"] = '\u201c' + query + '\u201d';
-            DefaultViewModel["Results"] = CreateActualResultList(resultList, mapStringItems, itemList);
+            DefaultViewModel["Results"] = CreateActualResultList(resultList, SearchProvider.MapStringItem, SearchProvider.ItemList);
             DefaultViewModel["Filters"] = filterList;
             DefaultViewModel["ShowFilters"] = filterList.Count > 1;
             //DefaultViewModel["Results"] = CreateActualResultList(resultList, mapStringItems, itemList);
         }
 
-        private ObservableCollection<SearchResultModel> CreateActualResultList(IEnumerable<int> resultList, IList<List<int>> mapStringItems, IList<SearchableBaseModel> itemList)
+        async void RenewIndex()
         {
-            var max = 0;
-            var freq = new Dictionary<int, int>();
-            foreach (var n in resultList.SelectMany(i => mapStringItems[i]))
-            {
-                freq[n] = freq.ContainsKey(n) ? freq[n] + 1 : 1;
-                max = Math.Max(max, freq[n]);
-            }
-            var returned = new ObservableCollection<SearchResultModel>();
-            for (var i = max; i >= 1; --i)
-            {
-                var i1 = i;
-                foreach (var kvp in freq.Where(kvp => kvp.Value == i1))
-                {
-                    returned.Add(new SearchResultModel
-                    {
-                        Title = itemList[kvp.Key].Name,
-                        Description = itemList[kvp.Key].Description,
-                        //NavigationTarget = Convert.ToDateTime(((TaskModel)itemList[kvp.Key]).StartDate)
-                    });
-                }
-            }
-            return returned;
+            SearchProvider.ItemList = await Repository.Repository.Instance.GetSeachableBaseModelAsync();
+            var normalizedStrings = GetNormalizedStrings(SearchProvider.ItemList);
+            var dictionary = ToStringList(SearchProvider.ItemList);
+            SearchProvider.MapStringItem = MapStringToItems(dictionary, normalizedStrings);
+            SearchProvider.CreateIndex(dictionary);
+            SearchProvider.CreateSearcher(SearchProvider.Index);
         }
 
         private List<int>[] MapStringToItems(IList<string> dictionary, IList<string> normalizedStrings)
@@ -117,6 +110,12 @@ namespace Antares.VIEWs
             return returned;
         }
 
+        private char[] _specialChars = new[]
+            {
+                '.', ',', '|', '-', ' ', '!', '`', '~', '@', '#', '$', '%', '^', '&', '*', '(', ')', '_', '=', '+', '[',
+                ']', '{', '}', '\\', ';', ':', '\'', '"', '<', '>', '/', '?' , 
+                '。', '、', '・', '【', '】', '〔', '〕', '〈', '〉', '《', '》', '「', '」', '『', '』', '　'
+            };
         private string[] ToStringList(IEnumerable<SearchableBaseModel> itemList)
         {
             var returned = new HashSet<string>();
@@ -132,6 +131,32 @@ namespace Antares.VIEWs
         private string Normalize(string source)
         {
             return source.ToLower();
+        }
+
+        private ObservableCollection<SearchResultModel> CreateActualResultList(IEnumerable<int> resultList, IList<List<int>> mapStringItems, IList<SearchableBaseModel> itemList)
+        {
+            var max = 0;
+            var freq = new Dictionary<int, int>();
+            foreach (var n in resultList.SelectMany(i => mapStringItems[i]))
+            {
+                freq[n] = freq.ContainsKey(n) ? freq[n] + 1 : 1;
+                max = Math.Max(max, freq[n]);
+            }
+            var returned = new ObservableCollection<SearchResultModel>();
+            for (var i = max; i >= 1; --i)
+            {
+                var i1 = i;
+                foreach (var kvp in freq.Where(kvp => kvp.Value == i1))
+                {
+                    returned.Add(new SearchResultModel
+                    {
+                        Title = itemList[kvp.Key].Name,
+                        Description = itemList[kvp.Key].Description,
+                        //NavigationTarget = Convert.ToDateTime(((TaskModel)itemList[kvp.Key]).StartDate)
+                    });
+                }
+            }
+            return returned;
         }
 
         /// <summary>
