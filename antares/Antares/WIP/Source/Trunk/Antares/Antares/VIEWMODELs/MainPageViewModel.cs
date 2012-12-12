@@ -1,13 +1,16 @@
-﻿using Antares.VIEWs;
+﻿using System.Linq;
+using Antares.VIEWs;
 using AntaresShell.BaseClasses;
 using System;
 using System.Windows.Input;
 using AntaresShell.Common;
 using AntaresShell.Common.MessageTemplates;
 using AntaresShell.NavigatorProvider;
+using Repository.Sync;
 using Windows.UI.Xaml;
 using Repository.MODELs;
 using Windows.UI.Popups;
+using Repository.Repositories;
 
 namespace Antares.VIEWMODELs
 {
@@ -92,9 +95,49 @@ namespace Antares.VIEWMODELs
 
         private void RefreshCmd(object obj)
         {
+            CategoryRepository.Instance.Clearcache();
+            PriorityRepository.Instance.Clearcache();
+            RepeatTypeRepository.Instance.ClearCache();
 
+            ProjectMemberRepository.Instance.ClearCache();
+            ProjectRepository.Instance.ClearCache();
+            TaskRepository.Instance.ClearCache();
+            UserInformationRepository.Instance.ClearCache();
+
+            WeatherRepository.Instance.ClearCache();
+
+            Navigator.Instance.HideTimelinePopup();
+
+            CategoryRepository.Instance.GetAllCategories();
+            PriorityRepository.Instance.GetAllPriorities();
+            RepeatTypeRepository.Instance.GetAllRepeatTypes();
+
+            GetProjects();
+            GetTasks();
+            ProjectRepository.Instance.GetAllProjects();
+
+            Messenger.Instance.Notify(Refresh.All);
         }
 
+        private async void GetProjects()
+        {
+            var projects = await ProjectMemberRepository.Instance.GetAllProjects(GlobalData.MyUserID);
+
+            if (projects.Any(projectInformationModel => projectInformationModel.IsConfirmed == false))
+            {
+                Navigator.Instance.ShowApproveNotificator();
+            }
+        }
+
+        private async void GetTasks()
+        {
+            var tasks = await TaskRepository.Instance.GetAllTasksForUser(GlobalData.MyUserID);
+
+            if (tasks.Any(taskModel => taskModel.IsConfirmed == false))
+            {
+                Navigator.Instance.ShowApproveNotificator();
+            }
+        }
         private void GoHomeCmd(object obj)
         {
             Navigator.Instance.NavigateTo(typeof(TimelineWeekPage));

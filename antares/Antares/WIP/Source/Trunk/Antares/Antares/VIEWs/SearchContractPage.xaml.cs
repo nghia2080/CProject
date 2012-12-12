@@ -1,4 +1,5 @@
 ﻿using AntaresShell.BaseClasses;
+using AntaresShell.Localization;
 using Repository.MODELs;
 using Repository.Repositories;
 using SearchEngine;
@@ -62,6 +63,8 @@ namespace Antares.VIEWs
 
             var filterList = new List<Filter> { new Filter("All", 0, true) };
 
+            resultText.Text = LanguageProvider.Resource["resultText"];
+            noResultsTextBlock.Text = LanguageProvider.Resource["Search_NoResult"];
             // Communicate results through the view model
             DefaultViewModel["QueryText"] = '\u201c' + query + '\u201d';
             DefaultViewModel["Results"] = CreateActualResultList(resultList, SearchProvider.MapStringItem, SearchProvider.ItemList);

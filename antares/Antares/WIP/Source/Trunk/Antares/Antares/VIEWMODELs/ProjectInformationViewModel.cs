@@ -53,7 +53,7 @@ namespace Antares.VIEWMODELs
             var memberList = await ProjectMemberRepository.Instance.GetAllProjectsMember(Information.ID);
             if (memberList.Count > 1)
             {
-                Navigator.Instance.ExecuteStatus(ConnectionStatus.Error);
+                Navigator.Instance.DisplayStatus(ConnectionStatus.Error);
                 Navigator.Instance.MainProgressBar.Visibility = Visibility.Collapsed;
                 return;
             }
@@ -61,7 +61,7 @@ namespace Antares.VIEWMODELs
             var taskAll = await TaskRepository.Instance.GetAllTasksForProject(Information.ID);
             if (taskAll.Count > 0)
             {
-                Navigator.Instance.ExecuteStatus(ConnectionStatus.Error);
+                Navigator.Instance.DisplayStatus(ConnectionStatus.Error);
                 Navigator.Instance.MainProgressBar.Visibility = Visibility.Collapsed;
                 return;
             }
@@ -71,7 +71,7 @@ namespace Antares.VIEWMODELs
                 var res = await ProjectMemberRepository.Instance.DeleteMember(memberList[0].ID);
                 if (!res.IsSuccessStatusCode)
                 {
-                    Navigator.Instance.ExecuteStatus(ConnectionStatus.Error);
+                    Navigator.Instance.DisplayStatus(ConnectionStatus.Error);
                     Navigator.Instance.MainProgressBar.Visibility = Visibility.Collapsed;
                     return;
                 }
@@ -80,12 +80,12 @@ namespace Antares.VIEWMODELs
             var res1 = await ProjectRepository.Instance.DeleteProject(Information.ID);
             if (!res1.IsSuccessStatusCode)
             {
-                Navigator.Instance.ExecuteStatus(ConnectionStatus.Error);
+                Navigator.Instance.DisplayStatus(ConnectionStatus.Error);
                 Navigator.Instance.MainProgressBar.Visibility = Visibility.Collapsed;
                 return;
             }
 
-            Navigator.Instance.ExecuteStatus(ConnectionStatus.Done);
+            Navigator.Instance.DisplayStatus(ConnectionStatus.Done);
             GlobalData.SelectedProjects = -1;
             Navigator.Instance.MainProgressBar.Visibility = Visibility.Collapsed;
             Navigator.Instance.NavigateTo(typeof(ProjectManagerPage));
@@ -130,7 +130,7 @@ namespace Antares.VIEWMODELs
 
             if (string.IsNullOrEmpty(Information.Name))
             {
-                Navigator.Instance.ExecuteStatus(ConnectionStatus.Error);
+                Navigator.Instance.DisplayStatus(ConnectionStatus.Error);
                 Navigator.Instance.MainProgressBar.Visibility = Visibility.Collapsed;
                 return;
             }
@@ -154,7 +154,7 @@ namespace Antares.VIEWMODELs
                                                                                  IsConfirmed = true,
                                                                              });
 
-                    Navigator.Instance.ExecuteStatus(response1 != null
+                    Navigator.Instance.DisplayStatus(response1 != null
                                             ? ConnectionStatus.Done
                                             : ConnectionStatus.Error);
 
@@ -177,7 +177,7 @@ namespace Antares.VIEWMODELs
                 }
                 else
                 {
-                    Navigator.Instance.ExecuteStatus(ConnectionStatus.Error);
+                    Navigator.Instance.DisplayStatus(ConnectionStatus.Error);
                 }
 
             }
@@ -185,7 +185,7 @@ namespace Antares.VIEWMODELs
             else
             {
                 var response = await ProjectRepository.Instance.UpdateProject(Information);
-                Navigator.Instance.ExecuteStatus(response.IsSuccessStatusCode
+                Navigator.Instance.DisplayStatus(response.IsSuccessStatusCode
                                                 ? ConnectionStatus.Done
                                                 : ConnectionStatus.Error);
                 if (response.IsSuccessStatusCode)
@@ -213,15 +213,23 @@ namespace Antares.VIEWMODELs
             set { SetProperty(ref _readOnly, value); }
         }
 
+        private int _pid;
+
         public ProjectInformationViewModel(int pid)
         {
+            Messenger.Instance.Register<Refresh>(RefreshAll);
             Messenger.Instance.Register<RefreshMember>(o => GetMemberList(Information.ID));
 
             Status = new ObservableCollection<string> { LanguageProvider.Resource["Prj_Status_Inactive"], LanguageProvider.Resource["Prj_Status_Active"] };
-
+            _pid = pid;
             BindData(pid);
 
             ReadOnly = !ProjectMemberRepository.Instance.IsManager(Information.ID);
+        }
+
+        private void RefreshAll(object obj)
+        {
+            BindData(_pid);
         }
 
         private async void BindData(int pid)

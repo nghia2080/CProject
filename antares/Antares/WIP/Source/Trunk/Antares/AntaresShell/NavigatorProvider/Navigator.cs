@@ -67,7 +67,7 @@ namespace AntaresShell.NavigatorProvider
 
         private DispatcherTimer _timer;
 
-        public void ExecuteStatus(ConnectionStatus status)
+        public void DisplayStatus(ConnectionStatus status)
         {
             _notificator.Visibility = Visibility.Visible;
             _notificator.Source = new BitmapImage(new Uri("ms-appx:///Assets/"+status+".png"));

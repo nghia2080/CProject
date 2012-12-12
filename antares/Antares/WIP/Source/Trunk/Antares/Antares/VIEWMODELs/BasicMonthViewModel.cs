@@ -66,8 +66,14 @@ namespace Antares.VIEWMODELs
         public BasicMonthViewModel()
         {
             Messenger.Instance.Register<GotoMonth>(JumpTo);
+            Messenger.Instance.Register<Refresh>(RefreshAll);
             BindData(_index);
             Messenger.Instance.Register<UpdateTaskList>(Tasks_CollectionChanged);
+        }
+
+        private void RefreshAll(object obj)
+        {
+            BindData(_index);
         }
 
         async void Tasks_CollectionChanged(object sender)

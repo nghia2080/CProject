@@ -39,12 +39,13 @@ namespace Repository.Repositories
                     }
                 }
 
-                var data = await ProjectMemberController.Instance.GetAsync("uid$$" + userid);
+                var data = (ObservableCollection<ProjectMemberContrainModel>)await ProjectMemberController.Instance.GetAsync("uid$$" + userid);
 
                 if (data != null)
                 {
                     foreach (var projectMemberContrainModel in data)
                     {
+                        if (projectMemberContrainModel.ProjectID == -1) { continue;}
                         _cache.Add(projectMemberContrainModel);
                     }
                 }
@@ -188,6 +189,11 @@ namespace Repository.Repositories
             }
 
             return response;
+        }
+
+        public void ClearCache()
+        {
+            _cache.Clear();
         }
 
         #region Singleton

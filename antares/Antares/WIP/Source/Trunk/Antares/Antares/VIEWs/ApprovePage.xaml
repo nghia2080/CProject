@@ -114,8 +114,8 @@
                                     <Rectangle Grid.ColumnSpan="2" Fill="Orange" Opacity="0.3"/>
 
                                     <StackPanel Margin="10,10,10,10" HorizontalAlignment="Left" VerticalAlignment="Top">
-                                        <TextBlock Text="{Binding Task.Name}"></TextBlock>
-                                        <TextBlock Text="{Binding Task.Description}"></TextBlock>
+                                        <TextBlock Text="{Binding Name}"></TextBlock>
+                                        <TextBlock Text="{Binding Description}"></TextBlock>
                                         <TextBlock Text="{Binding ProjectName}"></TextBlock>
                                     </StackPanel>
                                 </Grid>

@@ -1,4 +1,5 @@
-﻿using AntaresShell.BaseClasses;
+﻿using System.Collections.ObjectModel;
+using AntaresShell.BaseClasses;
 using AntaresShell.Common;
 using AntaresShell.Common.MessageTemplates;
 using AntaresShell.Localization;
@@ -28,20 +29,20 @@ namespace Antares.VIEWMODELs
                 SetProperty(ref _selectedWeek, value);
                 if (SelectedWeek != null)
                 {
-                    if(LanguageProvider.CurrentLanguage == "ja")
+                    if (LanguageProvider.CurrentLanguage == "ja")
                     {
                         CurrentYear = SelectedWeek.Days[0].Today.ToString("MMMM") + " " + SelectedWeek.Days[0].Today.Year;
                     }
                     else
                     {
-                        CurrentYear = SelectedWeek.Days[0].Today.ToString("MMM") + " " + SelectedWeek.Days[0].Today.Year;    
+                        CurrentYear = SelectedWeek.Days[0].Today.ToString("MMM") + " " + SelectedWeek.Days[0].Today.Year;
                     }
                 }
             }
         }
 
-        private List<WeekItemModel> _sampleContent;
-        public List<WeekItemModel> SampleContent
+        private ObservableCollection<WeekItemModel> _sampleContent;
+        public ObservableCollection<WeekItemModel> SampleContent
         {
             get { return _sampleContent; }
             set { SetProperty(ref _sampleContent, value); }
@@ -49,39 +50,32 @@ namespace Antares.VIEWMODELs
 
         public TimelineWeekViewModel()
         {
+            Messenger.Instance.Register<Refresh>(RefreshAll);
             BindWeek();
 
             Messenger.Instance.Notify(RebindCbo.RebindWeekGrid);
 
             Messenger.Instance.Register<UpdateTaskList>(Tasks_CollectionChanged);
+        }             
+
+        private void RefreshAll(object obj)
+        {
+            BindWeek();
+            Messenger.Instance.Notify(RebindCbo.RebindWeekGrid);
         }
 
         async void Tasks_CollectionChanged(object sender)
         {
-           //if (e.NewItems != null && e.NewItems.Count > 0)
-           //{
-           //    var model = e.NewItems[0] as TaskModel;
-
-               foreach (var weekItemModel in SampleContent)
-               {
-                   foreach (var dayModel in weekItemModel.Days)
-                   {
-                       //if(dayModel.Today.Year == Convert.ToDateTime(model.StartDate).Year
-                       //    && dayModel.Today.Month == Convert.ToDateTime(model.StartDate).Month
-                       //    && dayModel.Today.Day == Convert.ToDateTime(model.StartDate).Day)
-                       //{
-                           dayModel.TaskList = await TaskRepository.Instance.GetTaskListFor(dayModel.Today);
-                       //}
-                   }
-               }
-           //}
-           //if (e.OldItems != null && e.OldItems.Count > 0)
-           //{
-           //}
-
+            foreach (var weekItemModel in SampleContent)
+            {
+                foreach (var dayModel in weekItemModel.Days)
+                {
+                    dayModel.TaskList = await TaskRepository.Instance.GetTaskListFor(dayModel.Today);
+                }
+            }
         }
 
-        private async void BindWeek()
+        private void BindWeek()
         {
             DateTime dt;
 
@@ -89,11 +83,11 @@ namespace Antares.VIEWMODELs
 
 
             var firstMonday = GetFirstMondaySince(dt);
-            var wims = new List<WeekItemModel>();
+            var wims = new ObservableCollection<WeekItemModel>();
             var rd = new Random();
             for (int index = 0; index < 17; index++)
             {
-                var dumb = new List<DayItemModel>();
+                var dumb = new ObservableCollection<DayItemModel>();
                 for (int j = 1; j < 8; j++)
                 {
                     if (firstMonday == DateTime.Today)
@@ -101,7 +95,7 @@ namespace Antares.VIEWMODELs
                         GlobalData.SelectedWeekIndex = wims.Count;
                     }
 
-                  
+
                     dumb.Add(new DayItemModel { Today = firstMonday });
                     firstMonday = firstMonday.AddDays(1);
                 }
@@ -113,15 +107,15 @@ namespace Antares.VIEWMODELs
 
             SampleContent = wims;
 
-            foreach (var weekItemModel in SampleContent)
+            foreach (var weekItemModel in wims)
             {
                 foreach (var itemModel in weekItemModel.Days)
                 {
-                    // BindTask(itemModel);
-
                     BindWeather(itemModel);
                 }
             }
+
+            //SampleContent = new ObservableCollection<WeekItemModel>(wims);
         }
 
         private async void BindWeather(DayItemModel itemModel)
@@ -135,17 +129,6 @@ namespace Antares.VIEWMODELs
                                                  AverageTempuratureF = null,
                                                  WeatherType = WeatherType.notavailable
                                              };
-            }
-            catch
-            {
-            }
-        }
-
-        private async void BindTask(DayItemModel itemModel)
-        {
-            try
-            {
-                itemModel.TaskList = await TaskRepository.Instance.GetTaskListFor(itemModel.Today);
             }
             catch
             {

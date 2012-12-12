@@ -7,6 +7,11 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:Converters="using:Antares.Converters"
     xmlns:BaseClasses="using:AntaresShell.BaseClasses" xmlns:System="using:System" mc:Ignorable="d">
+    <Grid.Transitions>
+        <TransitionCollection>
+            <ReorderThemeTransition/>
+        </TransitionCollection>
+    </Grid.Transitions>
     <Grid.Resources>
         <Style x:Key="TxtProjectStyle" TargetType="TextBlock">
             <Setter Property="FontFamily" Value="Segoe UI"/>

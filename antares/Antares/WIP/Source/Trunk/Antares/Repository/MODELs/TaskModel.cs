@@ -111,6 +111,12 @@ namespace Repository.MODELs
             set { SetProperty(ref _username, value); }
         }
 
+        private string _projectName;
+        public string ProjectName
+        {
+            get { return _projectName; }
+            set { SetProperty(ref _projectName, value); }
+        }
 
         private int _userID;
         public int UserID

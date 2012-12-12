@@ -9,9 +9,15 @@
     mc:Ignorable="d"
     Height="170"
     Width="348"
-    
+
+
     d:DesignHeight="300"
     d:DesignWidth="400">
+    <Grid.Transitions>
+        <TransitionCollection>
+            <ReorderThemeTransition/>
+        </TransitionCollection>
+    </Grid.Transitions>
 
     <Grid.Resources>
         <Style x:Key="TxtProjectStyle" TargetType="TextBlock">
@@ -29,7 +35,7 @@
         </Style>
 
         <Converters:TimeToColorConverter x:Key="TimeToColorConverter"/>
-        <Converters:DataContextToDateRangeConverter x:Key="DataContextToDateRangeConverter"/>    
+        <Converters:DataContextToDateRangeConverter x:Key="DataContextToDateRangeConverter"/>
     </Grid.Resources>
     <Grid.RowDefinitions>
         <RowDefinition Height="20"/>

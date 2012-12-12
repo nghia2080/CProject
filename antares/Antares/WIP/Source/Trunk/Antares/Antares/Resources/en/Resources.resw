@@ -201,8 +201,14 @@
   <data name="Msg_ApplySetting" xml:space="preserve">
     <value>Your setting will be applied next time.</value>
   </data>
+  <data name="Msg_ConfirmApprove" xml:space="preserve">
+    <value>Do you want to approve ?</value>
+  </data>
   <data name="Msg_ConfirmProject" xml:space="preserve">
     <value>Do you want to approve ?</value>
+  </data>
+  <data name="Msg_ConfirmReject" xml:space="preserve">
+    <value>Do you want to reject ?</value>
   </data>
   <data name="Msg_ConfirmTask" xml:space="preserve">
     <value>Do you want to reject ?</value>

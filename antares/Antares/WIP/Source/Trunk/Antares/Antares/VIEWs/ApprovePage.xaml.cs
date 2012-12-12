@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using AntaresShell.NavigatorProvider;
+using Repository.Repositories;
+using Repository.Sync;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -50,9 +52,21 @@ namespace Antares.VIEWs
         /// requirements of <see cref="SuspensionManager.SessionState"/>.
         /// </summary>
         /// <param name="pageState">An empty dictionary to be populated with serializable state.</param>
-        protected override void SaveState(Dictionary<String, Object> pageState)
+        protected async override void SaveState(Dictionary<String, Object> pageState)
         {
-            Navigator.Instance.ShowApproveNotificator();
+            var projects = await ProjectMemberRepository.Instance.GetAllProjects(GlobalData.MyUserID);
+
+            if (projects.Any(projectInformationModel => projectInformationModel.IsConfirmed == false))
+            {
+                Navigator.Instance.ShowApproveNotificator();
+            }
+
+            var tasks = await TaskRepository.Instance.GetAllTasksForUser(GlobalData.MyUserID);
+
+            if (tasks.Any(taskModel => taskModel.IsConfirmed == false))
+            {
+                Navigator.Instance.ShowApproveNotificator();
+            }
         }
 
         private void FlipView_SelectionChanged_1(object sender, SelectionChangedEventArgs e)

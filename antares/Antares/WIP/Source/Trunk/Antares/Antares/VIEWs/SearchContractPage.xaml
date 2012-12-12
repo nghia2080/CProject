@@ -141,8 +141,8 @@
             </Grid.ColumnDefinitions>
             
             <Button x:Name="backButton" Click="GoBack" IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}" Style="{StaticResource BackButtonStyle}"/>
-            <TextBlock x:Name="pageTitle" Grid.Column="1" Text="{StaticResource AppName}" IsHitTestVisible="false" Style="{StaticResource PageHeaderTextStyle}"  />
-            <TextBlock x:Name="resultText" Grid.Column="2" Text="Search results for&#x00a0;" IsHitTestVisible="false" Style="{StaticResource PageSubheaderTextStyle}"/>
+            <TextBlock x:Name="pageTitle" Grid.Column="1" Text="Metro Calendar" IsHitTestVisible="false" Style="{StaticResource PageHeaderTextStyle}"  />
+            <TextBlock x:Name="resultText" Grid.Column="2" Text="" IsHitTestVisible="false" Style="{StaticResource PageSubheaderTextStyle}"/>
             <TextBlock x:Name="queryText" Grid.Column="3" Text="{Binding QueryText}" IsHitTestVisible="false" Style="{StaticResource PageSubheaderTextStyle}"/>
         </Grid>
 

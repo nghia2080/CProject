@@ -153,24 +153,15 @@ namespace Repository.Repositories
             return response;
         }
 
-        private void ClearCache()
+        public void ClearCache()
         {
-            _cacheUsers = new ObservableCollection<UserModel>();
+            _cacheUsers.Clear();
         }
-
 
         #region Singleton
         private UserInformationRepository()
         {
             _cacheUsers.CollectionChanged += _cacheUsers_CollectionChanged;
-            Messenger.Instance.Register<Refresh>(p =>
-            {
-                var type = (Refresh)p;
-                if (type == Refresh.All || type == Refresh.UserProfile)
-                {
-                    ClearCache();
-                }
-            });
         }
 
         async void _cacheUsers_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)

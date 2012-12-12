@@ -76,6 +76,10 @@ namespace Repository.Repositories
                 _sl.Release();
             }
         }
+        public void ClearCache()
+        {
+            _repeatTypes = null;
+        }
 
         #region Singleton
         private RepeatTypeRepository()

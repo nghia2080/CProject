@@ -1,6 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using AntaresShell.BaseClasses;
 using AntaresShell.Common;
+using AntaresShell.Common.MessageTemplates;
 using Repository.MODELs;
 using AntaresShell.Localization;
 using System.Linq;
@@ -44,10 +45,16 @@ namespace Antares.VIEWMODELs
 
         public ProjectSubtaskViewModel(int projectID)
         {
+            Messenger.Instance.Register<Refresh>(RefreshAll);
             _projectID = projectID;
             _currentFilter = 1;
             BindData(projectID, _currentFilter);
             TaskRepository.Instance.Tasks.CollectionChanged += Tasks_CollectionChanged;
+        }
+
+        private void RefreshAll(object obj)
+        {
+            BindData(_projectID, _currentFilter);
         }
 
         void Tasks_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
@@ -73,7 +80,6 @@ namespace Antares.VIEWMODELs
 
         private async void BindData(int projectID, int filter)
         {
-
             if (filter == 1)
             {
                 var cate = await CategoryRepository.Instance.GetSubCategories();

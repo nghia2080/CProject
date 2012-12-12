@@ -8,6 +8,12 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:VIEWMODELs="using:Antares.VIEWMODELs"
     mc:Ignorable="d">
 
+    <Page.Transitions>
+        <TransitionCollection>
+            <EdgeUIThemeTransition Edge="Right"/>
+        </TransitionCollection>
+    </Page.Transitions>
+    
     <Page.DataContext>
         <VIEWMODELs:ProjectOverviewViewModel/>
     </Page.DataContext>

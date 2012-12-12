@@ -166,7 +166,7 @@ namespace Antares.VIEWs
 
             var message = await UserInformationRepository.Instance.UpdateUserData(_currentUser);
 
-            Navigator.Instance.ExecuteStatus(message.IsSuccessStatusCode
+            Navigator.Instance.DisplayStatus(message.IsSuccessStatusCode
                                                  ? ConnectionStatus.Done
                                                  : ConnectionStatus.Error);
 

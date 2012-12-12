@@ -348,23 +348,15 @@ namespace Repository.Repositories
             return response;
         }
 
-        private void ClearCache()
+        public void ClearCache()
         {
-            Tasks = new ObservableCollection<TaskModel>();
+            Tasks.Clear();
         }
 
         #region Singleton
         private TaskRepository()
         {
             Tasks.CollectionChanged += Tasks_CollectionChanged;
-            Messenger.Instance.Register<Refresh>(p =>
-                                                     {
-                                                         var type = (Refresh)p;
-                                                         if (type == Refresh.All || type == Refresh.Task)
-                                                         {
-                                                             ClearCache();
-                                                         }
-                                                     });
         }
 
         async void Tasks_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)

@@ -141,6 +141,11 @@ namespace Repository.Repositories
             return new ObservableCollection<CategoryModel>(categoryQuery.AsEnumerable());
         }
 
+        public void Clearcache()
+        {
+            _categories = null;
+        }
+
         #region Singleton
         private CategoryRepository()
         {

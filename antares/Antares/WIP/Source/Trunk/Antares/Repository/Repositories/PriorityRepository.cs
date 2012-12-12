@@ -71,6 +71,11 @@ namespace Repository.Repositories
             }
         }
 
+        public void Clearcache()
+        {
+            _priorities = null;
+        }
+
         #region Singleton
         private PriorityRepository()
         {

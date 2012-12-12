@@ -86,11 +86,13 @@ namespace Repository.ServiceConnection.Controllers
                 //    targetObject.EndDate =
                 //        Convert.ToDateTime(targetObject.EndDate).ToString(CultureInfo.CurrentCulture.DateTimeFormat.ShortDatePattern);
                 //}
-                if (!edit)
-                {
-                    targetObject.StartDate = JustifyDateTimeCulture(targetObject.StartDate);
-                    targetObject.EndDate = JustifyDateTimeCulture(targetObject.EndDate);
-                }
+
+                // TODO: Emi commented out because exception in vietnamese
+                //if (!edit)
+                //{
+                //    targetObject.StartDate = JustifyDateTimeCulture(targetObject.StartDate);
+                //    targetObject.EndDate = JustifyDateTimeCulture(targetObject.EndDate);
+                //}
 
                 var person = (TaskModel)targetObject;
 

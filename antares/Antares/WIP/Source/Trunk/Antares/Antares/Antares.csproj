@@ -148,7 +148,6 @@
     <Compile Include="VIEWMODELs\ProjectOverviewViewModel.cs" />
     <Compile Include="VIEWMODELs\ProjectSubtaskViewModel.cs" />
     <Compile Include="VIEWMODELs\TimelineWeekViewModel.cs" />
-    <Compile Include="VIEWMODELs\TaskItemViewModel.cs" />
     <Compile Include="VIEWMODELs\UserInformationViewModel.cs" />
     <Compile Include="VIEWs\AddTask.xaml.cs">
       <DependentUpon>AddTask.xaml</DependentUpon>

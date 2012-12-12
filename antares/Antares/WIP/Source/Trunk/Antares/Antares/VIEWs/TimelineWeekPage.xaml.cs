@@ -1,4 +1,5 @@
-﻿using System.Runtime.Serialization.Json;
+﻿using System.Linq;
+using System.Runtime.Serialization.Json;
 using AntaresShell.Common;
 using AntaresShell.NavigatorProvider;
 using Repository.LiveConnection;
@@ -37,13 +38,13 @@ namespace Antares.VIEWs
             InitializeComponent();
             WeekFlip.Loaded += WeekFlipLoaded;
 
-            Messenger.Instance.Register<RebindCbo>(p=>
+            Messenger.Instance.Register<RebindCbo>(p =>
                                                        {
-                                                           var type = (RebindCbo) p;
-                                                           if(type==RebindCbo.RebindWeekGrid)
+                                                           var type = (RebindCbo)p;
+                                                           if (type == RebindCbo.RebindWeekGrid)
                                                            {
                                                                WeekFlip.SelectedIndex = GlobalData.SelectedWeekIndex;
-                                                               WeekFlip.Visibility = Visibility.Visible;  
+                                                               WeekFlip.Visibility = Visibility.Visible;
                                                            }
                                                        });
         }
@@ -130,11 +131,9 @@ namespace Antares.VIEWs
                     {
                         GlobalData.MyUserID = cloudInfo.UserID;
                     }
-                                        
+
                 }
                 LoadBuffer();
-                //TODO: temporary
-                Navigator.Instance.ShowApproveNotificator();
 
                 pageTitle.Text = (ApplicationData.Current.LocalSettings.Values["UserFirstName"] + string.Empty == string.Empty)
                     ? LanguageProvider.Resource["MainTitle_2"]
@@ -153,14 +152,35 @@ namespace Antares.VIEWs
             }
         }
 
-        private async void LoadBuffer()
+        private void LoadBuffer()
         {
             CategoryRepository.Instance.GetAllCategories();
             PriorityRepository.Instance.GetAllPriorities();
             RepeatTypeRepository.Instance.GetAllRepeatTypes();
-            
+
+            GetProjects();
+            GetTasks();
             ProjectRepository.Instance.GetAllProjects();
-            TaskRepository.Instance.GetAllTasksForUser(GlobalData.MyUserID);
+        }
+
+        private async void GetProjects()
+        {
+            var projects = await ProjectMemberRepository.Instance.GetAllProjects(GlobalData.MyUserID);
+
+            if (projects.Any(projectInformationModel => projectInformationModel.IsConfirmed == false))
+            {
+                Navigator.Instance.ShowApproveNotificator();
+            }
+        }
+
+        private async void GetTasks()
+        {
+            var tasks = await TaskRepository.Instance.GetAllTasksForUser(GlobalData.MyUserID);
+
+            if(tasks.Any(taskModel => taskModel.IsConfirmed == false))
+            {
+                Navigator.Instance.ShowApproveNotificator();
+            }
         }
     }
 }

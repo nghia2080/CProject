@@ -56,7 +56,7 @@ namespace Antares.VIEWMODELs
         {
             Navigator.Instance.MainProgressBar.Visibility = Visibility.Visible;
             var res = await TaskRepository.Instance.DeleteTask(Information.ID);
-            Navigator.Instance.ExecuteStatus(res.IsSuccessStatusCode
+            Navigator.Instance.DisplayStatus(res.IsSuccessStatusCode
                                             ? ConnectionStatus.Done
                                             : ConnectionStatus.Error);
             if (res.IsSuccessStatusCode)
@@ -102,7 +102,7 @@ namespace Antares.VIEWMODELs
                 try
                 {
                     var response = await TaskRepository.Instance.AddNewTask(Information);
-                    Navigator.Instance.ExecuteStatus(response != null
+                    Navigator.Instance.DisplayStatus(response != null
                                       ? ConnectionStatus.Done
                                       : ConnectionStatus.Error);
 
@@ -117,7 +117,7 @@ namespace Antares.VIEWMODELs
             else
             {
                 var response = await TaskRepository.Instance.UpdateTask(Information);
-                Navigator.Instance.ExecuteStatus(response.IsSuccessStatusCode
+                Navigator.Instance.DisplayStatus(response.IsSuccessStatusCode
                                                 ? ConnectionStatus.Done
                                                 : ConnectionStatus.Error);
 

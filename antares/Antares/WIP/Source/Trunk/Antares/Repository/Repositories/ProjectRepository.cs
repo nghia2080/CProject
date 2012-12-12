@@ -133,23 +133,15 @@ namespace Repository.Repositories
             return response;
         }
 
-        private void ClearCache()
+        public void ClearCache()
         {
-            _projects = new ObservableCollection<ProjectInformationModel>();
+            _projects.Clear();
         }
 
         #region Singleton
         private ProjectRepository()
         {
             _projects.CollectionChanged += _projects_CollectionChanged;
-            Messenger.Instance.Register<Refresh>(p =>
-                                                     {
-                                                         var type = (Refresh)p;
-                                                         if (type == Refresh.All || type == Refresh.Project)
-                                                         {
-                                                             ClearCache();
-                                                         }
-                                                     });
         }
 
         async void _projects_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)

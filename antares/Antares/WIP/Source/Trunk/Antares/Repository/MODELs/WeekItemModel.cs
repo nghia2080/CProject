@@ -1,12 +1,13 @@
-﻿using AntaresShell.BaseClasses;
+﻿using System.Collections.ObjectModel;
+using AntaresShell.BaseClasses;
 using System.Collections.Generic;
 
 namespace Repository.MODELs
 {
     public class WeekItemModel : BindableBase
     {
-        private List<DayItemModel> _days;
-        public List<DayItemModel> Days
+        private ObservableCollection<DayItemModel> _days;
+        public ObservableCollection<DayItemModel> Days
         {
             get { return _days; }
             set { SetProperty(ref _days, value); }

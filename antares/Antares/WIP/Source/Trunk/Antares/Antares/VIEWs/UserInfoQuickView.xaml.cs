@@ -137,7 +137,7 @@ namespace Antares.VIEWs
                 if (member != null)
                 {
                     var res = await ProjectMemberRepository.Instance.DeleteMember(member.ID);
-                    Navigator.Instance.ExecuteStatus(res.IsSuccessStatusCode
+                    Navigator.Instance.DisplayStatus(res.IsSuccessStatusCode
                                                          ? ConnectionStatus.Done
                                                          : ConnectionStatus.Error);
                     if (res.IsSuccessStatusCode)
@@ -173,7 +173,7 @@ namespace Antares.VIEWs
             }
 
             var res = await ProjectMemberRepository.Instance.EditContrain(data);
-            Navigator.Instance.ExecuteStatus(res.IsSuccessStatusCode
+            Navigator.Instance.DisplayStatus(res.IsSuccessStatusCode
                                                          ? ConnectionStatus.Done
                                                          : ConnectionStatus.Error);
 

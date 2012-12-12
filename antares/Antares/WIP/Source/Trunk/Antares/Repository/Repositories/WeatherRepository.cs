@@ -183,5 +183,10 @@ namespace Repository.Repositories
                                            && p.Date.Month == date.Month
                                            && p.Date.Year == date.Year));
         }
+
+        public void ClearCache()
+        {
+            _cache = null;
+        }
     }
 }

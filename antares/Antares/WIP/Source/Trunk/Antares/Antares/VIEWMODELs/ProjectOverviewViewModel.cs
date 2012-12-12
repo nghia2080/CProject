@@ -21,44 +21,24 @@ namespace Antares.VIEWMODELs
 
         public ProjectOverviewViewModel()
         {
+            Messenger.Instance.Register<Refresh>(RefreshAll);
             BindingData();
             Messenger.Instance.Register<DeleteProjectMsg>(DeleteProjects);
         }
 
+        private void RefreshAll(object obj)
+        {
+            BindingData();
+        }
+
         private async void DeleteProjects(object args)
         {
-            //foreach (var projectInformation in GlobalData.SelectedProjects)
-            //{
-            //    var projectInformationModel = projectInformation as ProjectInformationModel;
-            //    if(projectInformationModel!=null)
-            //    {
-            //        await ProjectRepository.Instance.DeleteProject(projectInformationModel.ID);
-            //    }
-            //}
-
             Projects = await ProjectRepository.Instance.GetAllProjects();
         }
 
         private async void BindingData()
         {
             var temp = await ProjectRepository.Instance.GetAllProjects();
-
-          
-            //if(temp==null || temp.Count == 0)
-            //{
-            //    temp = new ObservableCollection<ProjectInformationModel>
-            //                   {
-            //                       new ProjectInformationModel
-            //                           {
-            //                               ID = -1,
-            //                               Name = "You have no project",
-            //                               Description = "",
-            //                               StartDate = DateTime.Now.ToString(),
-            //                               EndDate = null,
-            //                               Status = 1
-            //                           }
-            //                   };
-            //}
 
             Projects = temp;
 

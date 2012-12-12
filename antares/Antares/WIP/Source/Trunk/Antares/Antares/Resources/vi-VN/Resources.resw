@@ -201,8 +201,14 @@
   <data name="Msg_ApplySetting" xml:space="preserve">
     <value>Các tùy chỉnh của bạn sẽ được áp dụng lần kế tiếp.</value>
   </data>
+  <data name="Msg_ConfirmApprove" xml:space="preserve">
+    <value>Bạn có đồng ý ?</value>
+  </data>
   <data name="Msg_ConfirmProject" xml:space="preserve">
     <value>Bạn có đồng ý ?</value>
+  </data>
+  <data name="Msg_ConfirmReject" xml:space="preserve">
+    <value>Bạn muốn từ chối ?</value>
   </data>
   <data name="Msg_ConfirmTask" xml:space="preserve">
     <value>Bạn muốn từ chối ? </value>
