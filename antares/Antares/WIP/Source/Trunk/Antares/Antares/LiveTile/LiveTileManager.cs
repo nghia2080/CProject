@@ -11,6 +11,8 @@ using Repository.MODELs;
 using Repository.Repositories;
 using Windows.Data.Xml.Dom;
 using Windows.UI.Notifications;
+using Windows.UI.Xaml.Media.Imaging;
+using Windows.Storage;
 
 namespace Antares.LiveTile
 {
@@ -193,8 +195,13 @@ namespace Antares.LiveTile
                 {
                     if (_dictionary.Count < MAX_MESSAGE)
                     {
-                        var key = intToTimeConverter.Convert(item.StartTime, null, null, null) + " " +
-                                  Convert.ToDateTime(item.StartDate).ToString(CultureInfo.CurrentCulture.DateTimeFormat.ShortDatePattern);
+                        var fullDate =
+                            Convert.ToDateTime(item.StartDate).ToString(
+                                CultureInfo.CurrentCulture.DateTimeFormat.ShortDatePattern);
+
+                        fullDate = fullDate.Substring(0, fullDate.Length - 5);
+                        var key = intToTimeConverter.Convert(item.StartTime, null, null, null) + " " + fullDate
+                                  ;
                         if (!_dictionary.ContainsKey(key))
                         {
                             _dictionary.Add(key, item.Name + "\r\n" + item.Description
@@ -266,16 +273,32 @@ namespace Antares.LiveTile
         /// Use a set of message in order to add into queue of Wide and Square type of Live Tile.
         /// </summary>
         /// <param name="allMessageDictionary">A dictionary contains all new and critical message to add to queue.</param>
-        private void CreateTileQueue(Dictionary<string, string> allMessageDictionary)
+        private async void CreateTileQueue(Dictionary<string, string> allMessageDictionary)
         {
             var uniqueKey = 1;
             foreach (var key in allMessageDictionary.Keys)
             {
-                var tileWideXml = TileUpdateManager.GetTemplateContent(TileTemplateType.TileWideText09);
+                var tileWideXml = TileUpdateManager.GetTemplateContent(TileTemplateType.TileWideSmallImageAndText04);
 
                 var textElements = tileWideXml.GetElementsByTagName(TEXT_ELEMENT);
                 textElements.Item(0).AppendChild(tileWideXml.CreateTextNode(key));
                 textElements.Item(1).AppendChild(tileWideXml.CreateTextNode(allMessageDictionary[key]));
+
+                var imageElement = tileWideXml.GetElementsByTagName(IMAGE_ELEMENT);
+
+                string imagePath;
+                try
+                {
+                    await ApplicationData.Current.LocalFolder.GetFileAsync("\\Cache\\ProfilePic.jpg");
+                    imagePath = "ms-appdata:///local/Cache/ProfilePic.jpg";
+                } 
+                catch
+                {
+                    imagePath = "appx:///Assets/defaultUser.png";
+                }
+
+
+                imageElement.Item(0).Attributes[1].NodeValue = imagePath;
 
                 var bindingElement = (XmlElement)tileWideXml.GetElementsByTagName(TAG_BINDING).Item(0);
                 bindingElement.SetAttribute(TAG_BRANDING, TAG_LOGO);
