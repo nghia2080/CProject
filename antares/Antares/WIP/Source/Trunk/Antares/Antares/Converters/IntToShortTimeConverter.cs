@@ -14,7 +14,7 @@ namespace Antares.Converters
             var iDate = System.Convert.ToInt32(value);
             if (iDate == 0)
             {
-                return null;
+                return "00:00";
             }
 
             return (iDate / 60).ToString("00") + ":" + (iDate % 60).ToString("00");

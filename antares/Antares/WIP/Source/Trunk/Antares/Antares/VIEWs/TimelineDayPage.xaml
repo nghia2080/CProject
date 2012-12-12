@@ -73,8 +73,8 @@
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="62"/>
     />
-                        <RowDefinition Height="79"/>
-                        <RowDefinition Height="39Panel
+                        <RowDefinition Height="780"/>
+                        <RowDefinition Height="38nel
                                 Orientation="Horizontal"
                                 Grid.Row="1"
                                 Grid.RowSpan="2" 
