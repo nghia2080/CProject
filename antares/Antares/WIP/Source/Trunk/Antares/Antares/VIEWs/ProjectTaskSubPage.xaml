@@ -26,7 +26,7 @@
 
         <GridView Grid.Row="1" 
             x:Name="TaskGridView"
-            CanReorderItems="True" CanDragItems="True" AllowDrop="True"
+             ItemContainerStyle="{StaticResource GridViewItemStyle_Task}"
             ItemsSource="{Binding Source={StaticResource GroupItemSource}}"
             ItemTemplate="{StaticResource TaskTemplate}"
             SelectionMode="None"

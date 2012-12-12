@@ -20,9 +20,9 @@ namespace Antares.Converters
         {
             var date = value.ToString();
             var sp = date.Split(new[] { '/', ' ', '-' });
-            switch (CultureInfo.CurrentCulture.Name.ToLower())
+            switch (CultureInfo.CurrentCulture.DateTimeFormat.ShortDatePattern.ToLower())
             {
-                case "vi":
+                case "dd/mm/yyyy":
                     date = System.Convert.ToDateTime(value).ToString("MM/dd/yyyy", CultureInfo.InvariantCulture);
                     break;
                 default:

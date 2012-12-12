@@ -225,6 +225,7 @@
     <Content Include="Assets\Background.jpg" />
     <Content Include="Assets\GreenNotification.png" />
     <Content Include="Assets\TaskIcon\Other.png" />
+    <Content Include="Assets\TaskTemplate\BgTask.png" />
     <Content Include="Assets\TempIcon.png" />
     <Content Include="Assets\TimeIcon.png" />
     <Content Include="Assets\WhiteNotification.png" />

@@ -60,34 +60,28 @@
                     BorderThickness="1"
                     Grid.Column="1"
                     />
-            <ScrollViewer Grid.Column="1"
-                          Margin="0,10,0,10"
-                          VerticalScrollMode="Disabled"
-   -15                     VerticalScrollBarVisibility="Hidden"
-                          HorizontalScrollMode="Enabled"
-                          HorizontalScrollBarVisibility="Auto">
-                <Grid x:Name="TimeGrid"
-                      Loaded="TimeGrid_Loaded">
-                    <Grid.RowDefinitions>
- Margin="0,0,0,25  <Grid.RowDefinitions>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="62"/>
-    />
-                        <RowDefinition Height="780"/>
-                        <RowDefinition Height="38nel
-                                Orientation="Horizontal"
-                                Grid.Row="1"
-                                Grid.RowSpan="2" 
-                                Grid.ColumnSpan="1">
-                        <Image Source="../Assets/LinesTime_03.png" 
-                           VerticalAlignment="Bottom"
-                           Margin="30,0,0,0"
-                           HorizontalAlignment="Left"
-                       3    Stretch="None"/>
-                        <Image Source="../Assets/LinesTime_03.png" 
-                           VerticalAlent="Center" Height="1" Opacity="0.5" VerticalAlignment="Bottom" Width="1190" Margin="12,0"/>-->
-                    <!--<local:TaskItemView x:Name="t" HorizontalAlignment="Left" Margin="-33,0,0,0" VerticalAlignment="Bottom" Width="57" Height="142"/>-->
-                    <!--<local:TaskItemView x:Name="t2" 
+            <Grid x:Name="TimeGrid"
+                  Grid.Column="1"
+                  Margin="0,10,0,10"
+                  Loaded="TimeGrid_Loaded">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="269*"/>
+                    <RowDefinition Height="16*"/>
+                    <RowDefinition Height="54*"/>
+                </Grid.RowDefinitions>
+                <Image Source="../Assets/LinesTime_03.png" 
+                   VerticalAlignment="Bottom"
+                       Margin="30,0,30,0"
+                   HorizontalAlignment="Center"
+                   Stretch="Fill"
+                   Grid.Column="1"
+                   Grid.Row="1"
+                   Grid.RowSpan="2" 
+                   Grid.ColumnSpan="1"/>
+
+                <!--<Rectangle Fill="Red" Grid.Row="0" HorizontalAlignment="Center" Height="1" Opacity="0.5" VerticalAlignment="Bottom" Width="1190" Margin="12,0"/>-->
+                <!--<local:TaskItemView x:Name="t" HorizontalAlignment="Left" Margin="-33,0,0,0" VerticalAlignment="Bottom" Width="57" Height="142"/>-->
+                <!--<local:TaskItemView x:Name="t2" 
                                     VerticalAlignment="Bottom"
                                     HorizontalAlignment="Left"
                                     Grid.Row="0"
@@ -96,8 +90,7 @@
                                     DTaskTitle="Metting" 
                                     Width="90"
                                     Height="163"/>-->
-                </Grid>
-            </ScrollViewer>
+            </Grid>
         </Grid>
         
         <Grid x:Name="DetailGrid"
@@ -114,13 +107,21 @@
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
+            <Grid x:Name="GridInfo" Grid.Column="1" Grid.Row="0" Grid.RowSpan="3" Visibility="Collapsed">
+                
+                    <Grid.ChildrenTransitions>
+                        <TransitionCollection>
+                            <ContentThemeTransition/>
+                        </TransitionCollection>
+                    </Grid.ChildrenTransitions>
+                
             <Border Grid.Column="1"
                     Grid.Row="0"
                     Grid.RowSpan="3"
                     BorderBrush="#b9b9b9"
                     BorderThickness="1"/>
             <Rectangle StrokeThickness="1" Stroke="#b9b9b9"  Grid.Column="1" Grid.Row="0" Grid.RowSpan="3" Fill="#e3e3e3"  />
-            <Grid Grid.Column="1" Grid.Row="0" Grid.RowSpan="3">
+            <Grid Grid.Column="1" Grid.Row="0" Grid.RowSpan="3" >
                 <Grid.RowDefinitions>
                     <RowDefinition Height="5"/>
                     <RowDefinition Height="*"/>
@@ -191,6 +192,7 @@
                        VerticalAlignment="Top"
                        Foreground="#5b5a62"
                        Grid.Row="3" />
+            </Grid>
             </Grid>
         </Grid>
     </Grid>

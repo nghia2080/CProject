@@ -22,9 +22,9 @@ namespace Antares.Converters
                 return null;
             }
 
-            var result = intToTimeConverter.Convert(task.StartTime, null, null, null) + " " + System.Convert.ToDateTime(task.StartDate).ToString(CultureInfo.CurrentCulture.DateTimeFormat.ShortDatePattern);
+            var result =  System.Convert.ToDateTime(task.StartDate).ToString(CultureInfo.CurrentCulture.DateTimeFormat.ShortDatePattern);
             result += " - ";
-            result += intToTimeConverter.Convert(task.EndTime, null, null, null) + " " + System.Convert.ToDateTime(task.EndDate).ToString(CultureInfo.CurrentCulture.DateTimeFormat.ShortDatePattern);
+            result += System.Convert.ToDateTime(task.EndDate).ToString(CultureInfo.CurrentCulture.DateTimeFormat.ShortDatePattern);
 
             return result;
         }

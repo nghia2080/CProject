@@ -6,7 +6,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:common="using:Antares.Common"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:Converters="using:Antares.Converters"
-    xmlns:Common="using:AntaresShell.Common" mc:Ignorable="d"
+    xmlns:Common="using:AntaresShell.Common" xmlns:local="using:Antares.VIEWs" mc:Ignorable="d"
     d:ExtensionType="Search">
     <Common:LayoutAwarePage.Transitions>
         <TransitionCollection>
@@ -18,6 +18,9 @@
         <CollectionViewSource x:Name="filtersViewSource" Source="{Binding Filters}"/>
         <Converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
         <x:String x:Key="AppName">eSec</x:String>
+        <DataTemplate x:Key="TaskTemplate">
+            <local:ProjectTaskItem/>
+        </DataTemplate>
     </Page.Resources>
 
     <!--
@@ -78,15 +81,11 @@
                     SelectionMode="None"
                     IsSwipeEnabled="false"
                     IsItemClickEnabled="True"
+                    ItemContainerStyle="{StaticResource GridViewItemStyle_Task}"
                     ItemsSource="{Binding Source={StaticResource resultsViewSource}}"
-                    ItemTemplate="{StaticResource StandardSmallIcon300x70ItemTemplate}">
+                    ItemTemplate="{StaticResource TaskTemplate1}">
                     
-                    <GridView.ItemContainerStyle>
-                        <Style TargetType="Control">
-                            <Setter Property="Height" Value="70"/>
-                            <Setter Property="Margin" Value="0,0,38,8"/>
-                       </Style>
-                    </GridView.ItemContainerStyle>
+                    
                 </GridView>
             </Grid>
 
@@ -143,7 +142,7 @@
             
             <Button x:Name="backButton" Click="GoBack" IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}" Style="{StaticResource BackButtonStyle}"/>
             <TextBlock x:Name="pageTitle" Grid.Column="1" Text="{StaticResource AppName}" IsHitTestVisible="false" Style="{StaticResource PageHeaderTextStyle}"  />
-            <TextBlock x:Name="resultText" Grid.Column="2" Text="Results for&#x00a0;" IsHitTestVisible="false" Style="{StaticResource PageSubheaderTextStyle}"/>
+            <TextBlock x:Name="resultText" Grid.Column="2" Text="Search results for&#x00a0;" IsHitTestVisible="false" Style="{StaticResource PageSubheaderTextStyle}"/>
             <TextBlock x:Name="queryText" Grid.Column="3" Text="{Binding QueryText}" IsHitTestVisible="false" Style="{StaticResource PageSubheaderTextStyle}"/>
         </Grid>
 
