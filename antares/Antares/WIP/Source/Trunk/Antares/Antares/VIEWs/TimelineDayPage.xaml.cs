@@ -146,7 +146,7 @@ namespace Antares.VIEWs
 
         IntToShortTimeConverter intToTimeConverter = new IntToShortTimeConverter();
         private void UpdateDescription(object taskItem)
-        {   GridInfo.Visibility =  Visibility.Visible;
+        {
             var task = taskItem as TaskItemView;
             if (task != null)
             {
@@ -176,7 +176,7 @@ namespace Antares.VIEWs
         private int GetLocationBaseTime(int? dTimeO)
         {
             var oneH = (TimeGrid.ActualWidth - 60) / 24;
-            var location = (dTimeO - 30) * oneH / 60;
+            var location = (dTimeO) * oneH / 60 - _width / 2;
             return (int)location;
         }
 
@@ -262,7 +262,7 @@ namespace Antares.VIEWs
 
         private void TimeGrid_Loaded(object sender, RoutedEventArgs e)
         {
-            _width = (TimeGrid.ActualWidth - 60) / 24;
+            _width = (TimeGrid.ActualWidth - 60) / 56;
             BindingData(_currentDate);
         }
     }

@@ -136,20 +136,29 @@ namespace Antares.VIEWs
 
         private void Period_OnTextChanged(object sender, TextChangedEventArgs e)
         {
-            var splitTime = ((AddTaskViewModel)DataContext).Information.StartTime;
             UpdateEndtime();
         }
 
         private void StTime_OnValueChanged(object sender, EventArgs e)
         {
-            UpdateEndtime();
+            UpdateEndtime(StTime.Value);
         }
 
-        private void UpdateEndtime()
+        private void UpdateEndtime(object stTime = null)
         {
-            var splitTime = ((AddTaskViewModel) DataContext).Information.StartTime;
+            var splitTime = 0;
+            if (stTime == null)
+            {
+                var startTime = ((AddTaskViewModel) DataContext).Information.StartTime;
+                if (startTime != null)
+                    splitTime = (int)startTime;
+            }
+            else
+            {
+                splitTime = ((DateTime)stTime).Hour*60 + ((DateTime)stTime).Minute;
+            }
 
-            if (splitTime != null)
+            if (splitTime != 0)
             {
                 if (!string.IsNullOrEmpty(Period.Text))
                 {
