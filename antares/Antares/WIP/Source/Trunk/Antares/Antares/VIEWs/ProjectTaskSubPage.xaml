@@ -28,44 +28,67 @@
 
         <Rectangle Grid.RowSpan="2"  Stroke="#888888" StrokeThickness="1" StrokeDashArray="0.6,0,0.6" Fill="White"></Rectangle>
 
-        <GridView Grid.Row="1" 
+        <SemanticZoom Grid.Row="1" x:Name="SemanticControl">
+            <SemanticZoom.ZoomedInView>
+                <GridView  
             x:Name="TaskGridView"
-             ItemContainerStyle="{StaticResource GridViewItemStyle_Task}"
+            ItemContainerStyle="{StaticResource GridViewItemStyle_Task}"
             ItemsSource="{Binding Source={StaticResource GroupItemSource}}"
             ItemTemplate="{StaticResource TaskTemplate}"
             SelectionMode="None"
             IsSwipeEnabled="false">
 
-            <GridView.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <VirtualizingStackPanel Orientation="Horizontal" ScrollViewer.VerticalScrollBarVisibility="Auto" />
-                </ItemsPanelTemplate>
-            </GridView.ItemsPanel>
-            <GridView.GroupStyle>
-                <GroupStyle>
-                    <GroupStyle.HeaderTemplate>
-                        <DataTemplate>
-                            <Grid Margin="1,0,0,6">
-                                <StackPanel Orientation="Horizontal">
-                                    <StackPanel.Transitions>
-                                        <TransitionCollection>
-                                            <EdgeUIThemeTransition Edge="Right"/>
-                                        </TransitionCollection>
-                                    </StackPanel.Transitions>
-                                    <TextBlock Text="{Binding GroupName}" Margin="3,-7,10,10" Style="{StaticResource GroupHeaderTextStyle}" />
-                                    <TextBlock Text="{StaticResource ChevronGlyph}" FontFamily="Segoe UI Symbol" Margin="0,-7,0,10" Style="{StaticResource GroupHeaderTextStyle}"/>
-                                </StackPanel>
-                            </Grid>
-                        </DataTemplate>
-                    </GroupStyle.HeaderTemplate>
-                    <GroupStyle.Panel>
+                    <GridView.ItemsPanel>
                         <ItemsPanelTemplate>
-                            <VariableSizedWrapGrid Orientation="Vertical" Margin="0,0,80,0" MinWidth="200"/>
+                            <VirtualizingStackPanel Orientation="Horizontal" ScrollViewer.VerticalScrollBarVisibility="Auto" />
                         </ItemsPanelTemplate>
-                    </GroupStyle.Panel>
-                </GroupStyle>
-            </GridView.GroupStyle>
-        </GridView>
+                    </GridView.ItemsPanel>
+                    <GridView.GroupStyle>
+                        <GroupStyle>
+                            <GroupStyle.HeaderTemplate>
+                                <DataTemplate>
+                                    <Grid Margin="1,0,0,6">
+                                        <StackPanel Orientation="Horizontal">
+                                            <StackPanel.Transitions>
+                                                <TransitionCollection>
+                                                    <EdgeUIThemeTransition Edge="Right"/>
+                                                </TransitionCollection>
+                                            </StackPanel.Transitions>
+                                            <TextBlock Text="{Binding GroupName}" Margin="3,-7,10,10" Style="{StaticResource GroupHeaderTextStyle}" />
+                                            <TextBlock Text="{StaticResource ChevronGlyph}" FontFamily="Segoe UI Symbol" Margin="0,-7,0,10" Style="{StaticResource GroupHeaderTextStyle}"/>
+                                        </StackPanel>
+                                    </Grid>
+                                </DataTemplate>
+                            </GroupStyle.HeaderTemplate>
+                            <GroupStyle.Panel>
+                                <ItemsPanelTemplate>
+                                    <VariableSizedWrapGrid Orientation="Vertical" Margin="0,0,80,0" MinWidth="200"/>
+                                </ItemsPanelTemplate>
+                            </GroupStyle.Panel>
+                        </GroupStyle>
+                    </GridView.GroupStyle>
+                </GridView>
+            </SemanticZoom.ZoomedInView>
+
+            <SemanticZoom.ZoomedOutView>
+                <GridView HorizontalAlignment="Center" VerticalAlignment="Center" SelectionMode="None" ItemsSource="{Binding AllGroups}">
+                    <GridView.ItemTemplate>
+                        <DataTemplate>
+                            <Border Margin="5,0,5,0" BorderBrush="Black" BorderThickness="1">
+                                <TextBlock Margin="10,10,10,10" Text="{Binding GroupName}" FontFamily="Segoe UI" FontSize="30" FontWeight="Light"/>
+                            </Border>
+                        </DataTemplate>
+                    </GridView.ItemTemplate>
+                    <GridView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Height="80" Orientation="Horizontal"/>
+                        </ItemsPanelTemplate>
+                    </GridView.ItemsPanel>
+                </GridView>
+            </SemanticZoom.ZoomedOutView>
+        </SemanticZoom>
+
+
         <StackPanel Margin="0,0,20,0" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center" Height="50">
             <RadioButton Command="{Binding FilterCommand}" CommandParameter="2" GroupName="Filter" ToolTipService.ToolTip="{Binding Resource[Filter_ByMembers]}"/>
             <RadioButton Command="{Binding FilterCommand}" CommandParameter="1" Margin="10,0,0,0" GroupName="Filter" IsChecked="True" ToolTipService.ToolTip="{Binding Resource[Filter_ByPhase]}"/>

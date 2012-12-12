@@ -13,8 +13,9 @@ namespace Antares.VIEWMODELs
 {
     public class ProjectSubtaskViewModel : ViewModelBase
     {
-        private ICommand _filterCommand;
-        public ICommand FilterCommand { get { return _filterCommand ?? (_filterCommand = new RelayCommand(ExecuteFilter)); } }
+        private ICommand _filterCommand;       public ICommand FilterCommand { get { return _filterCommand ?? (_filterCommand = new RelayCommand(ExecuteFilter)); } }
+
+
 
         //1: by phase
         //2: by member
@@ -38,8 +39,9 @@ namespace Antares.VIEWMODELs
         }
 
         private ObservableCollection<GroupCollection> _allGroups;
+       public ObservableCollection<GroupCollection> AllGroups { get { return _allGroups; } set { SetProperty(ref _allGroups, value); } }
 
-        public ObservableCollection<GroupCollection> AllGroups { get { return _allGroups; } set { SetProperty(ref _allGroups, value); } }
+
 
         private readonly int _projectID;
 
@@ -48,16 +50,17 @@ namespace Antares.VIEWMODELs
             Messenger.Instance.Register<Refresh>(RefreshAll);
             _projectID = projectID;
             _currentFilter = 1;
-            BindData(projectID, _currentFilter);
-            TaskRepository.Instance.Tasks.CollectionChanged += Tasks_CollectionChanged;
-        }
+            BindData(projectID, _currentFilter);          TaskRepository.Instance.Tasks.CollectionChanged += Tasks_CollectionChanged;
+        }
 
         private void RefreshAll(object obj)
         {
             BindData(_projectID, _currentFilter);
         }
 
-        void Tasks_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+      
+ void Tasks_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+       
         {
             if (e.NewItems != null && e.NewItems.Count > 0)
             {
@@ -83,8 +86,9 @@ namespace Antares.VIEWMODELs
             if (filter == 1)
             {
                 var cate = await CategoryRepository.Instance.GetSubCategories();
+         var dumb = new ObservableCollection<GroupCollection>();
 
-                var dumb = new ObservableCollection<GroupCollection>();
+      
 
                 foreach (var categoryModel in cate)
                 {
@@ -95,8 +99,8 @@ namespace Antares.VIEWMODELs
                                  });
                 }
 
-               
-                var projectTask = await TaskRepository.Instance.GetAllTasksForProject(projectID);
+                        var projectTask = await TaskRepository.Instance.GetAllTasksForProject(projectID);
+       
                 if (projectTask != null)
                 {
                     foreach (var grp in dumb)
@@ -109,8 +113,8 @@ namespace Antares.VIEWMODELs
 
                         foreach (var taskModel in tasks)
                         {
-                            taskModel.Username =
-                                (await UserInformationRepository.Instance.GetUser(taskModel.UserID)).Username;
+                            taskModel.Username =                         (await UserInformationRepository.Instance.GetUser(taskModel.UserID)).Username;
+       
                         }
 
                         grp.GroupTasks = tasks;
@@ -121,10 +125,12 @@ namespace Antares.VIEWMODELs
 
             }
             else
-            {
-                var members = await ProjectMemberRepository.Instance.GetAllProjectsMember(_projectID);
+            {         var members = await ProjectMemberRepository.Instance.GetAllProjectsMember(_projectID);
 
-                var dumb = new ObservableCollection<GroupCollection>();
+      
+         var dumb = new ObservableCollection<GroupCollection>();
+
+      
 
                 foreach (var member in members)
                 {
@@ -136,8 +142,8 @@ namespace Antares.VIEWMODELs
                 }
 
                 
-
-                var projectTask = await TaskRepository.Instance.GetAllTasksForProject(projectID);
+         var projectTask = await TaskRepository.Instance.GetAllTasksForProject(projectID);
+       
                 if (projectTask != null)
                 {
                     foreach (var grp in dumb)

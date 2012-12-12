@@ -1,8 +1,12 @@
-﻿using AntaresShell.Common;
+﻿using Antares.VIEWMODELs;
+using AntaresShell.Common;
 using System;
 using System.Collections.Generic;
 using AntaresShell.Common.MessageTemplates;
+using Windows.UI.Input;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Navigation;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
@@ -20,6 +24,48 @@ namespace Antares.VIEWs
 
             InitializeComponent();
             GotoDate.ValueChanged += GotoDate_ValueChanged;
+
+            DynamicArea.AddHandler(UIElement.PointerPressedEvent, new PointerEventHandler(DynamicArea_PointerPressed), true);
+            DynamicArea.AddHandler(UIElement.PointerReleasedEvent, new PointerEventHandler(DynamicArea_PointerReleased), true);
+
+            //DynamicArea.PointerPressed += DynamicArea_PointerPressed;
+            //DynamicArea.PointerReleased += DynamicArea_PointerReleased;
+        }
+
+        void DynamicArea_PointerReleased(object sender, Windows.UI.Xaml.Input.PointerRoutedEventArgs e)
+        {
+            if(_firstPoint == null)
+            {
+                return;
+            }
+
+            var secondPoint = e.GetCurrentPoint(null);
+
+            if(secondPoint.PointerId == _firstPoint.PointerId)
+            {
+                var deltaX = secondPoint.Position.X - _firstPoint.Position.X;
+                var deltaY = secondPoint.Position.Y - _firstPoint.Position.Y;
+               
+                // Horizontal scrolling
+                if(Math.Abs(deltaX) >  Math.Abs(deltaY))
+                {
+                    var left = deltaX > 0;
+                    if(left)
+                    {
+                        ((BasicMonthViewModel)this.DataContext).ExecutePrevious(null);
+                    }
+                    else
+                    {
+                        ((BasicMonthViewModel)this.DataContext).ExecuteNext(null);
+                    }
+                }
+            }
+        }
+
+        private PointerPoint _firstPoint;
+        void DynamicArea_PointerPressed(object sender, Windows.UI.Xaml.Input.PointerRoutedEventArgs e)
+        {
+            _firstPoint = e.GetCurrentPoint(null);
         }
 
         void GotoDate_ValueChanged(object sender, EventArgs e)

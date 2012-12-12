@@ -42,13 +42,13 @@ namespace Antares.VIEWMODELs
             set { SetProperty(ref _currentYear, value); }
         }
 
-        private void ExecuteNext(object obj)
+        public void ExecuteNext(object obj)
         {
             _index++;
             BindData(_index);
         }
 
-        private void ExecutePrevious(object obj)
+        public void ExecutePrevious(object obj)
         {
             _index--;
             BindData(_index);
