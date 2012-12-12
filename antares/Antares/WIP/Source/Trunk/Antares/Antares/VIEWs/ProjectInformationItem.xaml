@@ -9,7 +9,7 @@
     xmlns:BaseClasses="using:AntaresShell.BaseClasses" xmlns:System="using:System" mc:Ignorable="d">
     <Grid.Transitions>
         <TransitionCollection>
-            <ReorderThemeTransition/>
+            <PopupThemeTransition/>
         </TransitionCollection>
     </Grid.Transitions>
     <Grid.Resources>

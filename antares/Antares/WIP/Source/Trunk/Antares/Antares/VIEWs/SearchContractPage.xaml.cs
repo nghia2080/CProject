@@ -1,6 +1,7 @@
 ﻿using AntaresShell.BaseClasses;
 using AntaresShell.Localization;
 using Repository.MODELs;
+u
 using Repository.Repositories;
 using SearchEngine;
 using System;
@@ -11,13 +12,14 @@ using System.Linq;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
+/ The Search Contract item template is documented at http://go.microsoft.com/fwlink/?LinkId=234240
 
-// The Search Contract item template is documented at http://go.microsoft.com/fwlink/?LinkId=234240
+
 
 namespace Antares.VIEWs
 {
-    /// <summary>
-    /// This page displays search results when a global search is directed to this application.
+    /// <summary>   /// This page displays search results when a global search is directed to this application.
+ 
     /// </summary>
     public sealed partial class SearchContractPage
     {
@@ -34,8 +36,8 @@ namespace Antares.VIEWs
 
             }
         }
-
-        void Tasks_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+       void Tasks_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+ 
         {
             SearchProvider.IsDirty = true;
         }
@@ -48,8 +50,8 @@ namespace Antares.VIEWs
         /// <see cref="Frame.Navigate(Type, Object)"/> when this page was initially requested.
         /// </param>
         /// <param name="pageState">A dictionary of state preserved by this page during an earlier
-        /// session.  This will be null the first time a page is visited.</param>
-        protected override void LoadState(Object navigationParameter, Dictionary<String, Object> pageState)
+        /// session.  This will be null the first time a page is visited.</param>       protected override void LoadState(Object navigationParameter, Dictionary<String, Object> pageState)
+ 
         {
             var query = navigationParameter as String;
 
@@ -60,30 +62,29 @@ namespace Antares.VIEWs
             }
 
             var resultList = SearchProvider.Searcher.Search(query);
+           var filterList = new List<Filter> { new Filter("All", 0, true) };
 
-            var filterList = new List<Filter> { new Filter("All", 0, true) };
-
-            resultText.Text = LanguageProvider.Resource["resultText"];
+            resultText.Text = LanguageProvider.Resource["resuSearch_Result"] + " ";
             noResultsTextBlock.Text = LanguageProvider.Resource["Search_NoResult"];
             // Communicate results through the view model
-            DefaultViewModel["QueryText"] = '\u201c' + query + '\u201d';
-            DefaultViewModel["Results"] = CreateActualResultList(resultList, SearchProvider.MapStringItem, SearchProvider.ItemList);
+            DefaultViewModel["QueryText"] = '\u201c' + query + '\u201d';        DefaultViewModel["Results"] = CreateActualResultList(resultList, SearchProvider.MapStringItem, SearchProvider.ItemList);
+    
             DefaultViewModel["Filters"] = filterList;
-            DefaultViewModel["ShowFilters"] = filterList.Count > 1;
-            //DefaultViewModel["Results"] = CreateActualResultList(resultList, mapStringItems, itemList);
+            DefaultViewModel["ShowFilters"] = filterList.Count > 1;        //DefaultViewModel["Results"] = CreateActualResultList(resultList, mapStringItems, itemList);
+    
         }
 
         async void RenewIndex()
         {
-            SearchProvider.ItemList = await Repository.Repository.Instance.GetSeachableBaseModelAsync();
-            var normalizedStrings = GetNormalizedStrings(SearchProvider.ItemList);
+            SearchProvider.ItemList = await Repository.Repository.Instance.GetSeachableBaseModelAsync();        var normalizedStrings = GetNormalizedStrings(SearchProvider.ItemList);
+    
             var dictionary = ToStringList(SearchProvider.ItemList);
             SearchProvider.MapStringItem = MapStringToItems(dictionary, normalizedStrings);
             SearchProvider.CreateIndex(dictionary);
             SearchProvider.CreateSearcher(SearchProvider.Index);
         }
-
-        private List<int>[] MapStringToItems(IList<string> dictionary, IList<string> normalizedStrings)
+    private List<int>[] MapStringToItems(IList<string> dictionary, IList<string> normalizedStrings)
+    
         {
             var returned = new List<int>[dictionary.Count];
             for (var i = 0; i < dictionary.Count; ++i)
@@ -114,15 +115,15 @@ namespace Antares.VIEWs
         }
 
         private char[] _specialChars = new[]
-            {
-                '.', ',', '|', '-', ' ', '!', '`', '~', '@', '#', '$', '%', '^', '&', '*', '(', ')', '_', '=', '+', '[',
-                ']', '{', '}', '\\', ';', ':', '\'', '"', '<', '>', '/', '?' , 
-                '。', '、', '・', '【', '】', '〔', '〕', '〈', '〉', '《', '》', '「', '」', '『', '』', '　'
+            {            '.', ',', '|', '-', ' ', '!', '`', '~', '@', '#', '$', '%', '^', '&', '*', '(', ')', '_', '=', '+', '[',
+    
+                ']', '{', '}', '\\', ';', ':', '\'', '"', '<', '>', '/', '?' ,             '。', '、', '・', '【', '】', '〔', '〕', '〈', '〉', '《', '》', '「', '」', '『', '』', '　'
+    
             };
         private string[] ToStringList(IEnumerable<SearchableBaseModel> itemList)
         {
-            var returned = new HashSet<string>();
-            foreach (var word in itemList.Select(item => Normalize(item.ToSearchableString()))
+            var returned = new HashSet<string>();        foreach (var word in itemList.Select(item => Normalize(item.ToSearchableString()))
+    
                 .Select(str => str.Split(_specialChars, StringSplitOptions.RemoveEmptyEntries))
                 .SelectMany(strs => strs))
             {
@@ -135,8 +136,8 @@ namespace Antares.VIEWs
         {
             return source.ToLower();
         }
-
-        private ObservableCollection<SearchResultModel> CreateActualResultList(IEnumerable<int> resultList, IList<List<int>> mapStringItems, IList<SearchableBaseModel> itemList)
+    private ObservableCollection<SearchResultModel> CreateActualResultList(IEnumerable<int> resultList, IList<List<int>> mapStringItems, IList<SearchableBaseModel> itemList)
+    
         {
             var max = 0;
             var freq = new Dictionary<int, int>();
@@ -148,14 +149,14 @@ namespace Antares.VIEWs
             var returned = new ObservableCollection<SearchResultModel>();
             for (var i = max; i >= 1; --i)
             {
-                var i1 = i;
-                foreach (var kvp in freq.Where(kvp => kvp.Value == i1))
+                var i1 = i;            foreach (var kvp in freq.Where(kvp => kvp.Value == i1))
+    
                 {
                     returned.Add(new SearchResultModel
                     {
                         Title = itemList[kvp.Key].Name,
-                        Description = itemList[kvp.Key].Description,
-                        //NavigationTarget = Convert.ToDateTime(((TaskModel)itemList[kvp.Key]).StartDate)
+                        Description = itemList[kvp.Key].Description,                    //NavigationTarget = Convert.ToDateTime(((TaskModel)itemList[kvp.Key]).StartDate)
+    
                     });
                 }
             }
@@ -165,20 +166,21 @@ namespace Antares.VIEWs
         /// <summary>
         /// Invoked when a filter is selected using the ComboBox in snapped view state.
         /// </summary>
-        /// <param name="sender">The ComboBox instance.</param>
-        /// <param name="e">Event data describing how the selected filter was changed.</param>
+        /// <param name="sender">The ComboBox instance.</param>    /// <param name="e">Event data describing how the selected filter was changed.</param>
+    
         void Filter_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             // Determine what filter was selected
             var selectedFilter = e.AddedItems.FirstOrDefault() as Filter;
             if (selectedFilter != null)
             {
-                // Mirror the results into the corresponding Filter object to allow the
-                // RadioButton representation used when not snapped to reflect the change
+                // Mirror the results into the corresponding Filter object to allow the            // RadioButton representation used when not snapped to reflect the change
+    
                 selectedFilter.Active = true;
+            // TODO: Respond to the change in active filter by setting DefaultViewModel["Results"]
+                //       to a collection of items with bindable Image, Name, Subtitle, and Description properties
 
-                // TODO: Respond to the change in active filter by setting DefaultViewModel["Results"]
-                //       to a collection of items with bindable Image, Name, Subtitle, and Description properties
+   
 
                 // Ensure results are found
                 object results;
@@ -191,16 +193,16 @@ namespace Antares.VIEWs
                     return;
                 }
             }
-
-            // Display informational text when there are no search results.
+        // Display informational text when there are no search results.
+    
             VisualStateManager.GoToState(this, "NoResultsFound", true);
         }
 
-        /// <summary>
-        /// Invoked when a filter is selected using a RadioButton when not snapped.
+        /// <summary>    /// Invoked when a filter is selected using a RadioButton when not snapped.
+    
         /// </summary>
-        /// <param name="sender">The selected RadioButton instance.</param>
-        /// <param name="e">Event data describing how the RadioButton was selected.</param>
+        /// <param name="sender">The selected RadioButton instance.</param>    /// <param name="e">Event data describing how the RadioButton was selected.</param>
+    
         void Filter_Checked(object sender, RoutedEventArgs e)
         {
             // Mirror the change into the CollectionViewSource used by the corresponding ComboBox
@@ -216,8 +218,8 @@ namespace Antares.VIEWs
             }
         }
 
-        /// <summary>
-        /// View model describing one of the filters available for viewing search results.
+        /// <summary>    /// View model describing one of the filters available for viewing search results.
+    
         /// </summary>
         private sealed class Filter : BindableBase
         {

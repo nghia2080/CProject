@@ -301,12 +301,10 @@
   <data name="Sttig_Location" xml:space="preserve">
     <value>ロケーション </value>
   </data>
-  <data name="SubTitle_1" xml:space="preserve">
-    <value>プロジェット</value>
+  <data name="SubTitle_1" xml:space="preser結果がありません。</value>
   </data>
-  <data name="SubTitle_2" xml:space="preserve">
-    <value>デテール</value>
-  </data>
+  <data name="Search_Result" xml:space="preserve">
+    <value>結果  </data>
   <data name="SubTitle_3" xml:space="preserve">
     <value>タスク</value>
   </data>

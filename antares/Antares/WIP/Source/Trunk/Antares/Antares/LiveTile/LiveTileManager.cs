@@ -162,28 +162,11 @@ namespace Antares.LiveTile
         {
             ClearTileAndBadge();
             _dictionary.Clear();
-            IEnumerable<TaskModel> tasks = await TaskRepository.Instance.GetTaskListFor(DateTime.Now);
+            IEnumerable<TaskModel> tasks = awnew ObservableCollection<TaskModel>(await TaskRepository.Instance.GetTaskListFor(DateTime.Now));
 
-            if (tasks != null)
-            {
-                tasks = tasks.Union(await TaskRepository.Instance.GetTaskListFor(DateTime.Now.AddDays(1)));
-            }
-            else
-            {
-                tasks = await TaskRepository.Instance.GetTaskListFor(DateTime.Now.AddDays(1));
-            }
+            tasks = !tasks.Any() ? tasks.Union(await TaskRepository.Instance.GetTaskListFor(DateTime.Now.AddDays(1))) : new ObservableCollection<TaskModel>(await TaskRepository.Instance.GetTaskListFor(DateTime.Now.AddDays(1)));
 
-
-            if (tasks != null)
-            {
-                tasks = tasks.Union(await TaskRepository.Instance.GetTaskListFor(DateTime.Now.AddDays(2)));
-            }
-            else
-            {
-                tasks = await TaskRepository.Instance.GetTaskListFor(DateTime.Now.AddDays(2));
-            }
-
-
+            tasks = !tasks.Any() ? tasks.Union(await TaskRepository.Instance.GetTaskListFor(DateTime.Now.AddDays(2))) : new ObservableCollection<TaskModel>(await TaskRepository.Instance.GetTaskListFor(DateTime.Now.AddDays(2)));
             _wideImagePath = WIDE_NORMAL_IMAGE;
             _squareImagePath = SQUARE_NORMAL_IMAGE;
 

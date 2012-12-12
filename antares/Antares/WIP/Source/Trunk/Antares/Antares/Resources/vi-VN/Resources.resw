@@ -302,12 +302,10 @@
     <value>Vị trí</value>
   </data>
   <data name="SubTitle_1" xml:space="preserve">
-    <value>DỰ ÁN</value>
+    <value>DỰ ÁN<.</value>
   </data>
-  <data name="SubTitle_2" xml:space="preserve">
-    <value>CHI TIẾT</value>
-  </data>
-  <data name="SubTitle_3" xml:space="preserve">
+  <data name="Search_Result" xml:space="preserve">
+    <value>Kết quả cho "SubTitle_3" xml:space="preserve">
     <value>CÔNG VIỆC</value>
   </data>
   <data name="SubTitle_4" xml:space="preserve">

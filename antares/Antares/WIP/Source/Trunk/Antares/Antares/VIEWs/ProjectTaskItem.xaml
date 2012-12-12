@@ -15,7 +15,7 @@
     d:DesignWidth="400">
     <Grid.Transitions>
         <TransitionCollection>
-            <ReorderThemeTransition/>
+            <PopupThemeTransition/>
         </TransitionCollection>
     </Grid.Transitions>
 
