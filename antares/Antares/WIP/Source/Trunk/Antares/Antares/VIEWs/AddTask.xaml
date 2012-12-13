@@ -18,7 +18,7 @@
         <Converters:StringToDateTimeConverter x:Key="StringToDateTimeConverter"/>
         <Converters:IntToTimeConverter x:Key="IntToTimeConverter"/>
         <Converters:IDToVisibleConverter x:Key="IDToVisibleConverter"/>
-        <Converters:EnabledToOpacityConverter x:Key="EnabledToOpacityConverter"/>
+        <Converters:BooleanNegationConverter x:Key="BooleanNegationConverter"/>
     </Page.Resources>
     
     <Grid Background="White" >
@@ -75,11 +75,11 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
-            <TextBox Text="{Binding Information.Name, Mode=TwoWay}" x:Name="Name" Grid.Row="1" Grid.ColumnSpan="2" HorizontalAlignment="Left"  TextWrapping="Wrap" VerticalAlignment="Top" Width="327" Height="40" BorderBrush="#FF3C81BA" Foreground="#FF555555" FontSize="20" BorderThickness="1"/>
+            <TextBox IsReadOnly="{Binding ReadOnly}" Text="{Binding Information.Name, Mode=TwoWay}" x:Name="Name" Grid.Row="1" Grid.ColumnSpan="2" HorizontalAlignment="Left"  TextWrapping="Wrap" VerticalAlignment="Top" Width="327" Height="40" BorderBrush="#FF3C81BA" Foreground="#FF555555" FontSize="20" BorderThickness="1"/>
             <TextBlock VerticalAlignment="Bottom" Grid.Row="0" Grid.ColumnSpan="2" HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding Resource[Tsk_Name]}"  FontSize="18" Foreground="#FF3C81BA"/>
             <TextBox MaxLength="200" Text="{Binding Information.Description, Mode=TwoWay}" x:Name="Description" Grid.Row="3" Grid.ColumnSpan="2" HorizontalAlignment="Left"  TextWrapping="Wrap" VerticalAlignment="Bottom" Width="327" Height="90" BorderBrush="#FF3C81BA" Foreground="#FF555555" FontSize="20" BorderThickness="1"/>
             <TextBlock Margin="0,0,0,2" Grid.Row="2" Grid.ColumnSpan="2"  HorizontalAlignment="Left"  TextWrapping="Wrap" Text="{Binding Resource[Tsk_Description]}" VerticalAlignment="Bottom" FontSize="18" Foreground="#FF3C81BA" FontFamily="Segoe UI Light"/>
-            <ComboBox Margin="0,3,0,0" x:Name="CboPriority" ItemsSource="{Binding Priorities}" SelectedIndex="{Binding Information.Priority, Mode=TwoWay}" Grid.Row="5" Grid.Column="0" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="162" BorderThickness="1" Foreground="#FF3C81BA" BorderBrush="#453C81BA">
+            <ComboBox IsEnabled="{Binding ReadOnly, Converter={StaticResource BooleanNegationConverter}}" Margin="0,3,0,0" x:Name="CboPriority" ItemsSource="{Binding Priorities}" SelectedIndex="{Binding Information.Priority, Mode=TwoWay}" Grid.Row="5" Grid.Column="0" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="162" BorderThickness="1" Foreground="#FF3C81BA" BorderBrush="#453C81BA">
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
                         <TextBlock Text="{Binding Name}"/>
@@ -101,17 +101,17 @@
             <TextBlock  Text="{Binding Resource[Tsk_EndDate]}" Grid.Row="8" Grid.Column="0" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Bottom" FontSize="18" Foreground="#FF3C81BA" FontFamily="Segoe UI Light" Height="19">
             	
             </TextBlock>
-            <Input:RadDatePicker ItemLength="105" Value="{Binding Information.EndDate, Converter={StaticResource StringToDateTimeConverter}, Mode=TwoWay}" x:Name="EdDate" Grid.Row="9" Grid.Column="0" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="162" BorderBrush="#FF3C81BA" Background="White" BorderThickness="1" />
+            <Input:RadDatePicker IsReadOnly="{Binding ReadOnly}" ItemLength="105" Value="{Binding Information.EndDate, Converter={StaticResource StringToDateTimeConverter}, Mode=TwoWay}" x:Name="EdDate" Grid.Row="9" Grid.Column="0" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="162" BorderBrush="#FF3C81BA" Background="White" BorderThickness="1" />
             <TextBlock Grid.Row="6" Grid.Column="1" HorizontalAlignment="Left"  TextWrapping="Wrap" VerticalAlignment="Bottom" FontSize="18" Foreground="#FF3C81BA" FontFamily="Segoe UI Light"  Text="{Binding Resource[Tsk_StartTime]}"/>
             <Input:RadTimePicker ValueChanged="StTime_OnValueChanged" Value="{Binding Information.StartTime, Converter={StaticResource IntToTimeConverter}, Mode=TwoWay}" x:Name="StTime" Grid.Row="7" Grid.Column="1" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="148" BorderBrush="#FF3C81BA" Background="White" BorderThickness="1" SelectorFormat="h,m,t"/>
             <TextBlock  Grid.Row="8" Grid.Column="1" HorizontalAlignment="Left"  TextWrapping="Wrap" VerticalAlignment="Bottom" FontSize="18" Foreground="#FF3C81BA" FontFamily="Segoe UI Light" Text="{Binding Resource[Tsk_EndTime]}" Height="19"/>
-            <Input:RadTimePicker Value="{Binding Information.EndTime, Converter={StaticResource IntToTimeConverter}, Mode=TwoWay}" x:Name="EdTime" Grid.Row="9" Grid.Column="1" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="148" BorderBrush="#FF3C81BA" Background="White" BorderThickness="1" SelectorFormat="h,m,t"/>
+            <Input:RadTimePicker IsReadOnly="{Binding ReadOnly}" Value="{Binding Information.EndTime, Converter={StaticResource IntToTimeConverter}, Mode=TwoWay}" x:Name="EdTime" Grid.Row="9" Grid.Column="1" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="148" BorderBrush="#FF3C81BA" Background="White" BorderThickness="1" SelectorFormat="h,m,t"/>
             <TextBox MaxLength="3" GotFocus="Period_OnGotFocus" TextChanged="Period_OnTextChanged" Text="{Binding Information.Period, Mode=TwoWay}" x:Name="Period" InputScope="Number" Grid.Row="11" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="162" BorderThickness="1" Foreground="#FF3C81BA" BorderBrush="#FF3C81BA"/>
             <TextBlock Margin="0,0,0,2" Grid.Row="10" Grid.Column="0" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Bottom" FontSize="18" Foreground="#FF3C81BA" FontFamily="Segoe UI Light" Text="{Binding Resource[Tsk_Period]}" Height="19"/>
 
             <TextBlock Margin="0,0,0,2" Grid.Row="10" Grid.Column="1" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Bottom" FontSize="18" Foreground="#FF3C81BA" FontFamily="Segoe UI Light" Text="{Binding Resource[Tsk_RepeatType]}" Height="19"/>
 
-            <ComboBox Margin="0,3,0,0" x:Name="CboRepeatType" ItemsSource="{Binding RepeatTypes}" SelectedIndex="{Binding Information.RepeatType, Mode=TwoWay}" Grid.Row="11" Grid.Column="1" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="148" BorderThickness="1" Foreground="#FF3C81BA" BorderBrush="#453C81BA">
+            <ComboBox IsEnabled="{Binding ReadOnly, Converter={StaticResource BooleanNegationConverter}}" Margin="0,3,0,0" x:Name="CboRepeatType" ItemsSource="{Binding RepeatTypes}" SelectedIndex="{Binding Information.RepeatType, Mode=TwoWay}" Grid.Row="11" Grid.Column="1" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="148" BorderThickness="1" Foreground="#FF3C81BA" BorderBrush="#453C81BA">
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
                         <TextBlock Text="{Binding Name}"/>
@@ -120,7 +120,7 @@
             </ComboBox>
             <TextBlock Margin="0,0,0,2" Grid.Row="12" Grid.Column="1" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Bottom" FontSize="18" Foreground="#FF3C81BA" FontFamily="Segoe UI Light" Text="{Binding Resource[Tsk_Categories]}" Height="21"/>
 
-            <ComboBox Margin="0,3,0,0" x:Name="CboCategory" ItemsSource="{Binding Categories}" SelectedItem="{Binding SelectedCategory, Mode=TwoWay}" Grid.Row="13" Grid.Column="1" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="146" BorderThickness="1" Foreground="#FF3C81BA" BorderBrush="#453C81BA">
+            <ComboBox IsEnabled="{Binding ReadOnly, Converter={StaticResource BooleanNegationConverter}}" Margin="0,3,0,0" x:Name="CboCategory" ItemsSource="{Binding Categories}" SelectedItem="{Binding SelectedCategory, Mode=TwoWay}" Grid.Row="13" Grid.Column="1" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="146" BorderThickness="1" Foreground="#FF3C81BA" BorderBrush="#453C81BA">
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
                         <TextBlock Text="{Binding Name}"/>
@@ -130,7 +130,7 @@
 
             <TextBlock x:Name="txtProject" Margin="0,0,0,2" Grid.Row="12" Grid.Column="0" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Bottom" FontSize="18" Foreground="#FF3C81BA" FontFamily="Segoe UI Light" Text="{Binding Resource[Tsk_Project]}" Height="21"/>
 
-            <ComboBox Margin="0,3,0,0" x:Name="CboProject" SelectedItem="{Binding SelectedProject, Mode=TwoWay}" ItemsSource="{Binding Projects}" Grid.Row="13" Grid.Column="0" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="162" BorderThickness="1" Foreground="#FF3C81BA" BorderBrush="#453C81BA">
+            <ComboBox IsEnabled="{Binding ReadOnly, Converter={StaticResource BooleanNegationConverter}}" Margin="0,3,0,0" x:Name="CboProject" SelectedItem="{Binding SelectedProject, Mode=TwoWay}" ItemsSource="{Binding Projects}" Grid.Row="13" Grid.Column="0" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="162" BorderThickness="1" Foreground="#FF3C81BA" BorderBrush="#453C81BA">
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
                         <TextBlock Text="{Binding Name}"/>
@@ -139,14 +139,14 @@
             </ComboBox>
 
             <TextBlock x:Name="txtAssignee" Visibility="{Binding VisibleMember, Converter={StaticResource BooleanToVisibilityConverter}}" Margin="0,0,0,2" Grid.Row="14" Grid.Column="0" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Bottom" FontSize="18" Foreground="#FF3C81BA" FontFamily="Segoe UI Light" Text="{Binding Resource[Tsk_Assignee]}" Height="21"/>
-            <ComboBox SelectedItem="{Binding SelectedMember, Mode=TwoWay}" x:Name="CboAssignee" Visibility="{Binding VisibleMember, Converter={StaticResource BooleanToVisibilityConverter}}" Grid.Row="15" Grid.ColumnSpan="2" ItemsSource="{Binding ProjectMembers}" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="327" BorderThickness="1" Foreground="#FF3C81BA" BorderBrush="#453C81BA">
+            <ComboBox IsEnabled="{Binding ReadOnly, Converter={StaticResource BooleanNegationConverter}}" SelectedItem="{Binding SelectedMember, Mode=TwoWay}" x:Name="CboAssignee" Visibility="{Binding VisibleMember, Converter={StaticResource BooleanToVisibilityConverter}}" Grid.Row="15" Grid.ColumnSpan="2" ItemsSource="{Binding ProjectMembers}" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="327" BorderThickness="1" Foreground="#FF3C81BA" BorderBrush="#453C81BA">
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
                         <TextBlock Text="{Binding Username}"/>             
                     </DataTemplate>
                 </ComboBox.ItemTemplate>
             </ComboBox>
-            <CheckBox  Margin="0,8,0,0" IsChecked="{Binding Information.IsBreakable}" x:Name="ckBreakable" Grid.Row="16" Grid.Column="0" Content="{Binding Resource[Tsk_Breakable]}" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="#FF3C81BA" BorderBrush="#FF3C81BA" Height="31" Width="181" FontSize="18"/>
+            <CheckBox Visibility="Collapsed" Margin="0,8,0,0" IsChecked="{Binding Information.IsBreakable}" x:Name="ckBreakable" Grid.Row="16" Grid.Column="0" Content="{Binding Resource[Tsk_Breakable]}" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="#FF3C81BA" BorderBrush="#FF3C81BA" Height="31" Width="181" FontSize="18"/>
             <!--<Button Grid.Row="13" Grid.Column="0" x:Name="saveButton" Style="{StaticResource AppBarButtonStyle}"
        FontFamily="Segoe UI Symbol" FontSize="18" Foreground="#3c81ba"
         ToolTipService.ToolTip="Save task"
@@ -162,6 +162,7 @@
                     />
                 <Button  x:Name="deleteButton" Style="{StaticResource DeleteTaskAppBarButtonStyle2}"
                         Command="{Binding DeleteCommand}"
+                        IsEnabled="{Binding ReadOnly, Converter={StaticResource BooleanNegationConverter}}"
                         Visibility="{Binding Information.ID, Converter={StaticResource IDToVisibleConverter}}"
                         AutomationProperties.Name="{Binding Resource[Tsk_Delete]}"
                     />

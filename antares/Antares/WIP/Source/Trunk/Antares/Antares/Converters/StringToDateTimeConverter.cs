@@ -13,23 +13,23 @@ namespace Antares.Converters
                 return null;
             }
 
-            return System.Convert.ToDateTime(value);
+            return DateTime.Parse(value.ToString());
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
         {
             var date = value.ToString();
-            var sp = date.Split(new[] { '/', ' ', '-' });
-            switch (CultureInfo.CurrentCulture.DateTimeFormat.ShortDatePattern.ToLower())
-            {
-                case "dd/mm/yyyy":
-                    date = System.Convert.ToDateTime(value).ToString("MM/dd/yyyy", CultureInfo.InvariantCulture);
-                    break;
-                default:
-                    date = System.Convert.ToDateTime(value).ToString();
-                    break;
-            }
-            return date;
+            //var sp = date.Split(new[] { '/', ' ', '-' });
+            //switch (CultureInfo.CurrentCulture.DateTimeFormat.ShortDatePattern.ToLower())
+            //{
+            //    case "dd/mm/yyyy":
+            //        date = System.Convert.ToDateTime(value).ToString("MM/dd/yyyy", CultureInfo.InvariantCulture);
+            //        break;
+            //    default:
+            //        date = System.Convert.ToDateTime(value).ToString();
+            //        break;
+            //}
+            return DateTime.Parse(value.ToString()).ToString();
         }
     }
 }

@@ -292,8 +292,6 @@ namespace Repository.Repositories
             var response = await TaskController.Instance.PostAsync(data);
             if (response.IsSuccessStatusCode)
             {
-
-                NotificationUtils.CreateNotification(data);
                 using (var stream = await response.Content.ReadAsStreamAsync())
                 {
                     var djs = new DataContractJsonSerializer(typeof(TaskModel));
@@ -318,9 +316,9 @@ namespace Repository.Repositories
                 var index = Tasks.IndexOf(target);
                 Tasks.RemoveAt(index);
                 NotificationUtils.DeleteNotification(data.ID);
-                IFormatProvider cultureInfo = new CultureInfo("en-US");
-                data.StartDate = DateTime.Parse(data.StartDate, cultureInfo).ToString();
-                data.EndDate = DateTime.Parse(data.EndDate, cultureInfo).ToString();
+                //IFormatProvider cultureInfo = new CultureInfo("en-US");
+                //data.StartDate = DateTime.Parse(data.StartDate, cultureInfo).ToString();
+                //data.EndDate = DateTime.Parse(data.EndDate, cultureInfo).ToString();
 
                 Tasks.Insert(index, data);
                 NotificationUtils.CreateNotification(data);

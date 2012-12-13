@@ -52,7 +52,7 @@ namespace Antares.VIEWs
                 ProjectBtn.Visibility = Visibility.Visible;
                 TaskBtn.Visibility = Visibility.Visible;
                 indi1.Visibility = Visibility.Visible;
-
+                SetHighLight(ProjectBtn);
             }
         }
 

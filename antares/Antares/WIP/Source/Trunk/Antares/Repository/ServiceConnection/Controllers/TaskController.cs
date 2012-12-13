@@ -90,11 +90,14 @@ namespace Repository.ServiceConnection.Controllers
                 // TODO: Emi commented out because exception in vietnamese
                 //if (!edit)
                 //{
-                //    targetObject.StartDate = JustifyDateTimeCulture(targetObject.StartDate);
-                //    targetObject.EndDate = JustifyDateTimeCulture(targetObject.EndDate);
+                   
                 //}
 
-                var person = (TaskModel)targetObject;
+                var person = new TaskModel((TaskModel)targetObject)
+                                 {
+                                     StartDate = JustifyDateTimeCulture(targetObject.StartDate),
+                                     EndDate = JustifyDateTimeCulture(targetObject.EndDate)
+                                 };
 
                 using (var ms = new MemoryStream())
                 {
@@ -138,14 +141,15 @@ namespace Repository.ServiceConnection.Controllers
                 return null;
             }
 
-            var temp = DateTime.Parse(dateTime);
-            switch (LanguageProvider.CurrentLanguage.ToLower())
-            {
-                //case "vi":
-                //    return temp.Day + "/" + temp.Month + "/" + temp.Year;
-                default:
-                    return temp.Month + "/" + temp.Day + "/" + temp.Year;
-            }
+            var temp = RepositoryUtils.GetDateTimeFromStrings(dateTime, null);
+            return temp.Month + "/" + temp.Day + "/" + temp.Year;
+            //switch (LanguageProvider.CurrentLanguage.ToLower())
+            //{
+            //    //case "vi":
+            //    //    return temp.Day + "/" + temp.Month + "/" + temp.Year;
+            //    default:
+                    
+            //}
         }
     }
 }

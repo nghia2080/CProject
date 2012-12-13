@@ -8,10 +8,8 @@
     DoubleTapped="Grid_DoubleTapped_1"
     mc:Ignorable="d"
     Height="90"
-    Width="292"
-
-
-   >
+    Width="292">
+    
     <Grid.Transitions>
         <TransitionCollection>
             <PopupThemeTransition/>
@@ -33,6 +31,7 @@
             <Setter Property="FontSize" Value="16"/>
         </Style>
 
+        <Converters:BoolToOpacityConverter x:Key="BoolToOpacityConverter"/>
         <Converters:TimeToColorConverter x:Key="TimeToColorConverter"/>
         <Converters:TaskToColorConverter x:Key="TaskToColorConverter"/>
         <Converters:DataContextToDateRangeConverter x:Key="DataContextToDateRangeConverter"/>
@@ -50,7 +49,7 @@
         <ColumnDefinition Width="10"/>
     </Grid.ColumnDefinitions>
     <!--<Image Grid.ColumnSpan="3" Grid.RowSpan="5" Source="../Assets/TaskTemplate/BgTask2.png" Stretch="None"></Image>-->
-    <Rectangle Margin="0,2.5,0,0"   Grid.ColumnSpan="3" Grid.RowSpan="5"   Fill="#1f1e3c" ></Rectangle>
+    <Rectangle Margin="0,2.5,0,0"   Grid.ColumnSpan="3" Grid.RowSpan="5" Opacity="{Binding IsConfirmed, Converter={StaticResource BoolToOpacityConverter}}" Fill="#1f1e3c" ></Rectangle>
     <Image Grid.ColumnSpan="1" Grid.RowSpan="3" VerticalAlignment="Top" Grid.Column="1" HorizontalAlignment="Right" Source="../Assets/TaskTemplate/TaskTagGreen.png" Stretch="None"></Image>
     <Image Grid.ColumnSpan="1" Grid.RowSpan="3" VerticalAlignment="Top" Margin="0,0,0,3" Grid.Column="1" HorizontalAlignment="Right" Source="{Binding Converter={StaticResource TimeToColorConverter}}" Stretch="None"></Image>
 

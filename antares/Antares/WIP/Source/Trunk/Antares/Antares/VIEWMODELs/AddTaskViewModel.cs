@@ -75,8 +75,8 @@ namespace Antares.VIEWMODELs
             if (string.IsNullOrEmpty(Information.Name))
             {
                 GlobalData.TemporaryTask = Information;
+                Navigator.Instance.DisplayStatus(ConnectionStatus.Error);
                 Navigator.Instance.MainProgressBar.Visibility = Visibility.Collapsed;
-                messContent = LanguageProvider.Resource["Tsk_Name"] + "?";
                 validated = false;
                 return;
             }
@@ -84,12 +84,12 @@ namespace Antares.VIEWMODELs
             var sd = RepositoryUtils.GetDateTimeFromStrings(Information.StartDate, Information.StartTime);
             var ed = RepositoryUtils.GetDateTimeFromStrings(Information.EndDate, Information.EndTime);
 
-            // Need > 1hr ?
-            if(sd > ed)
+            // Need > 30 mins ?
+            if (ed - sd < new TimeSpan(0, 0, 30))
             {
                 GlobalData.TemporaryTask = Information;
+                Navigator.Instance.DisplayStatus(ConnectionStatus.Error);
                 Navigator.Instance.MainProgressBar.Visibility = Visibility.Collapsed;
-                messContent = LanguageProvider.Resource["Tsk_Name"] + "?";
                 validated = false;
                 return;
             }
@@ -101,6 +101,27 @@ namespace Antares.VIEWMODELs
             {
                 try
                 {
+                    if(Information.ProjectID != -1)
+                    {
+                        var members = await ProjectMemberRepository.Instance.GetAllProjectsMember(Information.ProjectID);
+
+                        var pm = members.First(p => !string.IsNullOrEmpty(p.Role));
+
+                        if (pm.UserID == GlobalData.MyUserID)
+                        {
+                            Information.IsConfirmed = Information.UserID == GlobalData.MyUserID;
+                        }
+                        else
+                        {
+                            // Have no right to add task.
+                            GlobalData.TemporaryTask = Information;
+                            Navigator.Instance.MainProgressBar.Visibility = Visibility.Collapsed;
+                            Navigator.Instance.DisplayStatus(ConnectionStatus.Error);
+                            return;
+                        }
+                    }
+                    
+
                     var response = await TaskRepository.Instance.AddNewTask(Information);
                     Navigator.Instance.DisplayStatus(response != null
                                       ? ConnectionStatus.Done
@@ -116,6 +137,12 @@ namespace Antares.VIEWMODELs
             //Update
             else
             {
+                if (Information.ProjectID != -1)
+                {
+                    // Authenticate
+                    Information.IsConfirmed = Information.UserID == GlobalData.MyUserID;
+                }
+
                 var response = await TaskRepository.Instance.UpdateTask(Information);
                 Navigator.Instance.DisplayStatus(response.IsSuccessStatusCode
                                                 ? ConnectionStatus.Done
@@ -179,6 +206,12 @@ namespace Antares.VIEWMODELs
             set { SetProperty(ref _projects, value); }
         }
 
+        private bool _readOnly;
+        public bool ReadOnly
+        {
+            get { return _readOnly; }
+            set { SetProperty(ref _readOnly, value); }
+        }
 
         private ProjectInformationModel _selectedProject;
         public ProjectInformationModel SelectedProject
@@ -198,36 +231,27 @@ namespace Antares.VIEWMODELs
                 }
                 else
                 {
+                    ReadOnly = true;
+
                     BindingMember();
                     VisibleMember = true;
                     Categories = _subCate;
+
+                    UnlockReadonlyForPM(Information.ProjectID);
                 }
 
-                //foreach (var categoryModel in Categories)
-                //{
-                //    if (Information.ProjectID != -1)
-                //    {
-                //        if (categoryModel.Type == 0)
-                //        {
-                //            categoryModel.IsEnabled = false;
-                //        }
-                //        else
-                //        {
-                //            categoryModel.IsEnabled = true;
-                //        }
-                //    }
-                //    else
-                //    {
-                //        if (categoryModel.Type == 0)
-                //        {
-                //            categoryModel.IsEnabled = true;
-                //        }
-                //        else
-                //        {
-                //            categoryModel.IsEnabled = false;
-                //        }
-                //    }
-                //}
+            }
+        }
+
+        private async void UnlockReadonlyForPM(int pid)
+        {
+            var members = await ProjectMemberRepository.Instance.GetAllProjectsMember(pid);
+
+            var pm = members.First(p => !string.IsNullOrEmpty(p.Role));
+
+            if(pm.UserID == GlobalData.MyUserID)
+            {
+                ReadOnly = false;
             }
         }
 
@@ -237,7 +261,10 @@ namespace Antares.VIEWMODELs
             var temp = new ObservableCollection<UserModel>();
             foreach (var projectMemberContrainModel in mbers)
             {
-                temp.Add(await UserInformationRepository.Instance.GetUser(projectMemberContrainModel.UserID));
+                if (projectMemberContrainModel.IsActive && projectMemberContrainModel.IsConfirmed)
+                {
+                    temp.Add(await UserInformationRepository.Instance.GetUser(projectMemberContrainModel.UserID));
+                }
             }
 
             ProjectMembers = temp;
@@ -325,14 +352,13 @@ namespace Antares.VIEWMODELs
             var temp = await ProjectRepository.Instance.GetAllProjects();
             if (temp != null)
             {
-                var t = new ObservableCollection<ProjectInformationModel>(temp)
-                    {
-                        new ProjectInformationModel
+                var t = new ObservableCollection<ProjectInformationModel>(temp);
+                    
+                t.Insert(0,new ProjectInformationModel
                             {
                                 ID = -1,
                                 Name = LanguageProvider.Resource["Tsk_Project_None"]
-                            }
-                    };
+                            });
 
                 Projects = t;
                 //SelectedProjectIndex = 0;//Projects.IndexOf(Projects.FirstOrDefault(p => p.ID == (Information.ProjectID ?? -1)));
@@ -345,10 +371,7 @@ namespace Antares.VIEWMODELs
             Priorities = await PriorityRepository.Instance.GetAllPriorities();
             RepeatTypes = await RepeatTypeRepository.Instance.GetAllRepeatTypes();
 
-
-
             //pim.ProjectID = -1;
-
             if (GlobalData.TemporaryTask != null)
             {
                 Information = GlobalData.TemporaryTask;

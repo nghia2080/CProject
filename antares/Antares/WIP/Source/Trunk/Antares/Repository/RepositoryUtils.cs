@@ -15,15 +15,16 @@ namespace Repository
         {
             DateTime ret;
             IFormatProvider cultureInfo = new CultureInfo("en-US");
-            ret = DateTime.Parse(date);
+            var dumb = DateTime.Parse(date, CultureInfo.CurrentCulture.DateTimeFormat).ToString(cultureInfo);
 
+            ret = DateTime.Parse(dumb, cultureInfo);
             //switch (CultureInfo.CurrentCulture.Name.ToLower())
             //{
             //    case "vi":
-            //        ret = DateTime.ParseExact(date, "MM/dd/yyyy", CultureInfo.CurrentCulture);
+            //        ret = DateTime.ParseExact(date, "MM/dd/yyyy", CultureInfo.CurrentCulture.DateTimeFormat);
             //        break;
             //    default:
-            //        ret = DateTime.ParseExact(date, "dd/MM/yyyy", CultureInfo.CurrentCulture);
+            //        ret = DateTime.ParseExact(date, "dd/MM/yyyy", CultureInfo.CurrentCulture.DateTimeFormat);
             //        break;
             //}
             return ret.AddMinutes(time ?? 0);

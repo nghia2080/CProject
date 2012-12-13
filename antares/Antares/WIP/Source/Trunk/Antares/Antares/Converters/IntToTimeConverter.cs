@@ -19,11 +19,14 @@ namespace Antares.Converters
 
             try
             {
+                var hrs = iDate/60;
+                var min = iDate%60;
+      
                 var date = new DateTime(DateTime.Now.Year,
                             DateTime.Now.Month,
-                            DateTime.Now.Day,
-                            iDate / 60,
-                            iDate % 60,
+                            (hrs == 24) ? DateTime.Now.Day + 1 : DateTime.Now.Day,
+                            (hrs == 24) ? 0 : hrs,
+                            min,
                             0);
 
                 return date;
