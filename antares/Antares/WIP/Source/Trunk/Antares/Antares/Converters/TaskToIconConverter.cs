@@ -4,7 +4,7 @@ using Windows.UI.Xaml.Data;
 using Repository.MODELs;
 namespace Antares.Converters
 {
-    public class TaskToColorConverter : IValueConverter
+    public class TaskToIconConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
@@ -24,17 +24,17 @@ namespace Antares.Converters
             switch (cateID)
             {
                 case 10:
-                    return "#3c1e22";
+                    return "../Assets/TaskTemplate/requirement_icon.png";
                 case 11:
-                    return "#211e3c";
+                    return "../Assets/TaskTemplate/design_icon.png";
                 case 12:
-                    return "#1e3c3c";
+                    return "../Assets/TaskTemplate/implementation_icon.png";
                 case 13:
-                    return "#203c1e";
+                    return "../Assets/TaskTemplate/verification_icon.png";
                 case 14:
-                    return "#3c231e";
+                    return "../Assets/TaskTemplate/maintenance_icon.png";
                 default:
-                    return "#211e3c";
+                    return "../Assets/TaskTemplate/task_icon.png";
             }
         }
 

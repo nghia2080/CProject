@@ -16,7 +16,7 @@
         <DataTemplate x:Key="TaskTemplate">
             <local:ProjectTaskItem/>
         </DataTemplate>
-        <Converters:TaskToColorConverter x:Key="TaskToColorConverter"/>
+        <Converters:TaskToIconConverter x:Key="TaskToColorConverter"/>
         <CollectionViewSource x:Name="GroupItemSource" Source="{Binding AllGroups}" IsSourceGrouped="True" ItemsPath="GroupTasks"/>
     </Page.Resources>
 

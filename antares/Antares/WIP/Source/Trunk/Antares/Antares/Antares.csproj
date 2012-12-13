@@ -123,6 +123,7 @@
     <Compile Include="Converters\StatusToFontSizeConverter.cs" />
     <Compile Include="Converters\StringToRoleConverter.cs" />
     <Compile Include="Converters\TaskToColorConverter.cs" />
+    <Compile Include="Converters\TaskToIconConverter.cs" />
     <Compile Include="Converters\TaskToShortInfoConverter.cs" />
     <Compile Include="Converters\TemperatureToStringConverter.cs" />
     <Compile Include="Converters\DateTimeToDayConverter.cs" />
