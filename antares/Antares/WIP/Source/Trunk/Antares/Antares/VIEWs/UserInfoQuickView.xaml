@@ -31,14 +31,15 @@
                 <Style x:Key="CommonTextStyle" TargetType="TextBlock">
                     <Setter Property="FontFamily" Value="Segoe UI"/>
                     <Setter Property="FontSize" Value="25"/>
+                    <Setter Property="Foreground" Value="#FF383838"/>
                     <Setter Property="FontWeight" Value="ExtraLight"/>
                 </Style>
             </Grid.Resources>
 
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="20"/>
+                <ColumnDefinition Width="35"/>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="20"/>
+                <ColumnDefinition Width="30"/>
             </Grid.ColumnDefinitions>
 
             <Grid.RowDefinitions>
@@ -59,7 +60,7 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding Resource[UInfo_ContactInfo]}" Style="{StaticResource CommonTextStyle}" FontSize="28" FontWeight="Bold"/>
+            <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding Resource[UInfo_ContactInfo]}" Style="{StaticResource CommonTextStyle}" FontSize="28" FontWeight="SemiLight"/>
 
             <TextBlock Grid.Column="1" Grid.Row="2" Text="{Binding Resource[UInfo_Username]}" Style="{StaticResource CommonTextStyle}"/>
             <TextBlock x:Name="Username" Grid.Column="1" Grid.Row="3" Text="..." Style="{StaticResource CommonTextStyle}" FontWeight="Medium"/>
