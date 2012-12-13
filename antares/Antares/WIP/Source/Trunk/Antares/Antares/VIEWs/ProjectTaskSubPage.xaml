@@ -5,7 +5,7 @@
     xmlns:local="using:Antares.VIEWs"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:VIEWMODELs="using:Antares.VIEWMODELs"
-    mc:Ignorable="d">
+    xmlns:Converters="using:Antares.Converters" mc:Ignorable="d">
     <Page.Transitions>
         <TransitionCollection>
             <EdgeUIThemeTransition Edge="Right"/>
@@ -16,7 +16,7 @@
         <DataTemplate x:Key="TaskTemplate">
             <local:ProjectTaskItem/>
         </DataTemplate>
-
+        <Converters:TaskToColorConverter x:Key="TaskToColorConverter"/>
         <CollectionViewSource x:Name="GroupItemSource" Source="{Binding AllGroups}" IsSourceGrouped="True" ItemsPath="GroupTasks"/>
     </Page.Resources>
 
@@ -62,7 +62,7 @@
                             </GroupStyle.HeaderTemplate>
                             <GroupStyle.Panel>
                                 <ItemsPanelTemplate>
-                                    <VariableSizedWrapGrid Orientation="Vertical" Margin="0,0,80,0" MinWidth="200"/>
+                                    <VariableSizedWrapGrid Orientation="Vertical" Margin="0,0,80,0" MinWidth="320"/>
                                 </ItemsPanelTemplate>
                             </GroupStyle.Panel>
                         </GroupStyle>
@@ -74,9 +74,11 @@
                 <GridView HorizontalAlignment="Center" VerticalAlignment="Center" SelectionMode="None" ItemsSource="{Binding AllGroups}">
                     <GridView.ItemTemplate>
                         <DataTemplate>
-                            <Border Margin="5,0,5,0" BorderBrush="Black" BorderThickness="1">
-                                <TextBlock Margin="10,10,10,10" Text="{Binding GroupName}" FontFamily="Segoe UI" FontSize="30" FontWeight="Light"/>
-                            </Border>
+                            <Grid Margin="5,0,5,0" MinWidth="240" Height="100">
+                                <Rectangle Margin="0,2.5,0,0" Fill="#1f1e3c" ></Rectangle>
+                                <Image Source="{Binding Converter={StaticResource TaskToColorConverter}}" HorizontalAlignment="Left"/>
+                                <TextBlock Margin="10,10,10,10" Text="{Binding GroupName}" FontFamily="Segoe UI" FontSize="36" Foreground="White" FontWeight="Light"/>
+                            </Grid>
                         </DataTemplate>
                     </GridView.ItemTemplate>
                     <GridView.ItemsPanel>
