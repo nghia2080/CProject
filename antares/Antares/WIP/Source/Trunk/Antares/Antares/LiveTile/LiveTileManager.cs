@@ -162,7 +162,7 @@ namespace Antares.LiveTile
         {
             ClearTileAndBadge();
             _dictionary.Clear();
-            IEnumerable<TaskModel> tasks = awnew ObservableCollection<TaskModel>(await TaskRepository.Instance.GetTaskListFor(DateTime.Now));
+            IEnumerable<TaskModel> tasks = new ObservableCollection<TaskModel>(await TaskRepository.Instance.GetTaskListFor(DateTime.Now));
 
             tasks = !tasks.Any() ? tasks.Union(await TaskRepository.Instance.GetTaskListFor(DateTime.Now.AddDays(1))) : new ObservableCollection<TaskModel>(await TaskRepository.Instance.GetTaskListFor(DateTime.Now.AddDays(1)));
 

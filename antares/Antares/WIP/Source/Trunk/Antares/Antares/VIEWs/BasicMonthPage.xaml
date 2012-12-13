@@ -84,7 +84,6 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
-                
             </Grid.ColumnDefinitions>
             <Rectangle Fill="LightBlue" Grid.RowSpan="3" Grid.Column="0"/>
             <TextBlock Text="{Binding Resource[DOW_2]}" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource HeaderStyle}"/>
