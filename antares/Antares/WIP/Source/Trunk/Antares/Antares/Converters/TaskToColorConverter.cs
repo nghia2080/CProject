@@ -9,7 +9,7 @@ namespace Antares.Converters
         public object Convert(object value, Type targetType, object parameter, string language)
         {
             var model = value as TaskModel;
-
+            
             switch (model.Category.ToString())
             {
                 case "10": return "../Assets/TaskTemplate/requirement_icon.png";

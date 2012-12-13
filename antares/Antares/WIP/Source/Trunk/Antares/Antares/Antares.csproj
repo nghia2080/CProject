@@ -227,8 +227,11 @@
     <Content Include="Assets\TaskTemplate\BgTask.png" />
     <Content Include="Assets\TaskTemplate\BgTask2.png" />
     <Content Include="Assets\TaskTemplate\design_icon.png" />
+    <Content Include="Assets\TaskTemplate\done.png" />
     <Content Include="Assets\TaskTemplate\implementation_icon.png" />
     <Content Include="Assets\TaskTemplate\maintenance_icon.png" />
+    <Content Include="Assets\TaskTemplate\ondue.png" />
+    <Content Include="Assets\TaskTemplate\overdue.png" />
     <Content Include="Assets\TaskTemplate\requirement_icon.png" />
     <Content Include="Assets\TaskTemplate\task_icon.png" />
     <Content Include="Assets\TaskTemplate\TaskTagBlue.png" />

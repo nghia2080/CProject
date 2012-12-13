@@ -14,27 +14,23 @@ namespace Antares.Converters
         {
             var model = value as TaskModel;
 
-            var sdt = DateTime.Parse(model.StartDate);
+         
             var edt = DateTime.Parse(model.EndDate);
 
             if (model.Status == 0)
             {
-                if (DateTime.Now < sdt)
+                if (DateTime.Now < edt)
                 {
-                    return "#FFF380";
-                }
-                else if (DateTime.Now > sdt && DateTime.Now < edt)
-                {
-                    return "#33FF66";
+                    return "../Assets/TaskTemplate/ondue.png";
                 }
                 else
                 {
-                    return "Red";
+                    return "../Assets/TaskTemplate/overdue.png";
                 }
             }
             else
             {
-                return "#E0E0E0";
+                return "../Assets/TaskTemplate/done.png";
             }
         }
 

@@ -52,6 +52,8 @@
     <!--<Image Grid.ColumnSpan="3" Grid.RowSpan="5" Source="../Assets/TaskTemplate/BgTask2.png" Stretch="None"></Image>-->
     <Rectangle Margin="0,2.5,0,0"   Grid.ColumnSpan="3" Grid.RowSpan="5"   Fill="#1f1e3c" ></Rectangle>
     <Image Grid.ColumnSpan="1" Grid.RowSpan="3" VerticalAlignment="Top" Grid.Column="1" HorizontalAlignment="Right" Source="../Assets/TaskTemplate/TaskTagGreen.png" Stretch="None"></Image>
+    <Image Grid.ColumnSpan="1" Grid.RowSpan="3" VerticalAlignment="Top" Margin="0,0,0,3" Grid.Column="1" HorizontalAlignment="Right" Source="{Binding Converter={StaticResource TimeToColorConverter}}" Stretch="None"></Image>
+
     <Image  Margin="0,2.5,0,0" Grid.ColumnSpan="3" Source="{Binding Converter={StaticResource TaskToColorConverter}}" Grid.RowSpan="5" HorizontalAlignment="Left"></Image>
     <!--<Rectangle  Fill="#bdbdbd" Height="1" Grid.Row="1" Grid.Column="1" VerticalAlignment="Bottom" Margin="0,2,0,0" />-->
     <TextBlock  HorizontalAlignment="Left" Grid.Row="1" Grid.Column="1" Style="{StaticResource TxtProjectStyle}" Text="{Binding Name}" VerticalAlignment="Bottom"  TextTrimming="WordEllipsis"/>
