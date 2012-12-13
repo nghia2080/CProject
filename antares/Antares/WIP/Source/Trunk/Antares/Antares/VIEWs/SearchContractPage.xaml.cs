@@ -68,7 +68,7 @@ namespace Antares.VIEWs
 
            var filterList = new List<Filter> { new Filter("All", 0, true) };
 
-            resultText.Text = LanguageProvider.Resource["resuSearch_Result"] + " ";
+            resultText.Text = LanguageProvider.Resource["Search_Result"] + " ";
             noResultsTextBlock.Text = LanguageProvider.Resource["Search_NoResult"];
             // Communicate results through the view model
             DefaultViewModel["QueryText"] = '\u201c' + query + '\u201d';
