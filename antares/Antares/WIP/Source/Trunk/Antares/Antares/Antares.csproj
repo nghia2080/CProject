@@ -225,6 +225,16 @@
     <Content Include="Assets\GreenNotification.png" />
     <Content Include="Assets\TaskIcon\Other.png" />
     <Content Include="Assets\TaskTemplate\BgTask.png" />
+    <Content Include="Assets\TaskTemplate\BgTask2.png" />
+    <Content Include="Assets\TaskTemplate\design_icon.png" />
+    <Content Include="Assets\TaskTemplate\implementation_icon.png" />
+    <Content Include="Assets\TaskTemplate\maintenance_icon.png" />
+    <Content Include="Assets\TaskTemplate\requirement_icon.png" />
+    <Content Include="Assets\TaskTemplate\task_icon.png" />
+    <Content Include="Assets\TaskTemplate\TaskTagBlue.png" />
+    <Content Include="Assets\TaskTemplate\TaskTagGreen.png" />
+    <Content Include="Assets\TaskTemplate\TaskTagGreen2.png" />
+    <Content Include="Assets\TaskTemplate\verification_icon.png" />
     <Content Include="Assets\TempIcon.png" />
     <Content Include="Assets\TimeIcon.png" />
     <Content Include="Assets\WhiteNotification.png" />

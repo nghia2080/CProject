@@ -8,16 +8,16 @@ namespace Antares.Converters
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            var group = new GroupCollection();
+            var model = value as TaskModel;
 
-            switch (group.GroupName)
+            switch (model.Category.ToString())
             {
-                case "Requirements": return "#e44eff";
-                case "Design": return "#ff4eae";
-                case "Implementation": return "#4eff91";
-                case "Verification": return "#c7ff4e";
-                case "Maintanence": return "#524eff";
-                default: return "#e44eff";
+                case "10": return "../Assets/TaskTemplate/requirement_icon.png";
+                case "11": return "../Assets/TaskTemplate/design_icon.png";
+                case "12": return "../Assets/TaskTemplate/implementation_icon.png";
+                case "13": return "../Assets/TaskTemplate/verification_icon.png";
+                case "14": return "../Assets/TaskTemplate/maintenance_icon.png";
+                default: return "../Assets/TaskTemplate/task_icon.png";
             }
         }
 
