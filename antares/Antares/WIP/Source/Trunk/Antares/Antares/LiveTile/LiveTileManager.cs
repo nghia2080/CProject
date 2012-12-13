@@ -164,9 +164,9 @@ namespace Antares.LiveTile
             _dictionary.Clear();
             IEnumerable<TaskModel> tasks = new ObservableCollection<TaskModel>(await TaskRepository.Instance.GetTaskListFor(DateTime.Now));
 
-            tasks = !tasks.Any() ? tasks.Union(await TaskRepository.Instance.GetTaskListFor(DateTime.Now.AddDays(1))) : new ObservableCollection<TaskModel>(await TaskRepository.Instance.GetTaskListFor(DateTime.Now.AddDays(1)));
+            tasks = tasks.Any() ? tasks.Union(await TaskRepository.Instance.GetTaskListFor(DateTime.Now.AddDays(1))) : new ObservableCollection<TaskModel>(await TaskRepository.Instance.GetTaskListFor(DateTime.Now.AddDays(1)));
 
-            tasks = !tasks.Any() ? tasks.Union(await TaskRepository.Instance.GetTaskListFor(DateTime.Now.AddDays(2))) : new ObservableCollection<TaskModel>(await TaskRepository.Instance.GetTaskListFor(DateTime.Now.AddDays(2)));
+            tasks = tasks.Any() ? tasks.Union(await TaskRepository.Instance.GetTaskListFor(DateTime.Now.AddDays(2))) : new ObservableCollection<TaskModel>(await TaskRepository.Instance.GetTaskListFor(DateTime.Now.AddDays(2)));
             _wideImagePath = WIDE_NORMAL_IMAGE;
             _squareImagePath = SQUARE_NORMAL_IMAGE;
 
@@ -200,7 +200,15 @@ namespace Antares.LiveTile
                 //if (_dictionary.Count > 0)
                 //{
                 //    _dictionary.Reverse();
-                CreateTileQueue(_dictionary);
+                try
+                {
+                    CreateTileQueue(_dictionary);
+                }
+                catch (Exception)
+                {
+                    
+                }
+               
                 //}
 
                 //DisplayFirstTile(taskCount, _wideImagePath, _squareImagePath);

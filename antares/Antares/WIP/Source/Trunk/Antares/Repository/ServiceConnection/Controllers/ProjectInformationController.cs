@@ -88,7 +88,13 @@ namespace Repository.ServiceConnection.Controllers
         {
             try
             {
-                var person = (ProjectInformationModel)targetObject;
+
+
+                var person = new ProjectInformationModel((ProjectInformationModel)targetObject)
+                {
+                    StartDate = RepositoryUtils.JustifyDateTimeCulture(targetObject.StartDate),
+                    EndDate = RepositoryUtils.JustifyDateTimeCulture(targetObject.EndDate)
+                };
 
                 using (var ms = new MemoryStream())
                 {

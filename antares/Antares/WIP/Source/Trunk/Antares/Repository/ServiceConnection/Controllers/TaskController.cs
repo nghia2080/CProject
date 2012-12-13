@@ -95,8 +95,8 @@ namespace Repository.ServiceConnection.Controllers
 
                 var person = new TaskModel((TaskModel)targetObject)
                                  {
-                                     StartDate = JustifyDateTimeCulture(targetObject.StartDate),
-                                     EndDate = JustifyDateTimeCulture(targetObject.EndDate)
+                                     StartDate = JustifRepositoryUtils.JustifyDateTimeCulture(targetObject.StartDate),
+                                     EndDate = RepositoryUtils.DateTimeCulture(targetObject.EndDate)
                                  };
 
                 using (var ms = new MemoryStream())
@@ -130,26 +130,6 @@ namespace Repository.ServiceConnection.Controllers
             get { return _instance ?? (_instance = new TaskController()); }
         }
 
-        /// <summary>
-        /// Return independent datetime culture
-        /// </summary>
-        /// <returns></returns>
-        private string JustifyDateTimeCulture(string dateTime)
-        {
-            if (string.IsNullOrEmpty(dateTime))
-            {
-                return null;
-            }
-
-            var temp = RepositoryUtils.GetDateTimeFromStrings(dateTime, null);
-            return temp.Month + "/" + temp.Day + "/" + temp.Year;
-            //switch (LanguageProvider.CurrentLanguage.ToLower())
-            //{
-            //    //case "vi":
-            //    //    return temp.Day + "/" + temp.Month + "/" + temp.Year;
-            //    default:
-                    
-            //}
-        }
+        /// <summ
     }
 }

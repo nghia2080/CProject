@@ -5,6 +5,20 @@ namespace Repository.MODELs
 {
     public class UserModel : BindableBase
     {
+        public UserModel()
+        {
+            
+        }
+
+        public UserModel(UserModel target)
+        {
+            UserID = target.UserID;
+            Username = target.Username;
+            Phone = target.Phone;
+            Email = target.Email;
+            DOB = target.DOB;
+        }
+
         private int _userID;
         public int UserID { get { return _userID; } set { SetProperty(ref _userID, value); } }
 

@@ -250,6 +250,8 @@ namespace Repository.Repositories
                         }
 
                     }
+
+                    Messenger.Instance.Notify(UpdateTaskList.Update);
                 }
                 else
                 {
@@ -282,7 +284,7 @@ namespace Repository.Repositories
             }
             finally
             {
-                Messenger.Instance.Notify(UpdateTaskList.Update);
+                
                 _slGetAllTasks.Release();
             }
         }

@@ -27,9 +27,23 @@ namespace Repository
             //        ret = DateTime.ParseExact(date, "dd/MM/yyyy", CultureInfo.CurrentCulture.DateTimeFormat);
             //        break;
             //}
+           
             return ret.AddMinutes(time ?? 0);
-            
-            throw new ArgumentException("Cannot parse string " + date + " to DateTime object.");
+        }
+
+        /// <summary>
+        /// Return independent datetime culture
+        /// </summary>
+        /// <returns></returns>
+        public static string JustifyDateTimeCulture(string dateTime)
+        {
+            if (string.IsNullOrEmpty(dateTime))
+            {
+                return null;
+            }
+
+            var temp = RepositoryUtils.GetDateTimeFromStrings(dateTime, null);
+            return temp.Month + "/" + temp.Day + "/" + temp.Year;
         }
 
         /// <summary>

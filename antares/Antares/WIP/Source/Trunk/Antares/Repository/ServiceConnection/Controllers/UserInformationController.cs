@@ -66,7 +66,10 @@ namespace Repository.ServiceConnection.Controllers
         {
             try
             {
-                var person = (UserModel)targetObject;
+                var person = new UserModel((UserModel)targetObject)
+                {
+                    DOB = RepositoryUtils.JustifyDateTimeCulture(targetObject.DOB),
+                };
 
                 using (var ms = new MemoryStream())
                 {
